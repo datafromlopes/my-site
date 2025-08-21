@@ -1,51 +1,56 @@
-{{- /*
-Renders a menu for the given menu ID.
-
-@context {page} page The current page.
-@context {string} menuID The menu ID.
-
-@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-*/}}
-
-{{- $page := .page }}
-{{- $menuID := .menuID }}
-
-{{- with index site.Menus $menuID }}
-  <nav>
-    <ul>
-      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+  <div class="navbar-brand js-scroll-trigger text-center w-100" href="#page-top">
+    <!-- Foto -->
+    <img class="img-fluid img-profile rounded-circle mx-auto mb-2"
+         src="profile.jpeg"
+         alt="Foto de perfil" />
+  </div>
+    <div class="div-name">{{ .Site.Params.name }}</div>
+    <div class="div-tagline">{{ .Site.Params.tagline }}</div>
+    <div class="d-flex justify-content-center div-location"><i class="d-flex justify-content-center fa-solid fa-location-dot"></i>{{ .Site.Params.location }}</div>
+    <div class="d-flex justify-content-center gap-2 social-network">
+        {{ with .Site.Params.social.linkedin }}
+          <a href="{{ . }}" target="_blank" class="text-white">
+            <i class="fa-brands fa-square-linkedin social-network"></i>
+          </a>
+        {{ end }}
+        {{ with .Site.Params.social.github }}
+          <a href="{{ . }}" target="_blank" class="text-white">
+            <i class="fa-brands fa-square-github social-network"></i>
+          </a>
+        {{ end }}
+        {{ with .Site.Params.social.kaggle }}
+          <a href="{{ . }}" target="_blank" class="text-white">
+            <i class="fa-brands fa-kaggle social-network"></i>
+          </a>
+        {{ end }}
+        {{ with .Site.Params.social.orcid }}
+          <a href="{{ . }}" target="_blank" class="text-white">
+            <i class="fa-brands fa-orcid social-network"></i>
+          </a>
+        {{ end }}
+        {{ with .Site.Params.social.twitter }}
+          <a href="{{ . }}" target="_blank" class="text-white">
+            <i class="fa-brands fa-square-x-twitter social-network"></i>
+          </a>
+        {{ end }}
+        {{ with .Site.Params.social.email }}
+          <a href="mailto:{{ . }}" class="text-white">
+            <i class="fa-solid fa-envelope social-network"></i>
+          </a>
+        {{ end }}
+    </div>
+  <div class="custom-line"></div>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav">
+      {{ range .Site.Menus.main }}
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger {{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}active{{ end }}"
+             href="{{ .URL }}">
+            {{ .Name }}
+          </a>
+        </li>
+      {{ end }}
     </ul>
-  </nav>
-{{- end }}
-
-{{- define "_partials/inline/menu/walk.html" }}
-  {{- $page := .page }}
-  {{- range .menuEntries }}
-    {{- $attrs := dict "href" .URL }}
-    {{- if $page.IsMenuCurrent .Menu . }}
-      {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
-    {{- else if $page.HasMenuCurrent .Menu .}}
-      {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
-    {{- end }}
-    {{- $name := .Name }}
-    {{- with .Identifier }}
-      {{- with T . }}
-        {{- $name = . }}
-      {{- end }}
-    {{- end }}
-    <li>
-      <a
-        {{- range $k, $v := $attrs }}
-          {{- with $v }}
-            {{- printf " %s=%q" $k $v | safeHTMLAttr }}
-          {{- end }}
-        {{- end -}}
-      >{{ $name }}</a>
-      {{- with .Children }}
-        <ul>
-          {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-        </ul>
-      {{- end }}
-    </li>
-  {{- end }}
-{{- end }}
+  </div>
+</nav>

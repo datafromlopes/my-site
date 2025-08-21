@@ -1,22 +1,35 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://datafromlopes.com/'
 languageCode = 'en-US'
-title = 'My New Hugo Site'
+title = 'Diego Lopes'
+
+[params]
+  name = "Diego Lopes"
+  tagline = "Data Engineer & Researcher"
+  location = "São Paulo, Brazil"
+
+  [params.social]
+    linkedin = "https://www.linkedin.com/in/datafromlopes"
+    github   = "https://github.com/datafromlopes"
+    twitter  = "https://x.com/datafromlopes"
+    orcid  = "https://orcid.org/0000-0002-5130-3728"
+    kaggle = "https://www.kaggle.com/datafromlopes"
+    email    = "diego.lopes@datafromlopes.com"
 
 [menus]
   [[menus.main]]
-    name = 'Home'
+    name = 'About'
     pageRef = '/'
     weight = 10
 
   [[menus.main]]
-    name = 'Posts'
-    pageRef = '/posts'
+    name = 'Publications'
+    pageRef = '/publications'
     weight = 20
 
   [[menus.main]]
-    name = 'Tags'
-    pageRef = '/tags'
-    weight = 30
+    name = 'Blog'
+    pageRef = '/blog'
+    weight = 20
 
 [module]
   [module.hugoVersion]
