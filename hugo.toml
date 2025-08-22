@@ -2,3 +2,5 @@ baseURL = 'https://datafromlopes.com/'
 languageCode = 'en-us'
 title = 'Diego Lopes'
 theme = 'datafromlopes'
+
+disableKinds = ["taxonomy", "term"]
