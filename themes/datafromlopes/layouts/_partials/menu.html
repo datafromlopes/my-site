@@ -19,9 +19,9 @@
             <i class="fa-brands fa-square-github social-network"></i>
           </a>
         {{ end }}
-        {{ with .Site.Params.social.kaggle }}
+        {{ with .Site.Params.social.twitter }}
           <a href="{{ . }}" target="_blank" class="text-white">
-            <i class="fa-brands fa-kaggle social-network"></i>
+            <i class="fa-brands fa-square-x-twitter social-network"></i>
           </a>
         {{ end }}
         {{ with .Site.Params.social.orcid }}
@@ -29,9 +29,9 @@
             <i class="fa-brands fa-orcid social-network"></i>
           </a>
         {{ end }}
-        {{ with .Site.Params.social.twitter }}
+        {{ with .Site.Params.social.kaggle }}
           <a href="{{ . }}" target="_blank" class="text-white">
-            <i class="fa-brands fa-square-x-twitter social-network"></i>
+            <i class="fa-brands fa-kaggle social-network"></i>
           </a>
         {{ end }}
         {{ with .Site.Params.social.email }}
@@ -42,15 +42,21 @@
     </div>
   <div class="custom-line"></div>
   <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav">
-      {{ range .Site.Menus.main }}
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger {{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}active{{ end }}"
-             href="{{ .URL }}">
-            {{ .Name }}
-          </a>
-        </li>
-      {{ end }}
-    </ul>
-  </div>
+      <ul class="navbar-nav">
+        {{ range .Site.Menus.main }}
+          {{/* decide se este item está ativo */}}
+          {{ $isActive := or
+              (or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .))
+              (and $.IsHome (or (eq .URL "/") (eq .PageRef "/")))
+          }}
+
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger {{ if $isActive }}active{{ end }}"
+               href="{{ .URL }}">
+              {{ .Name }}
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
 </nav>

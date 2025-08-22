@@ -1,3 +1,9 @@
 {{ define "main" }}
-  <!-- De propósito vazio, assim só aparece o menu -->
+  <article class="container">
+    {{ if .Title }}
+      <h1 class="mb-3">{{ .Title }}</h1>
+    {{ end }}
+
+    {{ .Content }}
+  </article>
 {{ end }}
