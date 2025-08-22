@@ -10,6 +10,7 @@
 .img-profile {
   border:.2rem solid #000000;
   max-width:10rem; max-height:10rem;
+  margin-top: 10px;
 }
 .div-name {
   font-family: var(--font-base);
