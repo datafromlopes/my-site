@@ -32,7 +32,7 @@ title = 'Diego Lopes'
 
   [[menus.main]]
     name = 'Blog'
-    pageRef = '/posts'
+    pageRef = '/posts/'
     weight = 20
 
 [module]
