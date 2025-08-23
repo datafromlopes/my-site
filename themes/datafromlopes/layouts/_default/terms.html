@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article class="container py-3">
+  <h1 class="mb-3">{{ .Title }}</h1>
+  <ul>
+    {{ range .Data.Terms.Alphabetical }}
+      <li>
+        <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+        <small class="text-muted">({{ .Count }})</small>
+      </li>
+    {{ end }}
+  </ul>
+</article>
+{{ end }}

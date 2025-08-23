@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article class="container py-3">
+  <h1 class="mb-3">{{ .Title }}</h1>
+  <ul>
+    {{ range .Pages }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <small class="text-muted">— {{ .Date.Format "02 Jan 2006" }}</small>
+      </li>
+    {{ end }}
+  </ul>
+</article>
+{{ end }}

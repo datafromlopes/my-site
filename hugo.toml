@@ -3,4 +3,5 @@ languageCode = 'en-us'
 title = 'Diego Lopes'
 theme = 'datafromlopes'
 
-disableKinds = ["taxonomy", "term"]
+pagination.pagerSize = 6
+pagination.path = "page"

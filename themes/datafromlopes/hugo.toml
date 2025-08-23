@@ -15,9 +15,13 @@ title = 'Diego Lopes'
     kaggle = "https://www.kaggle.com/datafromlopes"
     email    = "diego.lopes@datafromlopes.com"
 
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
 [menus]
   [[menus.main]]
-    name = 'About'
+    name = 'About Me'
     pageRef = '/'
     weight = 10
 
@@ -28,7 +32,7 @@ title = 'Diego Lopes'
 
   [[menus.main]]
     name = 'Blog'
-    pageRef = '/blog'
+    pageRef = '/posts'
     weight = 20
 
 [module]

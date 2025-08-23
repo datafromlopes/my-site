@@ -1,8 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
   <div class="js-scroll-trigger text-center w-100" href="#page-top">
-    <!-- Foto -->
+
+    {{ $photo := "profile.jpeg" | relURL }}
     <img class="img-fluid img-profile rounded-circle mb-2"
-         src="profile.jpeg"
+         src="{{ $photo }}"
          alt="Foto de perfil" />
   </div>
     <div class="div-name">{{ .Site.Params.name }}</div>

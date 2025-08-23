@@ -63,20 +63,20 @@
   margin-bottom: 10px;
 }
 
-#content p {
+.about-section p {
   max-width: 850px;
   text-align: justify;
   margin-top: 2rem;
-  font-family: var(--font-base);;
+  font-family: var(--font-base);
 }
-article.container ul {
+.about-section ul {
   margin-top: 20px;
   margin-left: 1.2rem;
   gap: 0.5rem 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-article.container li {
+.about-section li {
   margin-bottom: 0.3rem;
   font-size: 1rem;
   font-family: var(--font-base);
@@ -85,6 +85,24 @@ article.container li {
   padding: 2px;
   width: fit-content;
 }
+
+.blog-section {
+  font-family: var(--font-base);
+}
+
+.blog-section ul.pagination {
+  display: flex !important;
+  list-style: none;
+  padding-left: 0;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: .25rem;
+}
+
+.blog-section ul.pagination .page-item { margin: 0; }
+
 @media (max-width: 992px) {
   #sideNav {
     display: flex;
