@@ -11,6 +11,7 @@ tags: [
 ]
 github: "https://github.com/datafromlopes/matrix_multiply_optimizer"
 summary: "This project provides optimized implementations of matrix multiplication algorithms in C."
+image: "matrix-multiplication.png"
 ---
 
 This project was developed on Introduction to Parallel and Distributed Computing class at IME-USP to provides optimized implementations of matrix multiplication algorithms in C, leveraging advanced techniques to achieve high performance. We explore methods like blocking, vectorization, and loop reordering to maximize matrix multiplication efficiency.

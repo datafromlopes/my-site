@@ -109,6 +109,13 @@
   max-width: 900px;
   height: auto;
 }
+.type-projects figure img {
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
 
 .blog-section ul.pagination {
   display: flex !important;
@@ -141,6 +148,13 @@
       max-width: 350px;
       height: auto;
     }
+  .type-projects figure img {
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+  }
   #sideNav {
     position: fixed;
     z-index: 1030;
