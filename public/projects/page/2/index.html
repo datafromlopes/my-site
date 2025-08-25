@@ -6,7 +6,7 @@
   <title>Diego Lopes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   
-  <link rel="stylesheet" href="/css/main.min.030b03ed991c05ef1e5a2928d8489a7744a5a5658c6d36ab8b1be3bdecce5cd0.css" integrity="sha256-AwsD7ZkcBe8eWiko2Eiad0SlpWWMbTarixvjvezOXNA=">
+  <link rel="stylesheet" href="/css/main.min.792cd7f204566303eb4ffbb50d5ec562c0b7ef0c40d77c9646bc9893706913d0.css" integrity="sha256-eSzX8gRWYwPrT/u1DV7FYsC37wxA13yWRryYk3BpE9A=">
   
   <script src="/js/main.5bc0f59c25372c64dab20b883e603311c7d60a5ef84bf35ab90b7eb5fc0295fa.js" integrity="sha256-W8D1nCU3LGTasguIPmAzEcfWCl74S/NauQt&#43;tfwClfo=" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body class="type-tags ">
+<body>
 
   
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
@@ -82,7 +82,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger "
+            <a class="nav-link js-scroll-trigger active"
                href="/projects/">
               Projects
             </a>
@@ -104,36 +104,88 @@
 
   <main id="content" class="py-4">
     
-<article class="container py-3">
-  <h1 class="mb-3">Tags</h1>
-  <ul>
+<article class="project-section py-3">
+
+  
+  
     
-      <li>
-        <a href="/tags/algorithms/">Algorithms</a>
-        <small class="text-muted">(1)</small>
-      </li>
+  
     
-      <li>
-        <a href="/tags/computer-architecture/">Computer Architecture</a>
-        <small class="text-muted">(1)</small>
-      </li>
+  
     
-      <li>
-        <a href="/tags/high-performance-computing/">High-Performance Computing</a>
-        <small class="text-muted">(1)</small>
-      </li>
+  
+  
+
+  
+    <div id="tag-filter" class="mb-3 d-flex flex-wrap gap-2">
+      <button class="btn btn-sm btn-outline-secondary active" data-tag="__all">All</button>
+      
+        <button class="btn btn-sm btn-outline-secondary" data-tag="machine learning">machine learning</button>
+      
+        <button class="btn btn-sm btn-outline-secondary" data-tag="nlp">nlp</button>
+      
+        <button class="btn btn-sm btn-outline-secondary" data-tag="recommender system">recommender system</button>
+      
+    </div>
+  
+
+  
+
+  <div id="post-list" class="row g-3">
     
-      <li>
-        <a href="/tags/optimization/">Optimization</a>
-        <small class="text-muted">(1)</small>
-      </li>
+      
+        <div class="col-12 col-md-6" data-tags="">
+          <div class="card h-100 d-flex flex-column">
+            <div class="card-body d-flex flex-column">
+              <a class="text-decoration-none" href="/projects/geo-nlq-to-sql/">
+                <h5 class="card-title mb-1"></h5>
+              </a>
+              <div class="text-muted small mb-2">01 Jan 0001</div>
+
+              
+
+              
+                <p class="mb-0 flex-grow-1"><p>csakdhcasdkjdbjkasbdjkasbdjkbasj</p></p>
+              
+            </div>
+          </div>
+        </div>
+      
     
-      <li>
-        <a href="/tags/parallel-computing/">Parallel Computing</a>
-        <small class="text-muted">(1)</small>
-      </li>
-    
-  </ul>
+  </div>
+  
+    <nav class="mt-4 d-flex justify-content-center" aria-label="Paginação do blog">
+      <ul class="pagination pagination-sm flex-nowrap">
+
+        
+          <li class="page-item"><a class="page-link" href="/projects/" aria-label="Anterior">&laquo;</a></li>
+        
+
+        
+        
+        
+
+        
+          
+          
+            <li class="page-item ">
+              <a class="page-link" href="/projects/">1</a>
+            </li>
+          
+        
+          
+          
+            <li class="page-item active">
+              <a class="page-link" href="/projects/page/2/">2</a>
+            </li>
+          
+        
+
+        
+
+      </ul>
+    </nav>
+  
 </article>
 
   </main>

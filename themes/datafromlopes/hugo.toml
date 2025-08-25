@@ -26,14 +26,15 @@ title = 'Diego Lopes'
     weight = 10
 
   [[menus.main]]
-    name = 'Publications'
-    pageRef = '/publications'
+    name = 'Projects'
+    pageRef = '/projects/'
     weight = 20
 
   [[menus.main]]
     name = 'Blog'
     pageRef = '/posts/'
-    weight = 20
+    weight = 40
+
 
 [module]
   [module.hugoVersion]

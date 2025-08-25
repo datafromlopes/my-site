@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body class="type-tags ">
+<body class="type-projects ">
 
   
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
@@ -82,7 +82,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger "
+            <a class="nav-link js-scroll-trigger active"
                href="/projects/">
               Projects
             </a>
@@ -104,36 +104,68 @@
 
   <main id="content" class="py-4">
     
-<article class="container py-3">
-  <h1 class="mb-3">Tags</h1>
-  <ul>
+<article class="project-section py-3">
+
+  
+  
     
-      <li>
-        <a href="/tags/algorithms/">Algorithms</a>
-        <small class="text-muted">(1)</small>
-      </li>
+  
     
-      <li>
-        <a href="/tags/computer-architecture/">Computer Architecture</a>
-        <small class="text-muted">(1)</small>
-      </li>
+  
     
-      <li>
-        <a href="/tags/high-performance-computing/">High-Performance Computing</a>
-        <small class="text-muted">(1)</small>
-      </li>
+  
     
-      <li>
-        <a href="/tags/optimization/">Optimization</a>
-        <small class="text-muted">(1)</small>
-      </li>
+  
     
-      <li>
-        <a href="/tags/parallel-computing/">Parallel Computing</a>
-        <small class="text-muted">(1)</small>
-      </li>
+  
+  
+
+  
+    <div id="tag-filter" class="mb-3 d-flex flex-wrap gap-2">
+      <button class="btn btn-sm btn-outline-secondary active" data-tag="__all">All</button>
+      
+        <button class="btn btn-sm btn-outline-secondary" data-tag="algorithms">algorithms</button>
+      
+        <button class="btn btn-sm btn-outline-secondary" data-tag="computer architecture">computer architecture</button>
+      
+        <button class="btn btn-sm btn-outline-secondary" data-tag="high-performance computing">high-performance computing</button>
+      
+        <button class="btn btn-sm btn-outline-secondary" data-tag="optimization">optimization</button>
+      
+        <button class="btn btn-sm btn-outline-secondary" data-tag="parallel computing">parallel computing</button>
+      
+    </div>
+  
+
+  
+
+  <div id="post-list" class="row g-3">
     
-  </ul>
+      
+        <div class="col-12 col-md-6" data-tags="Algorithms,Computer Architecture,High-Performance Computing,Optimization,Parallel Computing">
+          <div class="card h-100 d-flex flex-column">
+            <div class="card-body d-flex flex-column">
+              <a class="text-decoration-none" href="/projects/matrix_multiply_optimizer/">
+                <h5 class="card-title mb-1">Matrix Multiplication Optimization in C</h5>
+              </a>
+              <div class="text-muted small mb-2">20 Nov 2024</div>
+
+              
+                <div class="d-flex flex-wrap gap-1 mb-2">
+                  <span class="badge text-bg-light">Algorithms</span><span class="badge text-bg-light">Computer Architecture</span><span class="badge text-bg-light">High-Performance Computing</span><span class="badge text-bg-light">Optimization</span><span class="badge text-bg-light">Parallel Computing</span>
+                </div>
+              
+
+              
+                <p class="mb-0 flex-grow-1">This project provides optimized implementations of matrix multiplication algorithms in C.</p>
+              
+            </div>
+          </div>
+        </div>
+      
+    
+  </div>
+  
 </article>
 
   </main>
