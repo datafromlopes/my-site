@@ -6,7 +6,7 @@
   <title>Diego Lopes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   
-  <link rel="stylesheet" href="/css/main.min.7fa81e71e89c021557e17881aad9bba77eddbed767850111bf6d098e3ba0bd1e.css" integrity="sha256-f6geceicAhVX4XiBqtm7p37dvtdnhQERv20JjjugvR4=">
+  <link rel="stylesheet" href="/css/main.min.26eec1f97a69e9f241854916380e537397f4f0d4c76b791f35d36dfc2e56da0c.css" integrity="sha256-Ju7B&#43;Xpp6fJBhUkWOA5Tc5f08NTHa3kfNdNt/C5W2gw=">
   
   <script src="/js/main.5bc0f59c25372c64dab20b883e603311c7d60a5ef84bf35ab90b7eb5fc0295fa.js" integrity="sha256-W8D1nCU3LGTasguIPmAzEcfWCl74S/NauQt&#43;tfwClfo=" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
@@ -107,30 +107,110 @@
 <article class="project-section container py-3">
 
   <header class="mb-3">
-    <h1 class="mb-1">Sistema de Recomendação de Livros</h1>
-    <div class="text-muted">25 Aug 2025</div>
+    <h1 class="mb-1">Automated Translation of Natural Language Geospatial Queries into SQL</h1>
+    <div class="text-muted">
+      31 Jul 2023 - by
+       <span>Diego Lopes</span>.
+    </div>
 
     
       <div class="mt-2 d-flex flex-wrap gap-1">
-        <span class="badge text-bg-light">machine learning</span><span class="badge text-bg-light">recommender system</span><span class="badge text-bg-light">NLP</span>
+        <span class="badge text-bg-light">SQL</span><span class="badge text-bg-light">Relational Databases</span><span class="badge text-bg-light">Geospatial Data</span><span class="badge text-bg-light">AI</span><span class="badge text-bg-light">NLP</span><span class="badge text-bg-light">LLM</span><span class="badge text-bg-light">Neural Networks</span><span class="badge text-bg-light">Fine-Tuning</span><span class="badge text-bg-light">Text-to-SQL</span>
       </div>
     
 
     
-  </header>
-
-  <div class="content mb-4">
     
-  </div>
-
+      
+      
+      
+        <figure class="mt-3 mb-4">
+          <img
+            src="text-to-sql-cover.png"
+            class="img-fluid rounded"
+            alt="Automated Translation of Natural Language Geospatial Queries into SQL"
+            loading="lazy"
+            decoding="async"
+          >
+          
+        </figure>
+      
+    
+  </header>
   
+      <div class="mt-3">
+        <a href="https://github.com/datafromlopes/geo-nlq-to-sql" class="btn btn-dark" target="_blank" rel="noopener">
+          <i class="bi bi-github"></i> Access Code
+        </a>
+      </div>
+    
+  <div class="content mb-4">
+    <hr>
+<h4 id="introduction">Introduction</h4>
+<p>The capability to utilize databases is fundamental and present in most applications
+worldwide. However, constructing database queries often requires specialized knowledge
+of query languages like SQL, which can pose a barrier for users who lack technical expertise.
+This gap between natural and query languages has led to the development of technologies
+that simplify database interactions, making them more accessible to a broader audience.</p>
+<p>Among these technologies, text-to-SQL systems have gained significant attention. A
+text-to-SQL system is designed to generate a SQL query from a natural language query
+(NLQ) on a Relational Database (RDB) with a specific schema (<a href="https://link.springer.com/article/10.1007/s00778-022-00776-8">Katsogiannis-Meimarakis
+and Koutrika</a>, 2023). The resulting query should be semantically equivalent and valid for
+the given RDB. When executed, results should be produced that match the user’s intent.
+An example of this task is illustrated in Figure 1.1.</p>
+<p><img src="img/text-to-sql-schema.png" alt="text-to-sql-schema.png"></p>
+<p>These systems allow users to generate SQL queries directly from natural language
+inputs, eliminating the need for advanced technical skills while maintaining the precision and efficiency required for database operations. Text-to-SQL is a rapidly evolving
+field within Artificial Intelligence (AI) and Natural Language Processing (NLP), with the
+potential to democratize access to data and drive more informed decision-making.</p>
+<hr>
+<h4 id="objectives">Objectives</h4>
+<p>This master’s project aims to improve access to georreferenced data of public interest
+by developing a fine-tuned LLM that excels in translating natural language queries into
+SQL for geospatial databases. A key component of the project is the creation of a Brazilian
+Portuguese dataset specialized in geospatial queries tailored to CulturaEduca’s data.</p>
+<p>This dataset will include diverse examples of geospatial queries that perform operations
+such as checking whether one area is inside another (e.g., determining if a city is within a
+state or a neighborhood is within a city), creating a surrounding zone around a location (e.g.,
+defining a buffer area around a river or a landmark), or identifying spatial relationships
+between different regions (e.g., assessing whether two areas overlap or touch). In real-
+world scenarios, these geospatial operations manifest in queries like: “Which schools are located within the municipality of Campinas?” illustrating spatial containment; “List the
+museums within a 2 km radius of Avenida Paulista,” representing the creation of a buffer
+zone around a point of interest; and “Which neighborhoods border the Liberdade district?”,
+demonstrating the identification of spatial relationships such as intersection or adjacency.
+These examples reflect standard geospatial analysis needs in public datasets.</p>
+<p>To achieve its goals, the project will involve multiple phases:</p>
+<ol>
+<li><strong>Curating the dataset:</strong> Create a Brazilian Portuguese dataset specialized in geospa-
+tial queries;</li>
+<li><strong>Fine-tuning the model:</strong> Fine-tune existing LLMs for the text-to-SQL task using
+the specialized queries;</li>
+<li><strong>Evaluating the model’s performance:</strong> Evaluate the model focusing on the accu-
+racy of the translated queries and their effectiveness in real-world scenarios.</li>
+</ol>
+<hr>
+<h4 id="expected-contributions">Expected Contributions</h4>
+<p>By bridging the gap in geospatial query translation to natural language, the project will
+enhance CulturaEduca’s data accessibility for non-expert users. Implementing a fine-tuned
+LLM model specialized in geospatial data and creating a Brazilian Portuguese dataset
+specialized in geospatial queries will contribute to the capability to work with text-to-SQL
+tasks in the context of geospatial data. This research will provide a reference point for
+geospatial SQL translation systems’ accuracy and real-world applicability, establishing
+metrics to evaluate the performance of LLM models and offering a replicable methodology
+for fine-tuning LLMs in specialized domains, potentially applicable to other languages
+and technical areas.</p>
+<hr>
+<h4 id="achieved-results">Achieved Results</h4>
+<p>Experiments in progress&hellip;</p>
+
+  </div>
   <nav class="mt-4 d-flex justify-content-between">
     <div>
       
-        <a class="btn btn-outline-secondary btn-sm" href="/projects/matrix_multiply_optimizer/">&laquo; Matrix Multiplication Optimization in C</a>
-      
     </div>
     <div>
+      
+        <a class="btn btn-outline-secondary btn-sm" href="/projects/matrix_multiply_optimizer/">Matrix Multiplication Optimization in C &raquo;</a>
       
     </div>
   </nav>

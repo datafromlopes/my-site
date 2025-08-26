@@ -14,6 +14,10 @@ summary: "This project provides optimized implementations of matrix multiplicati
 image: "matrix-multiplication.png"
 ---
 
+---
+
+### Introduction 
+
 This project was developed on Introduction to Parallel and Distributed Computing class at IME-USP to provides optimized implementations of matrix multiplication algorithms in C, leveraging advanced techniques to achieve high performance. We explore methods like blocking, vectorization, and loop reordering to maximize matrix multiplication efficiency.
 
 ---
@@ -46,7 +50,7 @@ Recursion involves breaking down a problem into smaller, self-similar subproblem
 
 ---
 #### 🏆 Outcomes Achieved
-![alt text](benchmark.png)
+![alt text](img/benchmark.png)
 ---
 
 ##### 📂 Project Structure

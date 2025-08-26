@@ -19,7 +19,7 @@
       {{ $img := $.Resources.GetMatch . }}
       {{ if not $img }}{{ $img = resources.Get . }}{{ end }}
       {{ if $img }}
-        {{ $cover := $img.Fill "1200x630 center" }}
+        {{ $cover := $img.Resize "900x center" }}
         <figure class="mt-3 mb-4">
           <img
             src="{{ $cover.RelPermalink }}"

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neural Networks on Diego Lopes</title>
+    <link>http://localhost:1313/tags/neural-networks/</link>
+    <description>Recent content in Neural Networks on Diego Lopes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 31 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automated Translation of Natural Language Geospatial Queries into SQL</title>
+      <link>http://localhost:1313/projects/geo-nlq-to-sql/</link>
+      <pubDate>Mon, 31 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/geo-nlq-to-sql/</guid>
+      <description>This project develops a fine-tuned LLM to translate natural language queries into geospatial SQL, addressing current text-to-SQL limitations.</description>
+    </item>
+  </channel>
+</rss>
