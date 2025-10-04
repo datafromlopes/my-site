@@ -1,34 +1,45 @@
 {{- $siteTitle := .Site.Title -}}
 {{- $brandName := or .Site.Params.name .Site.Title -}}
-{{- $isHome := .IsHome -}}
 {{- $url := .Permalink -}}
-{{- $desc := or .Site.Params.description "MSc in Computer Science @ IME-USP" -}}
+{{- $desc := "MSc in Computer Science @ IME-USP" -}}
+
+{{- $kind := .Kind -}}
+{{- $isHome := eq $kind "home" -}}
+{{- $isSection := eq $kind "section" -}}
+{{- $isTaxonomy := or (eq $kind "taxonomy") (eq $kind "term") -}}
 
 {{- $tabTitle := "" -}}
 {{- if $isHome -}}
   {{- $tabTitle = $brandName -}}
-{{- else if or .IsSection .IsTaxonomy .IsTaxonomyTerm -}}
+{{- else if $isSection -}}
   {{- $tabTitle = printf "%s | %s" (humanize .Section) $brandName -}}
+{{- else if $isTaxonomy -}}
+  {{- $tabTitle = printf "%s | %s" .Title $brandName -}}
 {{- else -}}
   {{- $tabTitle = printf "%s | %s" .Title $brandName -}}
 {{- end -}}
 
 {{- $ogTitle := cond $isHome $siteTitle (printf "%s | %s" (or .Title (humanize .Section) $siteTitle) $siteTitle) -}}
 
-{{- $imgParam := .Params.image -}}
-{{- $res := cond (and $imgParam (ne $imgParam "")) (.Resources.GetMatch $imgParam) nil -}}
-{{- if not $res -}}
-  {{- $imgs := .Resources.ByType "image" -}}
-  {{- if gt (len $imgs) 0 -}}
-    {{- $res = index $imgs 0 -}}
-  {{- end -}}
-{{- end -}}
 {{- $fallback := .Site.Params.defaultImage | absURL -}}
-{{- $ogimg := $fallback -}}
-{{- if $res -}}
-  {{- $ogimg = $res.Permalink -}}
-{{- else if $imgParam -}}
-  {{- $ogimg = ($imgParam | absURL) -}}
+{{- $imgParam := .Params.image -}}
+{{- $ogimg := cond $imgParam ($imgParam | absURL) $fallback -}}
+{{- $twimg := $ogimg -}}
+
+{{- if .IsPage -}}
+  {{- $res := cond (and $imgParam (ne $imgParam "")) (.Resources.GetMatch $imgParam) nil -}}
+  {{- if not $res -}}
+    {{- $imgs := .Resources.ByType "image" -}}
+    {{- if gt (len $imgs) 0 -}}
+      {{- $res = index $imgs 0 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $res -}}
+    {{- $ogProc := $res.Fill "1200x628 center" -}}
+    {{- $twProc := $res.Fill "600x600 center" -}}
+    {{- if $ogProc -}}{{- $ogimg = $ogProc.Permalink -}}{{- end -}}
+    {{- if $twProc -}}{{- $twimg = $twProc.Permalink -}}{{- end -}}
+  {{- end -}}
 {{- end -}}
 
 <meta charset="utf-8">
@@ -49,19 +60,13 @@
 <meta property="og:site_name" content="{{ $siteTitle }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:image" content="{{ $ogimg }}">
-{{- with $res }}
-  {{- if and .Width .Height }}
-    <meta property="og:image:width" content="{{ .Width }}">
-    <meta property="og:image:height" content="{{ .Height }}">
-  {{- end }}
-{{- end }}
 <meta property="og:locale" content="pt_BR">
 
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{{ $ogTitle }}">
 <meta name="twitter:description" content="{{ $desc }}">
-<meta name="twitter:image" content="{{ $ogimg }}">
-<meta name="twitter:image:src" content="{{ $ogimg }}">
+<meta name="twitter:image" content="{{ $twimg }}">
+<meta name="twitter:image:alt" content="{{ $ogTitle }}">
 {{ with .Site.Params.twitter }}<meta name="twitter:site" content="{{ . }}">{{ end }}
 
 {{ partial "jsonld.html" . }}
