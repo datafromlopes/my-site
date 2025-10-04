@@ -8,16 +8,16 @@
 
 {{- /* Título dinâmico para a aba do navegador:
       - Home  => "Diego Lopes"
-      - Seção => "Projects | Diego Lopes" (ou "Posts | Diego Lopes"), via humanize
+      - Seção => "Projects | Diego Lopes" (via humanize)
       - Página/Item => "Título | Diego Lopes"
 */ -}}
 {{- $pageTitle := cond $isHome $name (or .Title (humanize $section) .Site.Title) -}}
 
 {{- /* Título para Open Graph/Twitter:
       - Home  => usa o .Site.Title (branding completo)
-      - Outras => "<pageTitle> | <name>"
+      - Outras => "<pageTitle> | <siteTitle>"  -> "Título | Diego Lopes | Data Engineer & AI Researcher"
 */ -}}
-{{- $ogTitle := cond $isHome $siteTitle (printf "%s | %s" $pageTitle $name) -}}
+{{- $ogTitle := cond $isHome $siteTitle (printf "%s | %s" $pageTitle $siteTitle) -}}
 
 {{- /* --------- Resolver imagem OG ---------
       Prioridade:
