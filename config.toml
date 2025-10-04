@@ -9,6 +9,7 @@ pagination.path = "page"
 
 [params]
   name = "Diego Lopes"
+  description = 'MSc in Computer Science @ IME-USP'
   tagline = "Data Engineer & Researcher"
   location = "São Paulo, Brazil"
 

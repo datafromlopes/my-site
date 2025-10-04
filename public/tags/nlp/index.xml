@@ -6,8 +6,15 @@
     <description>Recent content in NLP on Diego Lopes | Data Engineer &amp; AI Researcher</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 31 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TF-IDF - An approach to determine the relevance of word in a corpus.</title>
+      <link>http://localhost:1313/posts/tf-idf/</link>
+      <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/tf-idf/</guid>
+      <description>&lt;hr&gt;&#xA;&lt;h4 id=&#34;introduction&#34;&gt;Introduction&lt;/h4&gt;</description>
+    </item>
     <item>
       <title>Automated Translation of Natural Language Geospatial Queries into SQL</title>
       <link>http://localhost:1313/projects/geo-nlq-to-sql/</link>

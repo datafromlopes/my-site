@@ -4,12 +4,14 @@
 {{- $desc := or .Description .Site.Params.description -}}
 {{- $url := .Permalink -}}
 {{- $img := cond (isset .Params "image") (.Params.image | absURL) (.Site.Params.defaultImage | absURL) -}}
+{{- $name := .Site.Params.name -}}
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{{ $title }}</title>
-<meta name="description" content="{{ $desc }}">
+<title>{{ if .IsHome }}{{ $name }}{{ else }}{{ .Title }} | {{ $name }}{{ end }}</title>
+
+<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <link rel="canonical" href="{{ $url }}"/>
 
 {{- $noindex := false -}}
@@ -18,7 +20,7 @@
 <meta name="robots" content="{{ if $noindex }}noindex,follow{{ else }}index,follow{{ end }}"/>
 
 <meta property="og:title" content="{{ $title }}">
-<meta property="og:description" content="{{ $desc }}">
+<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <meta property="og:url" content="{{ $url }}">
 <meta property="og:site_name" content="{{ $siteTitle }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
@@ -27,7 +29,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $title }}">
-<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 <meta name="twitter:image" content="{{ $img }}">
 {{ with .Site.Params.twitter }}<meta name="twitter:site" content="{{ . }}">{{ end }}
 
