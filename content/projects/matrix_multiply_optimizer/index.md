@@ -11,7 +11,7 @@ tags: [
 ]
 github: "https://github.com/datafromlopes/matrix_multiply_optimizer"
 summary: "This project provides optimized implementations of matrix multiplication algorithms in C."
-image: "matrix-multiplication.png"
+image: "img/matrix-multiplication.png"
 ---
 
 ---

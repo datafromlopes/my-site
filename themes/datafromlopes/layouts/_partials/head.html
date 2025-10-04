@@ -1,36 +1,80 @@
-{{- $siteTitle := .Site.Title -}}
-{{- $pageTitle := .Title -}}
-{{- $title := cond (and $pageTitle (ne $pageTitle $siteTitle)) (printf "%s | %s" $pageTitle $siteTitle) $siteTitle -}}
-{{- $desc := or .Description .Site.Params.description -}}
+{{- /* --------- Vars básicas --------- */ -}}
+{{- $siteTitle := .Site.Title -}}                         {{/* ex.: "Diego Lopes | Data Engineer & AI Researcher" */}}
+{{- $name := .Site.Params.name -}}                        {{/* ex.: "Diego Lopes" */}}
+{{- $isHome := .IsHome -}}
+{{- $section := .Section -}}
 {{- $url := .Permalink -}}
-{{- $img := cond (isset .Params "image") (.Params.image | absURL) (.Site.Params.defaultImage | absURL) -}}
-{{- $name := .Site.Params.name -}}
+{{- $desc := or .Description .Site.Params.description -}}
+
+{{- /* Título dinâmico para a aba do navegador:
+      - Home  => "Diego Lopes"
+      - Seção => "Projects | Diego Lopes" (ou "Posts | Diego Lopes"), via humanize
+      - Página/Item => "Título | Diego Lopes"
+*/ -}}
+{{- $pageTitle := cond $isHome $name (or .Title (humanize $section) .Site.Title) -}}
+
+{{- /* Título para Open Graph/Twitter:
+      - Home  => usa o .Site.Title (branding completo)
+      - Outras => "<pageTitle> | <name>"
+*/ -}}
+{{- $ogTitle := cond $isHome $siteTitle (printf "%s | %s" $pageTitle $name) -}}
+
+{{- /* --------- Resolver imagem OG ---------
+      Prioridade:
+      1) .Params.image (pode estar em subpasta "img/..." dentro do bundle)
+      2) Primeira image resource do bundle (se houver)
+      3) Caminho absoluto passado em .Params.image (ex.: /images/...)
+      4) Fallback: .Site.Params.defaultImage
+*/ -}}
+{{- $imgParam := .Params.image -}}
+{{- $res := cond (and $imgParam (ne $imgParam "")) (.Resources.GetMatch $imgParam) nil -}}
+{{- if not $res -}}
+  {{- $imgs := .Resources.ByType "image" -}}
+  {{- if gt (len $imgs) 0 -}}
+    {{- $res = index $imgs 0 -}}
+  {{- end -}}
+{{- end -}}
+{{- $fallback := .Site.Params.defaultImage | absURL -}}
+{{- $ogimg := $fallback -}}
+{{- if $res -}}
+  {{- $ogimg = $res.Permalink -}}
+{{- else if $imgParam -}}
+  {{- $ogimg = ($imgParam | absURL) -}}
+{{- end -}}
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{{ if .IsHome }}{{ $name }}{{ else }}{{ .Title }} | {{ $name }}{{ end }}</title>
-
-<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<title>{{ $pageTitle }}{{ if not $isHome }} | {{ $name }}{{ end }}</title>
+<meta name="description" content="{{ $desc }}">
 <link rel="canonical" href="{{ $url }}"/>
 
+{{- /* Robots: noindex para drafts, páginas explicitamente marcadas e paginações > 1 */ -}}
 {{- $noindex := false -}}
 {{- if or .Draft .Params.noindex -}}{{- $noindex = true -}}{{- end -}}
 {{- if and .IsNode .Paginator (gt .Paginator.PageNumber 1) -}}{{- $noindex = true -}}{{- end -}}
 <meta name="robots" content="{{ if $noindex }}noindex,follow{{ else }}index,follow{{ end }}"/>
 
-<meta property="og:title" content="{{ $title }}">
-<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<!-- Open Graph -->
+<meta property="og:title" content="{{ $ogTitle }}">
+<meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ $url }}">
 <meta property="og:site_name" content="{{ $siteTitle }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-<meta property="og:image" content="{{ $img }}">
+<meta property="og:image" content="{{ $ogimg }}">
+{{- with $res }}
+  {{- if and .Width .Height }}
+    <meta property="og:image:width" content="{{ .Width }}">
+    <meta property="og:image:height" content="{{ .Height }}">
+  {{- end }}
+{{- end }}
 <meta property="og:locale" content="pt_BR">
 
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ $title }}">
-<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-<meta name="twitter:image" content="{{ $img }}">
+<meta name="twitter:title" content="{{ $ogTitle }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $ogimg }}">
 {{ with .Site.Params.twitter }}<meta name="twitter:site" content="{{ . }}">{{ end }}
 
 {{ partial "jsonld.html" . }}

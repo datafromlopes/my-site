@@ -7,7 +7,7 @@ tags: [ "SQL", "Relational Databases", "Geospatial Data",
 ]
 github: "https://github.com/datafromlopes/geo-nlq-to-sql"
 summary: "This project develops a fine-tuned LLM to translate natural language queries into geospatial SQL, addressing current text-to-SQL limitations."
-image: "text-to-sql-cover.png"
+image: "img/text-to-sql-cover.png"
 ---
 
 ---

@@ -38,7 +38,7 @@ pagination.path = "page"
 
   [[menus.main]]
     name = 'Blog'
-    pageRef = '/posts/'
+    pageRef = '/blog/'
     weight = 40
 
 
