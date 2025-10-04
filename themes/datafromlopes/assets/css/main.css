@@ -1,133 +1,84 @@
+/* ========== Core / Vars ========== */
 :root {
   --font-base: "Montserrat", sans-serif;
   --sidebar-width: 20rem;
-  --color-base:  #2A67A3;
+  --color-base: #2A67A3;
 }
 
-#sideNav { padding-left:1rem; padding-right:1rem;}
-#sideNav .navbar-nav .nav-item .nav-link{
-  font-weight:800; letter-spacing:.05rem;
-}
-#sideNav .navbar-nav {margin-top: 1rem;}
+/* ========== Sidebar base ========== */
+#sideNav { padding-left: 1rem; padding-right: 1rem; }
+#sideNav .navbar-nav .nav-item .nav-link { font-weight: 800; letter-spacing: .05rem; }
+#sideNav .navbar-nav { margin-top: 1rem; }
+.navbar.bg-primary { background-color: #bbbbbc !important; }
 
-.img-profile {
-  border:.2rem solid #000000;
-  max-width:10rem; max-height:10rem;
-  margin-top: 10px;
-}
-.div-name {
-  font-family: var(--font-base);
-  font-weight: bold;
-  font-size: 25px;
-}
-.div-tagline {
-  font-family: var(--font-base);
-  font-size: 18px;
-  margin-bottom: 15px;
-  font-weight: normal;
-}
-.navbar.bg-primary {
-  background-color: #bbbbbc !important;
-}
+/* evita que estilos de páginas afetem imagens do menu */
+#sideNav img { max-width: none !important; height: auto; }
 
-.nav-link {
-  color: #000000;
-  font-family: var(--font-base);
-}
-.nav-link:hover {
-  color: var(--color-base)
-}
+/* foto, nome, tagline, localização */
+.img-profile { border: .2rem solid #000; max-width: 10rem; max-height: 10rem; margin-top: 10px; }
+.div-name { font-family: var(--font-base); font-weight: bold; font-size: 25px; }
+.div-tagline { font-family: var(--font-base); font-size: 18px; margin-bottom: 15px; font-weight: normal; }
+.div-location { font-family: var(--font-base); }
+.div-location i { color: #FF113C; margin-top: 3px; }
 
-.nav-link.active {
-  color: var(--color-base) !important;
-}
-.div-location {
-  font-family: var(--font-base);
-}
-.div-location i {
-  color: #FF113C;
-  margin-top: 3px;
-}
-.social-network {
-  font-size: 1.4rem;
-  color: #000000;
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-.social-network:hover {
-  color: var(--color-base);
-}
+/* links do menu */
+.nav-link { color: #000; font-family: var(--font-base); }
+.nav-link:hover { color: var(--color-base); }
+.nav-link.active { color: var(--color-base) !important; }
 
-.custom-line {
+/* ícones sociais */
+.social-network { font-size: 1.4rem; color: #000; margin-top: 10px; margin-bottom: 5px; }
+.social-network:hover { color: var(--color-base); }
+
+/* linhas separadoras */
+.custom-line,
+.custom-line-bottom {
   width: 80%;
   height: 2px;
-  background-color: #000000;
-  margin-bottom: 10px;
+  background-color: #000;
+  margin: 10px auto;
 }
+/* linha de baixo com respiro */
+.custom-line-bottom { margin: 12px auto 10px; }
 
-.about-section p {
-  max-width: 850px;
-  text-align: justify;
-  margin-top: 2rem;
-  font-family: var(--font-base);
-}
-.about-section ul {
-  margin-top: 20px;
-  margin-left: 1.2rem;
-  gap: 0.5rem 1rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-.about-section li {
-  margin-bottom: 0.3rem;
-  font-size: 1rem;
-  font-family: var(--font-base);
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  padding: 2px;
-  width: fit-content;
-}
-
-.blog-section {
-  font-family: var(--font-base);
-}
-
-.type-projects {
-  font-family: var(--font-base);
-  text-align: justify;
-}
-
-.type-projects p {
-  margin-top: 2rem;
-  margin-bottom: .5rem;
-}
-.project-section {
-  font-family: var(--font-base);
-}
-
-.type-projects img {
-  max-width: 900px;
-  height: auto;
-}
-.type-projects figure img {
-  max-width: 500px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+/* bloco "Academic Contact" */
+.academic-contact {
   width: 100%;
-}
-
-.blog-section ul.pagination {
-  display: flex !important;
-  list-style: none;
-  padding-left: 0;
-  margin: 0 auto;
-  justify-content: center;
+  padding: 0 .75rem .75rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: nowrap;
-  gap: .25rem;
+  text-align: center;
+  font-family: var(--font-base);
 }
+.ac-title { font-weight: 800; font-size: 1rem; margin: 6px 0; }
+.ac-email { font-size: .95rem; color: #000; text-decoration: none; word-break: break-word; margin-bottom: 8px; }
+.ac-email:hover { color: var(--color-base); text-decoration: underline; }
+.ac-links { display: inline-flex; gap: .75rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+.ac-link { display: inline-flex; align-items: center; gap: .35rem; color: #000; text-decoration: none; font-size: .95rem; }
+.ac-link:hover { color: var(--color-base); }
+.ac-lattes-logo { height: 18px; width: auto; display: inline-block; vertical-align: middle; }
+.ac-orcid-icon { font-size: 18px; line-height: 1; }
 
+/* ========== Conteúdo (fora do menu) ========== */
+.about-section p {
+  max-width: 65rem;
+  text-align: justify;
+  margin-top: 2rem;
+  font-family: var(--font-base);
+}
+.about-section ul { margin-top: 20px; margin-left: 1.2rem; gap: .5rem 1rem; display: grid; grid-template-columns: repeat(2, 1fr); }
+.about-section li { margin-bottom: .3rem; font-size: 1rem; font-family: var(--font-base); background-color: #f2f2f2; border-radius: 5px; padding: 2px; width: fit-content; }
+
+.blog-section, .project-section, .type-projects { font-family: var(--font-base); }
+.type-projects { text-align: justify; }
+.type-projects p { margin-top: 2rem; margin-bottom: .5rem; }
+
+/* RESTRIÇÃO: estilos de imagens do Projects só dentro da área de projetos */
+.type-projects .project-section img { max-width: 900px; height: auto; }
+.type-projects .project-section figure img { max-width: 500px; height: auto; display: block; margin: 0 auto; width: 100%; }
+
+.blog-section ul.pagination,
 .project-section ul.pagination {
   display: flex !important;
   list-style: none;
@@ -138,129 +89,494 @@
   flex-wrap: nowrap;
   gap: .25rem;
 }
-
-.blog-section ul.pagination .page-item { margin: 0; }
+.blog-section ul.pagination .page-item,
 .project-section ul.pagination .page-item { margin: 0; }
 
-
+/* ========== Mobile (<= 992px) ========== */
 @media (max-width: 992px) {
-  .type-projects img {
-      max-width: 350px;
-      height: auto;
-    }
-  .type-projects figure img {
-    max-width: 300px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-  }
+  .type-projects .project-section img { max-width: 350px; height: auto; }
+  .type-projects .project-section figure img { max-width: 300px; height: auto; display: block; margin: 0 auto; width: 100%; }
+
   #sideNav {
-    position: fixed;
-    z-index: 1030;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    position: fixed; z-index: 1030; display: flex; flex-direction: column;
+    align-items: center; text-align: center;
   }
   #sideNav .navbar-toggler{
-    position: absolute;
-    top: .75rem;
-    right: .75rem;
-    z-index: 1050;
-    border-color: var(--color-base);
-    background-color: var(--color-base);
+    position: absolute; top: .75rem; right: .75rem; z-index: 1050;
+    border-color: var(--color-base); background-color: var(--color-base);
   }
+
+  /* collapse como overlay EMPILHADO */
   #sideNav .navbar-collapse{
-    position: absolute;
-    inset: 0;
-    background: rgba(187,187,188,.98);
-    padding-top: 4rem;
-    display: none !important;
-  }
-  #sideNav .navbar-collapse.show{
-    display: block !important;
-  }
-  #sideNav .navbar-nav{
+    position: absolute; inset: 0; background: rgba(187,187,188,.98);
+    padding: 4rem 1rem 1rem;
+    display: none !important;            /* fechado */
+    flex-direction: column !important;    /* empilha menu -> linha -> contato */
     align-items: center;
-    gap: .75rem;
+    overflow-y: auto;
   }
+  #sideNav .navbar-collapse.show{ display: flex !important; }
+  #sideNav .navbar-collapse > * { flex: 0 0 auto; } /* impede esticar */
+  #sideNav .navbar-nav{ align-items: center; gap: .75rem; margin-bottom: 8px; }
+
   #sideNav > .div-name,
   #sideNav > .div-tagline,
   #sideNav > .div-location,
   #sideNav > .social-network,
-  #sideNav > .custom-line {
-    flex: 0 0 100%;
-    width: 100%;
-  }
-  .div-name {
-    font-size: 1.35rem;
-    margin-top: 6px;
-  }
-  .div-tagline {
-    font-size: 1rem;
-    margin-bottom: 8px;
-  }
+  #sideNav > .custom-line { flex: 0 0 100%; width: 100%; }
 
-  .div-location {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: .4rem;
-    margin-bottom: 6px;
-  }
+  .div-name { font-size: 1.35rem; margin-top: 6px; }
+  .div-tagline { font-size: 1rem; margin-bottom: 8px; }
+  .div-location { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; margin-bottom: 6px; }
   .div-location i { margin: 0; }
-
-  /* ícones: respeitam cor do seu tema e têm gap */
-  .social-network {
-    display: inline-flex;
-    gap: .6rem;
-    font-size: 1.4rem;
-    color: #000 !important;
-    margin-top: 8px;
-    margin-bottom: 6px;
-  }
-  .social-network:hover { color: #2A67A3 !important; }
+  .social-network { display: inline-flex; gap: .6rem; font-size: 1.4rem; color: #000 !important; margin-top: 8px; margin-bottom: 6px; }
+  .social-network:hover { color: var(--color-base) !important; }
 
   #content {
-      margin-top: 22rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-  article.container ul {
-    list-style: none;
-    padding-left: 0;
+    margin-top: 22rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
-  article.container ul li {
-    padding: 0.35rem 0.7rem;
-    display: flex;
-    text-align: center;
+  article.container ul { list-style: none; padding-left: 0; }
+  article.container ul li { padding: .35rem .7rem; display: flex; text-align: center; align-items: center; }
+}
+
+/* ========== Desktop (>= 992px) ========== */
+@media (min-width: 992px) {
+  #sideNav{
+    padding-left: 0; padding-right: 0; text-align: center;
+    position: fixed; top: 0; left: 0; display: flex; flex-direction: column;
+    width: var(--sidebar-width); height: 100vh;
+  }
+  #sideNav .navbar-brand{ display: flex; padding: .5rem; }
+  #sideNav .navbar-brand .img-profile{ margin-top: 10px; }
+
+  /* collapse empilhado */
+  #sideNav .navbar-collapse{
+    display: flex !important;
+    flex-direction: column !important;
     align-items: center;
+    gap: .25rem;
+    flex-grow: 0;
+    width: 100%;
+    margin-bottom: auto;
+  }
+  #sideNav .navbar-collapse > * { flex: 0 0 auto; } /* impede esticar */
+  #sideNav .navbar-collapse .navbar-nav{ flex-direction: column; width: 100%; margin-bottom: 8px; }
+  #sideNav .navbar-collapse .navbar-nav .nav-item{ display: block; }
+  #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link{ display: block; }
+
+  #content { margin-left: var(--sidebar-width); padding-left: 1rem; padding-right: 1rem; }
+}
+
+/* --- Sidebar: garantir empilhamento e ordem estável no collapse --- */
+#sideNav .navbar-collapse{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  gap: 0;               /* sem gaps extras entre os blocos do collapse */
+  flex-grow: 0;
+  width: 100%;
+  margin-bottom: auto;
+}
+#sideNav .navbar-collapse > * { flex: 0 0 auto; } /* nada estica */
+
+/* Ordem explícita: menu -> linha -> bloco acadêmico */
+#navbarResponsive .navbar-nav            { order: 1; }
+#navbarResponsive .custom-line-bottom    { order: 2; }
+#navbarResponsive .academic-contact      { order: 3; }
+
+/* --- Zerar espaçamentos indesejados do menu --- */
+#sideNav .navbar-collapse .navbar-nav{
+  width: 100%;
+  flex-direction: column;
+  margin: 0 !important;           /* tira qualquer margin-bottom herdada */
+  padding: 0 !important;
+}
+#sideNav .navbar-collapse .navbar-nav .nav-item{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#sideNav .navbar-collapse .navbar-nav .nav-item .nav-link{
+  display: block;
+  padding: .5rem 0 !important;    /* espaçamento vertical uniforme dos itens */
+}
+
+/* --- Linha de baixo: sempre próxima do menu (distância fixa) --- */
+#sideNav .custom-line-bottom{
+  width: 80%;
+  height: 2px;
+  background-color: #000;
+  margin: 12px auto 10px !important;  /* 12px do fim do menu, sem “pulos” */
+}
+
+/* --- Blindagem: nada do Projects afeta o sidebar --- */
+#sideNav img { max-width: none !important; height: auto; }
+#sideNav .ac-lattes-logo { height: 18px !important; width: auto !important; }
+
+/* --- Mobile: o overlay também precisa ser coluna --- */
+@media (max-width: 992px){
+  #sideNav .navbar-collapse{
+    position: absolute; inset: 0;
+    background: rgba(187,187,188,.98);
+    padding: 4rem 1rem 1rem;
+    display: none !important;
+    overflow-y: auto;
+  }
+  #sideNav .navbar-collapse.show{ display: flex !important; }
+  #sideNav .navbar-nav{ align-items: center; }
+}
+
+/* ==== MOBILE COLLAPSE: visível ao abrir, coluna, por cima de tudo ==== */
+@media (max-width: 992px) {
+  #sideNav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1030;
+    transition: transform .24s ease-in-out; /* p/ animação de esconder/mostrar */
+    will-change: transform;
+  }
+
+  #sideNav .navbar-toggler{
+    position: absolute;
+    top: .75rem; right: .75rem;
+    z-index: 1050;
+    border-color: var(--color-base);
+    background-color: var(--color-base);
+  }
+
+  /* Overlay do menu */
+  #sideNav .navbar-collapse{
+    position: fixed;               /* cobre a tela toda */
+    inset: 0;                      /* top/right/bottom/left: 0 */
+    z-index: 1045;                 /* acima do conteúdo, abaixo do botão */
+    background: rgba(187,187,188,.98);
+    padding: 4rem 1rem 1rem;
+    display: none !important;      /* fechado */
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    min-height: 100vh;             /* ocupa a tela inteira */
+    gap: 0;
+  }
+  #sideNav .navbar-collapse.show{ display: flex !important; }
+
+  /* Ordem explícita dentro do overlay */
+  #navbarResponsive .navbar-nav         { order: 1; margin: 0 !important; padding: 0 !important; width: 100%; }
+  #navbarResponsive .custom-line-bottom { order: 2; width: 80%; height: 2px; background:#000; margin: 12px auto 10px !important; }
+  #navbarResponsive .academic-contact   { order: 3; display: flex; }
+
+  /* Itens do menu: espaçamento uniforme */
+  #navbarResponsive .navbar-nav .nav-item{ margin: 0 !important; padding: 0 !important; }
+  #navbarResponsive .navbar-nav .nav-link{ display:block; padding:.5rem 0 !important; }
+
+  /* Ícones sociais fora do overlay (topo) */
+  .social-network{ display: inline-flex; gap:.6rem; font-size:1.4rem; color:#000 !important; margin:8px 0 6px; }
+  .social-network:hover{ color: var(--color-base) !important; }
+
+  /* conteúdo da página abaixo do cabeçalho fixo */
+  #content{ margin-top: var(--head-h, 22rem); padding: 0 1rem; }
+}
+
+/* ========== Core / Vars ========== */
+:root {
+  --font-base: "Montserrat", sans-serif;
+  --sidebar-width: 20rem;
+  --color-base: #2A67A3;
+}
+
+/* ========== Sidebar base ========== */
+#sideNav { padding-left: 1rem; padding-right: 1rem; }
+#sideNav .navbar-nav .nav-item .nav-link { font-weight: 800; letter-spacing: .05rem; }
+#sideNav .navbar-nav { margin-top: 1rem; }
+.navbar.bg-primary { background-color: #bbbbbc !important; }
+
+/* evita que estilos de páginas afetem imagens do menu */
+#sideNav img { max-width: none !important; height: auto; }
+
+/* foto, nome, tagline, localização */
+.img-profile { border: .2rem solid #000; max-width: 10rem; max-height: 10rem; margin-top: 10px; }
+.div-name { font-family: var(--font-base); font-weight: bold; font-size: 25px; }
+.div-tagline { font-family: var(--font-base); font-size: 18px; margin-bottom: 15px; font-weight: normal; }
+.div-location { font-family: var(--font-base); }
+.div-location i { color: #FF113C; margin-top: 3px; }
+
+/* links do menu */
+.nav-link { color: #000; font-family: var(--font-base); }
+.nav-link:hover { color: var(--color-base); }
+.nav-link.active { color: var(--color-base) !important; }
+
+/* ícones sociais */
+.social-network { font-size: 1.4rem; color: #000; margin-top: 10px; margin-bottom: 5px; }
+.social-network:hover { color: var(--color-base); }
+
+/* linhas separadoras */
+.custom-line,
+.custom-line-bottom {
+  width: 80%;
+  height: 2px;
+  background-color: #000;
+  margin: 10px auto;
+}
+/* linha de baixo com respiro */
+.custom-line-bottom { margin: 12px auto 10px; }
+
+/* bloco "Academic Contact" */
+.academic-contact {
+  width: 100%;
+  padding: 0 .75rem .75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: var(--font-base);
+}
+.ac-title { font-weight: 800; font-size: 1rem; margin: 6px 0; }
+.ac-email { font-size: .95rem; color: #000; text-decoration: none; word-break: break-word; margin-bottom: 8px; }
+.ac-email:hover { color: var(--color-base); text-decoration: underline; }
+.ac-links { display: inline-flex; gap: .75rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+.ac-link { display: inline-flex; align-items: center; gap: .35rem; color: #000; text-decoration: none; font-size: .95rem; }
+.ac-link:hover { color: var(--color-base); }
+.ac-lattes-logo { height: 18px; width: auto; display: inline-block; vertical-align: middle; }
+.ac-orcid-icon { font-size: 18px; line-height: 1; }
+
+/* ========== Conteúdo (fora do menu) ========== */
+.about-section p {
+  max-width: 65rem;
+  text-align: justify;
+  margin-top: 2rem;
+  font-family: var(--font-base);
+}
+.about-section ul { margin-top: 20px; margin-left: 1.2rem; gap: .5rem 1rem; display: grid; grid-template-columns: repeat(2, 1fr); }
+.about-section li { margin-bottom: .3rem; font-size: 1rem; font-family: var(--font-base); background-color: #f2f2f2; border-radius: 5px; padding: 2px; width: fit-content; }
+
+.blog-section, .project-section, .type-projects { font-family: var(--font-base); }
+.type-projects { text-align: justify; }
+.type-projects p { margin-top: 2rem; margin-bottom: .5rem; }
+
+/* RESTRIÇÃO: estilos de imagens do Projects só dentro da área de projetos */
+.type-projects .project-section img { max-width: 900px; height: auto; }
+.type-projects .project-section figure img { max-width: 500px; height: auto; display: block; margin: 0 auto; width: 100%; }
+
+.blog-section ul.pagination,
+.project-section ul.pagination {
+  display: flex !important;
+  list-style: none;
+  padding-left: 0;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: .25rem;
+}
+.blog-section ul.pagination .page-item,
+.project-section ul.pagination .page-item { margin: 0; }
+
+/* ========== Mobile (<= 992px) ========== */
+@media (max-width: 992px) {
+  .type-projects .project-section img { max-width: 350px; height: auto; }
+  .type-projects .project-section figure img { max-width: 300px; height: auto; display: block; margin: 0 auto; width: 100%; }
+
+  #sideNav {
+    position: fixed; z-index: 1030; display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+  }
+  #sideNav .navbar-toggler{
+    position: absolute; top: .75rem; right: .75rem; z-index: 1050;
+    border-color: var(--color-base); background-color: var(--color-base);
+  }
+
+  /* collapse como overlay EMPILHADO */
+  #sideNav .navbar-collapse{
+    position: absolute; inset: 0; background: rgba(187,187,188,.98);
+    padding: 4rem 1rem 1rem;
+    display: none !important;            /* fechado */
+    flex-direction: column !important;    /* empilha menu -> linha -> contato */
+    align-items: center;
+    overflow-y: auto;
+  }
+  #sideNav .navbar-collapse.show{ display: flex !important; }
+  #sideNav .navbar-collapse > * { flex: 0 0 auto; } /* impede esticar */
+  #sideNav .navbar-nav{ align-items: center; gap: .75rem; margin-bottom: 8px; }
+
+  #sideNav > .div-name,
+  #sideNav > .div-tagline,
+  #sideNav > .div-location,
+  #sideNav > .social-network,
+  #sideNav > .custom-line { flex: 0 0 100%; width: 100%; }
+
+  .div-name { font-size: 1.35rem; margin-top: 6px; }
+  .div-tagline { font-size: 1rem; margin-bottom: 8px; }
+  .div-location { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; margin-bottom: 6px; }
+  .div-location i { margin: 0; }
+  .social-network { display: inline-flex; gap: .6rem; font-size: 1.4rem; color: #000 !important; margin-top: 8px; margin-bottom: 6px; }
+  .social-network:hover { color: var(--color-base) !important; }
+
+  #content {
+    margin-top: 22rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  article.container ul { list-style: none; padding-left: 0; }
+  article.container ul li { padding: .35rem .7rem; display: flex; text-align: center; align-items: center; }
+}
+
+/* ========== Desktop (>= 992px) ========== */
+@media (min-width: 992px) {
+  #sideNav{
+    padding-left: 0; padding-right: 0; text-align: center;
+    position: fixed; top: 0; left: 0; display: flex; flex-direction: column;
+    width: var(--sidebar-width); height: 100vh;
+  }
+  #sideNav .navbar-brand{ display: flex; padding: .5rem; }
+  #sideNav .navbar-brand .img-profile{ margin-top: 10px; }
+
+  /* collapse empilhado */
+  #sideNav .navbar-collapse{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    gap: .25rem;
+    flex-grow: 0;
+    width: 100%;
+    margin-bottom: auto;
+  }
+  #sideNav .navbar-collapse > * { flex: 0 0 auto; } /* impede esticar */
+  #sideNav .navbar-collapse .navbar-nav{ flex-direction: column; width: 100%; margin-bottom: 8px; }
+  #sideNav .navbar-collapse .navbar-nav .nav-item{ display: block; }
+  #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link{ display: block; }
+
+  #content { margin-left: var(--sidebar-width); padding-left: 1rem; padding-right: 1rem; }
+}
+
+/* --- Sidebar: garantir empilhamento e ordem estável no collapse --- */
+#sideNav .navbar-collapse{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  gap: 0;               /* sem gaps extras entre os blocos do collapse */
+  flex-grow: 0;
+  width: 100%;
+  margin-bottom: auto;
+}
+#sideNav .navbar-collapse > * { flex: 0 0 auto; } /* nada estica */
+
+/* Ordem explícita: menu -> linha -> bloco acadêmico */
+#navbarResponsive .navbar-nav            { order: 1; }
+#navbarResponsive .custom-line-bottom    { order: 2; }
+#navbarResponsive .academic-contact      { order: 3; }
+
+/* --- Zerar espaçamentos indesejados do menu --- */
+#sideNav .navbar-collapse .navbar-nav{
+  width: 100%;
+  flex-direction: column;
+  margin: 0 !important;           /* tira qualquer margin-bottom herdada */
+  padding: 0 !important;
+}
+#sideNav .navbar-collapse .navbar-nav .nav-item{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#sideNav .navbar-collapse .navbar-nav .nav-item .nav-link{
+  display: block;
+  padding: .5rem 0 !important;    /* espaçamento vertical uniforme dos itens */
+}
+
+/* --- Linha de baixo: sempre próxima do menu (distância fixa) --- */
+#sideNav .custom-line-bottom{
+  width: 80%;
+  height: 2px;
+  background-color: #000;
+  margin: 12px auto 10px !important;  /* 12px do fim do menu, sem “pulos” */
+}
+
+/* --- Blindagem: nada do Projects afeta o sidebar --- */
+#sideNav img { max-width: none !important; height: auto; }
+#sideNav .ac-lattes-logo { height: 18px !important; width: auto !important; }
+
+/* --- Mobile: o overlay também precisa ser coluna --- */
+@media (max-width: 992px){
+  #sideNav .navbar-collapse{
+    position: absolute; inset: 0;
+    background: rgba(187,187,188,.98);
+    padding: 4rem 1rem 1rem;
+    display: none !important;
+    overflow-y: auto;
+  }
+  #sideNav .navbar-collapse.show{ display: flex !important; }
+  #sideNav .navbar-nav{ align-items: center; }
+}
+
+/* ==== MOBILE COLLAPSE: visível ao abrir, coluna, por cima de tudo ==== */
+@media (max-width: 992px) {
+  #sideNav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1030;
+    transition: transform .24s ease-in-out; /* p/ animação de esconder/mostrar */
+    will-change: transform;
+  }
+
+  #sideNav .navbar-toggler{
+    position: absolute;
+    top: .75rem; right: .75rem;
+    z-index: 1050;
+    border-color: var(--color-base);
+    background-color: var(--color-base);
+  }
+
+  /* Overlay do menu */
+  #sideNav .navbar-collapse{
+    position: fixed;               /* cobre a tela toda */
+    inset: 0;                      /* top/right/bottom/left: 0 */
+    z-index: 1045;                 /* acima do conteúdo, abaixo do botão */
+    background: rgba(187,187,188,.98);
+    padding: 4rem 1rem 1rem;
+    display: none !important;      /* fechado */
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    min-height: 100vh;             /* ocupa a tela inteira */
+    gap: 0;
+  }
+  #sideNav .navbar-collapse.show{ display: flex !important; }
+
+  /* Ordem explícita dentro do overlay */
+  #navbarResponsive .navbar-nav         { order: 1; margin: 0 !important; padding: 0 !important; width: 100%; }
+  #navbarResponsive .custom-line-bottom { order: 2; width: 80%; height: 2px; background:#000; margin: 12px auto 10px !important; }
+  #navbarResponsive .academic-contact   { order: 3; display: flex; }
+
+  /* Itens do menu: espaçamento uniforme */
+  #navbarResponsive .navbar-nav .nav-item{ margin: 0 !important; padding: 0 !important; }
+  #navbarResponsive .navbar-nav .nav-link{ display:block; padding:.5rem 0 !important; }
+
+  /* Ícones sociais fora do overlay (topo) */
+  .social-network{ display: inline-flex; gap:.6rem; font-size:1.4rem; color:#000 !important; margin:8px 0 6px; }
+  .social-network:hover{ color: var(--color-base) !important; }
+
+  /* conteúdo da página abaixo do cabeçalho fixo */
+  #content{ margin-top: var(--head-h, 22rem); padding: 0 1rem; }
+}
+
+/* animação para esconder/mostrar */
+#sideNav{ transition: top .24s ease, left .24s ease; }
+
+/* mobile: some para cima */
+@media (max-width: 992px){
+  #sideNav.is-hidden{
+    top: calc(-1 * var(--head-h, 120px)); /* usa a altura real se existir, senão 120px */
   }
 }
-@media (min-width:992px){
-    #sideNav{
-      padding-left:0; padding-right:0; text-align:center;
-      position:fixed; top:0; left:0; display:flex; flex-direction:column;
-      width:var(--sidebar-width); height:100vh;
-    }
-    #sideNav .navbar-brand{ display:flex; padding:.5rem; }
-    #sideNav .navbar-brand .img-profile{
-      margin-top: 10px;
-    }
-    #sideNav .navbar-collapse{
-      display:flex; align-items:flex-start; flex-grow:0; width:100%; margin-bottom:auto;
-    }
-    #sideNav .navbar-collapse .navbar-nav{ flex-direction:column; width:100%; }
-    #sideNav .navbar-collapse .navbar-nav .nav-item{ display:block; }
-    #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link{ display:block; }
 
-    #content {
-      margin-left: var(--sidebar-width);
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
+/* desktop: some para a esquerda */
+@media (min-width: 992px){
+  #sideNav.is-hidden{
+    left: calc(-1 * var(--sidebar-width)); /* desloca a sidebar toda para fora */
+  }
+  /* opcional: liberar espaço do conteúdo quando a sidebar estiver escondida */
+  #content.without-sidebar{ margin-left: 0; transition: margin-left .24s ease; }
 }
-
-

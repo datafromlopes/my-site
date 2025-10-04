@@ -1,28 +1,91 @@
 (function () {
-  var container = document.getElementById('tag-filter');
+  const container = document.getElementById('tag-filter');
   if (!container) return;
 
-  var buttons = container.querySelectorAll('[data-tag]');
-  var cards = document.querySelectorAll('#post-list [data-tags]');
+  const buttons = container.querySelectorAll('[data-tag]');
+  const cards = document.querySelectorAll('#post-list [data-tags]');
   if (!buttons.length || !cards.length) return;
 
   function setActive(btn) {
-    buttons.forEach(function (b) { b.classList.remove('active'); });
+    buttons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   }
 
   function apply(tag) {
-    cards.forEach(function (card) {
-      var tags = (card.getAttribute('data-tags') || "").toLowerCase().split(',');
-      var show = (tag === '__all') || tags.indexOf(tag.toLowerCase()) !== -1;
+    const t = (tag || '').toLowerCase();
+    cards.forEach(card => {
+      const tags = (card.getAttribute('data-tags') || '').toLowerCase().split(',');
+      const show = (t === '__all') || tags.indexOf(t) !== -1;
       card.style.display = show ? '' : 'none';
     });
   }
 
-  buttons.forEach(function (btn) {
-    btn.addEventListener('click', function () {
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
       setActive(btn);
       apply(btn.getAttribute('data-tag'));
     });
   });
+})();
+
+/* ==============================================
+ * 2) Header (#sideNav): só aparece no TOPO (mobile)
+ *    - Esconde quando scrollY > 0
+ *    - Mostra apenas em scrollY === 0
+ *    - Se o collapse estiver aberto, mantém visível
+ *    - Sem efeito no desktop (>= 992px)
+ * ============================================== */
+(function () {
+  const nav = document.getElementById('sideNav');
+  if (!nav) return;
+
+  const collapse = document.getElementById('navbarResponsive');
+  const toggler  = document.querySelector('[data-bs-target="#navbarResponsive"]');
+
+  // media query alinhada ao CSS (Bootstrap md->lg breakpoint)
+  const mq = window.matchMedia('(max-width: 991.98px)');
+  const isMobile = () => mq.matches;
+
+  // expõe a altura do header (caso use --head-h no CSS)
+  function setHeadH() {
+    if (isMobile()) {
+      document.documentElement.style.setProperty('--head-h', nav.offsetHeight + 'px');
+    }
+  }
+
+  function updateVisibility() {
+    // Desktop: nunca esconder
+    if (!isMobile()) {
+      nav.classList.remove('is-hidden', 'menu-open');
+      return;
+    }
+    const atTop = window.scrollY === 0;
+    const open  = collapse && collapse.classList.contains('show');
+    const shouldShow = atTop || open;
+
+    nav.classList.toggle('is-hidden', !shouldShow);
+    nav.classList.toggle('menu-open', !!open);
+  }
+
+  // eventos
+  window.addEventListener('load', () => { setHeadH(); updateVisibility(); }, { passive: true });
+  window.addEventListener('resize', () => { setHeadH(); updateVisibility(); }, { passive: true });
+  window.addEventListener('scroll', () => { if (isMobile()) updateVisibility(); }, { passive: true });
+
+  // reagir a mudanças da media query (Safari compat)
+  if (mq.addEventListener) mq.addEventListener('change', updateVisibility);
+  else if (mq.addListener) mq.addListener(updateVisibility);
+
+  // integrar com Bootstrap (se disponível)
+  if (collapse) {
+    collapse.addEventListener('shown.bs.collapse', updateVisibility);
+    collapse.addEventListener('hidden.bs.collapse', updateVisibility);
+  }
+  if (toggler && collapse) {
+    toggler.addEventListener('click', () => setTimeout(updateVisibility, 0));
+  }
+
+  // inicial
+  setHeadH();
+  updateVisibility();
 })();
