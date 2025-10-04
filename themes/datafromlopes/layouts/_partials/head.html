@@ -1,31 +1,20 @@
-{{- /* --------- Vars básicas --------- */ -}}
-{{- $siteTitle := .Site.Title -}}                         {{/* ex.: "Diego Lopes | Data Engineer & AI Researcher" */}}
-{{- $name := .Site.Params.name -}}                        {{/* ex.: "Diego Lopes" */}}
+{{- $siteTitle := .Site.Title -}}
+{{- $brandName := or .Site.Params.name .Site.Title -}}
 {{- $isHome := .IsHome -}}
-{{- $section := .Section -}}
 {{- $url := .Permalink -}}
-{{- $desc := or .Description .Site.Params.description -}}
+{{- $desc := or .Site.Params.description "MSc in Computer Science @ IME-USP" -}}
 
-{{- /* Título dinâmico para a aba do navegador:
-      - Home  => "Diego Lopes"
-      - Seção => "Projects | Diego Lopes" (via humanize)
-      - Página/Item => "Título | Diego Lopes"
-*/ -}}
-{{- $pageTitle := cond $isHome $name (or .Title (humanize $section) .Site.Title) -}}
+{{- $tabTitle := "" -}}
+{{- if $isHome -}}
+  {{- $tabTitle = $brandName -}}
+{{- else if or .IsSection .IsTaxonomy .IsTaxonomyTerm -}}
+  {{- $tabTitle = printf "%s | %s" (humanize .Section) $brandName -}}
+{{- else -}}
+  {{- $tabTitle = printf "%s | %s" .Title $brandName -}}
+{{- end -}}
 
-{{- /* Título para Open Graph/Twitter:
-      - Home  => usa o .Site.Title (branding completo)
-      - Outras => "<pageTitle> | <siteTitle>"  -> "Título | Diego Lopes | Data Engineer & AI Researcher"
-*/ -}}
-{{- $ogTitle := cond $isHome $siteTitle (printf "%s | %s" $pageTitle $siteTitle) -}}
+{{- $ogTitle := cond $isHome $siteTitle (printf "%s | %s" (or .Title (humanize .Section) $siteTitle) $siteTitle) -}}
 
-{{- /* --------- Resolver imagem OG ---------
-      Prioridade:
-      1) .Params.image (pode estar em subpasta "img/..." dentro do bundle)
-      2) Primeira image resource do bundle (se houver)
-      3) Caminho absoluto passado em .Params.image (ex.: /images/...)
-      4) Fallback: .Site.Params.defaultImage
-*/ -}}
 {{- $imgParam := .Params.image -}}
 {{- $res := cond (and $imgParam (ne $imgParam "")) (.Resources.GetMatch $imgParam) nil -}}
 {{- if not $res -}}
@@ -45,17 +34,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{{ $pageTitle }}{{ if not $isHome }} | {{ $name }}{{ end }}</title>
+<title>{{ $tabTitle }}</title>
 <meta name="description" content="{{ $desc }}">
 <link rel="canonical" href="{{ $url }}"/>
 
-{{- /* Robots: noindex para drafts, páginas explicitamente marcadas e paginações > 1 */ -}}
 {{- $noindex := false -}}
 {{- if or .Draft .Params.noindex -}}{{- $noindex = true -}}{{- end -}}
 {{- if and .IsNode .Paginator (gt .Paginator.PageNumber 1) -}}{{- $noindex = true -}}{{- end -}}
 <meta name="robots" content="{{ if $noindex }}noindex,follow{{ else }}index,follow{{ end }}"/>
 
-<!-- Open Graph -->
 <meta property="og:title" content="{{ $ogTitle }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ $url }}">
@@ -70,11 +57,11 @@
 {{- end }}
 <meta property="og:locale" content="pt_BR">
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $ogTitle }}">
 <meta name="twitter:description" content="{{ $desc }}">
 <meta name="twitter:image" content="{{ $ogimg }}">
+<meta name="twitter:image:src" content="{{ $ogimg }}">
 {{ with .Site.Params.twitter }}<meta name="twitter:site" content="{{ . }}">{{ end }}
 
 {{ partial "jsonld.html" . }}
