@@ -29,11 +29,10 @@
 })();
 
 /* ==============================================
- * 2) Header (#sideNav): só aparece no TOPO (mobile)
- *    - Esconde quando scrollY > 0
- *    - Mostra apenas em scrollY === 0
- *    - Se o collapse estiver aberto, mantém visível
- *    - Sem efeito no desktop (>= 992px)
+ * 2) Header (#sideNav) só no MOBILE (<= 992px)
+ *    - Esconde quando scrollY > TOP_REVEAL
+ *    - Mostra quando scrollY <= TOP_REVEAL
+ *    - Mantém visível se o collapse estiver aberto
  * ============================================== */
 (function () {
   const nav = document.getElementById('sideNav');
@@ -42,9 +41,10 @@
   const collapse = document.getElementById('navbarResponsive');
   const toggler  = document.querySelector('[data-bs-target="#navbarResponsive"]');
 
-  // media query alinhada ao CSS (Bootstrap md->lg breakpoint)
   const mq = window.matchMedia('(max-width: 991.98px)');
   const isMobile = () => mq.matches;
+
+  const TOP_REVEAL = 48; // px antes do topo para reexibir o menu (ajuste se quiser)
 
   // expõe a altura do header (caso use --head-h no CSS)
   function setHeadH() {
@@ -54,27 +54,27 @@
   }
 
   function updateVisibility() {
-    // Desktop: nunca esconder
+    // Desktop: sem ação
     if (!isMobile()) {
       nav.classList.remove('is-hidden', 'menu-open');
       return;
     }
-    const atTop = window.scrollY === 0;
-    const open  = collapse && collapse.classList.contains('show');
-    const shouldShow = atTop || open;
+    const nearTop = window.scrollY <= TOP_REVEAL;
+    const open    = collapse && collapse.classList.contains('show');
+    const show    = nearTop || open;
 
-    nav.classList.toggle('is-hidden', !shouldShow);
+    nav.classList.toggle('is-hidden', !show);
     nav.classList.toggle('menu-open', !!open);
   }
 
-  // eventos
+  // aplicar rápido nos eventos
   window.addEventListener('load', () => { setHeadH(); updateVisibility(); }, { passive: true });
   window.addEventListener('resize', () => { setHeadH(); updateVisibility(); }, { passive: true });
   window.addEventListener('scroll', () => { if (isMobile()) updateVisibility(); }, { passive: true });
 
-  // reagir a mudanças da media query (Safari compat)
-  if (mq.addEventListener) mq.addEventListener('change', updateVisibility);
-  else if (mq.addListener) mq.addListener(updateVisibility);
+  // reagir a mudanças de breakpoint
+  if (mq.addEventListener) mq.addEventListener('change', () => { setHeadH(); updateVisibility(); });
+  else if (mq.addListener) mq.addListener(() => { setHeadH(); updateVisibility(); });
 
   // integrar com Bootstrap (se disponível)
   if (collapse) {
@@ -82,7 +82,10 @@
     collapse.addEventListener('hidden.bs.collapse', updateVisibility);
   }
   if (toggler && collapse) {
-    toggler.addEventListener('click', () => setTimeout(updateVisibility, 0));
+    toggler.addEventListener('click', () => {
+      // chama no próximo frame para refletir a mudança de classe 'show'
+      requestAnimationFrame(updateVisibility);
+    });
   }
 
   // inicial
