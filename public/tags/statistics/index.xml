@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics on Diego Lopes | Data Engineer &amp; AI Researcher</title>
+    <link>http://localhost:1313/tags/statistics/</link>
+    <description>Recent content in Statistics on Diego Lopes | Data Engineer &amp; AI Researcher</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TF-IDF - An approach to determine the relevance of word in a corpus.</title>
+      <link>http://localhost:1313/posts/tf-idf/</link>
+      <pubDate>Sat, 04 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/tf-idf/</guid>
+      <description>This project develops a fine-tuned LLM to translate natural language queries into geospatial SQL, addressing current text-to-SQL limitations.</description>
+    </item>
+  </channel>
+</rss>

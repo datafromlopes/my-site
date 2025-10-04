@@ -1,7 +1,0 @@
-baseURL = 'https://datafromlopes.com/'
-languageCode = 'en-us'
-title = 'Diego Lopes'
-theme = 'datafromlopes'
-
-pagination.pagerSize = 6
-pagination.path = "page"

@@ -1,0 +1,34 @@
+{{- $siteTitle := .Site.Title -}}
+{{- $pageTitle := .Title -}}
+{{- $title := cond (and $pageTitle (ne $pageTitle $siteTitle)) (printf "%s | %s" $pageTitle $siteTitle) $siteTitle -}}
+{{- $desc := or .Description .Site.Params.description -}}
+{{- $url := .Permalink -}}
+{{- $img := cond (isset .Params "image") (.Params.image | absURL) (.Site.Params.defaultImage | absURL) -}}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ $url }}"/>
+
+{{- $noindex := false -}}
+{{- if or .Draft .Params.noindex -}}{{- $noindex = true -}}{{- end -}}
+{{- if and .IsNode .Paginator (gt .Paginator.PageNumber 1) -}}{{- $noindex = true -}}{{- end -}}
+<meta name="robots" content="{{ if $noindex }}noindex,follow{{ else }}index,follow{{ end }}"/>
+
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ $url }}">
+<meta property="og:site_name" content="{{ $siteTitle }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:image" content="{{ $img }}">
+<meta property="og:locale" content="pt_BR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $img }}">
+{{ with .Site.Params.twitter }}<meta name="twitter:site" content="{{ . }}">{{ end }}
+
+{{ partial "jsonld.html" . }}

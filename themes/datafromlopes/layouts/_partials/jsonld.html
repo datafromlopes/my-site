@@ -1,0 +1,49 @@
+{{- $url := .Permalink -}}
+{{- $logo := "/images/logo.png" | absURL -}}
+{{- $img := cond (isset .Params "image") (.Params.image | absURL) (.Site.Params.defaultImage | absURL) -}}
+{{- $name := .Site.Params.name | default .Site.Title -}}
+{{- $desc := or .Description .Site.Params.description -}}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ $name }}",
+  "url": "{{ .Site.BaseURL }}",
+  "image": "{{ $img }}",
+  "jobTitle": "Data Engineer & Researcher",
+  "address": {"@type":"PostalAddress","addressLocality":"São Paulo","addressCountry":"BR"},
+  "sameAs": [
+    "{{ .Site.Params.social.linkedin }}",
+    "{{ .Site.Params.social.github }}",
+    "{{ .Site.Params.social.twitter }}",
+    "{{ .Site.Params.social.orcid }}"
+  ]
+}
+</script>
+
+{{ if .IsPage -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Title }}",
+  "description": "{{ $desc }}",
+  "image": ["{{ $img }}"],
+  "author": {"@type": "Person","name": "{{ $name }}"},
+  "publisher": {"@type": "Organization","name": "{{ .Site.Title }}","logo":{"@type":"ImageObject","url":"{{ $logo }}"}},
+  "datePublished": "{{ .Date }}",
+  {{ with .Lastmod }}"dateModified": "{{ . }}",{{ end }}
+  "mainEntityOfPage": {"@type":"WebPage","@id":"{{ $url }}"}
+}
+</script>
+{{- end }}
