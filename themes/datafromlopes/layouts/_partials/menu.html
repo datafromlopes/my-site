@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-  <div class="js-scroll-trigger text-center w-100" href="#page-top">
+  <!-- Brand / Foto vira <a> válido -->
+  <a class="text-center w-100 d-block" href="{{ "/" | relURL }}">
     {{ $photo := "profile.jpeg" | relURL }}
     <img class="img-fluid img-profile rounded-circle mb-2"
          src="{{ $photo }}" alt="Foto de perfil" />
-  </div>
+  </a>
 
   <div class="div-name">{{ .Site.Params.name }}</div>
   <div class="div-tagline">{{ .Site.Params.tagline }}</div>
@@ -16,13 +17,12 @@
 
   <button class="navbar-toggler" type="button"
           data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <!-- COLAPSO DO MENU -->
   <div class="collapse navbar-collapse" id="navbarResponsive">
-    <!-- linha que acompanha o tamanho do menu -->
     <div class="custom-line-bottom" role="presentation"></div>
 
     <ul class="navbar-nav">
@@ -32,43 +32,34 @@
             (and $.IsHome (or (eq .URL "/") (eq .PageRef "/")))
         }}
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger {{ if $isActive }}active{{ end }}"
-             href="{{ .URL }}" {{ if $isActive }}aria-current="page"{{ end }}>
+          <a class="nav-link {{ if $isActive }}active{{ end }}"
+             href="{{ .URL | relURL }}" {{ if $isActive }}aria-current="page"{{ end }}>
             {{ .Name }}
           </a>
         </li>
       {{ end }}
     </ul>
 
-    <!-- CONTATO (redes + acadêmico) -->
+    <!-- CONTATO -->
     <section class="contact-section" aria-labelledby="contact-title">
       <h3 id="contact-title" class="ac-title">Contact</h3>
 
       <div class="contact-icons" role="group" aria-label="Redes e e-mail">
         {{ with .Site.Params.social.linkedin }}
-          <a href="{{ . }}" target="_blank" class="icon" aria-label="LinkedIn">
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
+          <a href="{{ . }}" target="_blank" class="icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
         {{ end }}
         {{ with .Site.Params.social.github }}
-          <a href="{{ . }}" target="_blank" class="icon" aria-label="GitHub">
-            <i class="fa-brands fa-github"></i>
-          </a>
+          <a href="{{ . }}" target="_blank" class="icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
         {{ end }}
         {{ with .Site.Params.social.twitter }}
-          <a href="{{ . }}" target="_blank" class="icon" aria-label="X (Twitter)">
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
+          <a href="{{ . }}" target="_blank" class="icon" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
         {{ end }}
         {{ with .Site.Params.social.email }}
-          <a href="mailto:{{ . }}" class="icon" aria-label="Email">
-            <i class="fa-solid fa-envelope"></i>
-          </a>
+          <a href="mailto:{{ . }}" class="icon" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         {{ end }}
       </div>
 
       <div class="contact-links">
-        {{/* ---------- LATTES: assets -> static -> inline SVG ---------- */}}
         {{ $lattes := "icone-lattes.png" }}
         {{ if fileExists (printf "assets/%s" $lattes) }}
           {{ $res := resources.Get $lattes | fingerprint }}
@@ -83,31 +74,23 @@
           </a>
         {{ else if .Site.Params.social.lattes }}
           <a href="{{ .Site.Params.social.lattes }}" target="_blank" class="ac-link" aria-label="Currículo Lattes">
-            <!-- SVG fallback leve (não quebra nunca) -->
             <svg class="ac-lattes-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="lat-g" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#0056a6"/>
-                  <stop offset="1" stop-color="#2aa2ff"/>
-                </linearGradient>
-              </defs>
-              <circle cx="32" cy="32" r="30" fill="url(#lat-g)"></circle>
+              <defs><linearGradient id="lat-g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0056a6"/><stop offset="1" stop-color="#2aa2ff"/></linearGradient></defs>
+              <circle cx="32" cy="32" r="30" fill="url(#lat-g)"/>
               <path d="M32 14c8.3 0 15 6.7 15 15s-6.7 15-15 15S17 37.3 17 29c0-2.7.7-5.3 2-7.6l5.2 3.1A10.8 10.8 0 0 0 21.8 29c0 5.6 4.6 10.2 10.2 10.2S42.2 34.6 42.2 29 37.6 18.8 32 18.8c-1.7 0-3.3.4-4.7 1.1L24 15.4A18.2 18.2 0 0 1 32 14z" fill="#fff" opacity=".95"/>
             </svg>
             <span>Lattes</span>
           </a>
         {{ end }}
-
         {{ with .Site.Params.social.orcid }}
           <a href="{{ . }}" target="_blank" class="ac-link" aria-label="ORCID">
-            <i class="fa-brands fa-orcid ac-orcid-icon" aria-hidden="true"></i>
-            <span>Orcid</span>
+            <i class="fa-brands fa-orcid ac-orcid-icon" aria-hidden="true"></i><span>Orcid</span>
           </a>
         {{ end }}
         {{ with .Site.Params.academic_email }}
           <a href="mailto:{{ . }}" class="ac-link" aria-label="Email acadêmico">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-            <span>@ime.usp.br</span>
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i><span>@ime.usp.br</span>
           </a>
         {{ end }}
       </div>
