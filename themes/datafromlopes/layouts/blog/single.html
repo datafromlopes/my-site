@@ -1,12 +1,75 @@
 {{ define "main" }}
-<article class="container py-3">
-  <h1 class="mb-1">{{ .Title }}</h1>
-  <div class="text-muted mb-3">{{ .Date.Format "02 Jan 2006" }}</div>
-  {{ with .Params.tags }}
-    <div class="mb-3 d-flex flex-wrap gap-1">
-      {{ range . }}<span class="badge text-bg-light">{{ . }}</span>{{ end }}
+<article class="blog-section container py-3">
+
+  <header class="mb-3">
+    <h1 class="mb-1">{{ .Title }}</h1>
+    <div class="text-muted">
+      {{ .Date.Format "02 Jan 2006" }} - by
+      {{ with .Params.author }} <span>{{ . }}</span>{{ end }}.
     </div>
-  {{ end }}
-  {{ .Content }}
+
+    {{ with .Params.tags }}
+      <div class="mt-2 d-flex flex-wrap gap-1">
+        {{ range . }}<span class="badge text-bg-light">{{ . }}</span>{{ end }}
+      </div>
+    {{ end }}
+
+    {{ $coverName := cond (isset .Params "image") .Params.image (cond (isset .Params "cover") .Params.cover nil) }}
+    {{ with $coverName }}
+      {{ $img := $.Resources.GetMatch . }}
+      {{ if not $img }}{{ $img = resources.Get . }}{{ end }}
+      {{ if $img }}
+        {{ $cover := $img.Resize "900x center" }}
+        <figure class="mt-3 mb-4">
+          <img
+            src="{{ $cover.RelPermalink }}"
+            class="img-fluid rounded"
+            alt="{{ or $.Params.coverAlt $.Title }}"
+            loading="lazy"
+            decoding="async"
+          >
+          {{ with $.Params.coverCaption }}
+            <figcaption class="mt-2 text-muted small">{{ . }}</figcaption>
+          {{ end }}
+        </figure>
+      {{ else }}
+        <figure class="mt-3 mb-4">
+          <img
+            src="{{ . }}"
+            class="img-fluid rounded"
+            alt="{{ or $.Params.coverAlt $.Title }}"
+            loading="lazy"
+            decoding="async"
+          >
+          {{ with $.Params.coverCaption }}
+            <figcaption class="mt-2 text-muted small">{{ . }}</figcaption>
+          {{ end }}
+        </figure>
+      {{ end }}
+    {{ end }}
+  </header>
+  {{ with .Params.github }}
+      <div class="mt-3">
+        <a href="{{ . }}" class="btn btn-dark" target="_blank" rel="noopener">
+          <i class="bi bi-github"></i> Access Code
+        </a>
+      </div>
+    {{ end }}
+  <div class="content mb-4">
+    {{ .Content }}
+  </div>
+  <nav class="mt-4 d-flex justify-content-between">
+    <div>
+      {{ with .PrevInSection }}
+        <a class="btn btn-outline-secondary btn-sm" href="{{ .RelPermalink }}">&laquo; {{ .Title }}</a>
+      {{ end }}
+    </div>
+    <div>
+      {{ with .NextInSection }}
+        <a class="btn btn-outline-secondary btn-sm" href="{{ .RelPermalink }}">{{ .Title }} &raquo;</a>
+      {{ end }}
+    </div>
+  </nav>
+
 </article>
 {{ end }}
