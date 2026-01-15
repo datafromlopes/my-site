@@ -74,13 +74,13 @@
   
   
   
-    <link rel="stylesheet" href="/css/main.min.5750007d225ec4e26211eff29489e5b4aeb32347fb648988120002ff9ffeb776.css" integrity="sha256-V1AAfSJexOJiEe/ylInltK6zI0f7ZImIEgAC/5/&#43;t3Y=">
+    <link rel="stylesheet" href="/css/main.min.b5c83260b3422965f84b1e8ff28aefdaf42d251609b47cb6fe6b4da31640b281.css" integrity="sha256-tcgyYLNCKWX4Sx6P8orv2vQtJRYJtHy2/mtNoxZAsoE=">
   
 
   
   
   
-    <script src="/js/main.d6e57500e420518d7c744f1b2660746fdfb2637f919faa66afd7944600d792f2.js" integrity="sha256-1uV1AOQgUY18dE8bJmB0b9&#43;yY3&#43;Rn6pmr9eURgDXkvI=" defer></script>
+    <script src="/js/main.47ca69a9c02d80b65b018598a67117e1f34963cf9d036cdb62a91f2c120b150b.js" integrity="sha256-R8ppqcAtgLZbAYWYpnEX4fNJY8&#43;dA2zbYqkfLBILFQs=" defer></script>
   
 
   <script src="https://kit.fontawesome.com/e3c6a2b28e.js" crossorigin="anonymous"></script>
@@ -92,22 +92,24 @@
 </head>
 <body class="type-projects ">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+
   
-  <a class="text-center w-100 d-block" href="/">
+  <a class="text-center w-100 d-block text-decoration-none" href="/">
     
     <img class="img-fluid img-profile rounded-circle mb-2"
          src="/profile.jpeg" alt="Foto de perfil" />
+
+    <div class="div-name">Diego Lopes</div>
+    <div class="div-tagline">Data Engineer &amp; Researcher</div>
+    <div class="d-flex justify-content-center align-items-center div-location mt-1">
+      <i class="fa-solid fa-location-dot me-1"></i>
+      <span class="small">São Paulo, Brazil</span>
+    </div>
   </a>
 
-  <div class="div-name">Diego Lopes</div>
-  <div class="div-tagline">Data Engineer &amp; Researcher</div>
+  <div class="custom-line mt-2"></div>
 
-  <div class="d-flex justify-content-center div-location">
-    <i class="d-flex justify-content-center fa-solid fa-location-dot"></i>São Paulo, Brazil
-  </div>
-
-  <div class="custom-line"></div>
-
+  
   <button class="navbar-toggler" type="button"
           data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
           aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
@@ -116,8 +118,8 @@
 
   
   <div class="collapse navbar-collapse" id="navbarResponsive">
-    <div class="custom-line-bottom" role="presentation"></div>
 
+    
     <ul class="navbar-nav">
       
         
@@ -146,44 +148,65 @@
       
     </ul>
 
-    
-    <section class="contact-section" aria-labelledby="contact-title">
-      <h3 id="contact-title" class="ac-title">Contact</h3>
+    <div class="custom-line-bottom"></div>
 
-      <div class="contact-icons" role="group" aria-label="Redes e e-mail">
+    
+    <section class="contact-section-compact" aria-label="Links de contato">
+
+      
+      <div class="social-icons-grid">
         
-          <a href="https://www.linkedin.com/in/datafromlopes" target="_blank" class="icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/datafromlopes" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
         
         
-          <a href="https://github.com/datafromlopes" target="_blank" class="icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/datafromlopes" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
         
         
-          <a href="https://x.com/datafromlopes" target="_blank" class="icon" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/datafromlopes" target="_blank" rel="noopener" class="social-icon" aria-label="X (Twitter)" title="X">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
         
         
-          <a href="mailto:diego.lopes@datafromlopes.com" class="icon" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="mailto:diego.lopes@datafromlopes.com" class="social-icon" aria-label="Email" title="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
         
       </div>
 
-      <div class="contact-links">
-        
-        
-          <a href="http://lattes.cnpq.br/4604428550643092" target="_blank" class="ac-link" aria-label="Currículo Lattes">
-            <img src="/icone-lattes.png" alt="Lattes" class="ac-lattes-logo" width="18" height="18" loading="lazy" decoding="async" />
+      
+      <details class="academic-links-toggle mt-2">
+        <summary class="text-center small text-muted cursor-pointer">
+          <i class="fa-solid fa-graduation-cap me-1"></i> Academic Profiles
+        </summary>
+        <div class="academic-links mt-2">
+          
+          <a href="https://orcid.org/0000-0002-5130-3728" target="_blank" rel="noopener" class="academic-link" title="ORCID">
+            <i class="fa-brands fa-orcid"></i> <span>ORCID</span>
+          </a>
+          
+          
+          <a href="http://lattes.cnpq.br/4604428550643092" target="_blank" rel="noopener" class="academic-link" title="Lattes">
+            <svg class="lattes-icon" viewBox="0 0 64 64" aria-hidden="true">
+              <defs><linearGradient id="lat-g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0056a6"/><stop offset="1" stop-color="#2aa2ff"/></linearGradient></defs>
+              <circle cx="32" cy="32" r="30" fill="url(#lat-g)"/>
+              <path d="M32 14c8.3 0 15 6.7 15 15s-6.7 15-15 15S17 37.3 17 29c0-2.7.7-5.3 2-7.6l5.2 3.1A10.8 10.8 0 0 0 21.8 29c0 5.6 4.6 10.2 10.2 10.2S42.2 34.6 42.2 29 37.6 18.8 32 18.8c-1.7 0-3.3.4-4.7 1.1L24 15.4A18.2 18.2 0 0 1 32 14z" fill="#fff" opacity=".95"/>
+            </svg>
             <span>Lattes</span>
           </a>
-        
-        
-          <a href="https://orcid.org/0000-0002-5130-3728" target="_blank" class="ac-link" aria-label="ORCID">
-            <i class="fa-brands fa-orcid ac-orcid-icon" aria-hidden="true"></i><span>Orcid</span>
+          
+          
+          <a href="mailto:diego.oliveiralopes@ime.usp.br" class="academic-link" title="Email acadêmico">
+            <i class="fa-solid fa-envelope"></i> <span>@ime.usp.br</span>
           </a>
-        
-        
-          <a href="mailto:diego.oliveiralopes@ime.usp.br" class="ac-link" aria-label="Email acadêmico">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i><span>@ime.usp.br</span>
-          </a>
-        
-      </div>
+          
+        </div>
+      </details>
+
     </section>
   </div>
 </nav>

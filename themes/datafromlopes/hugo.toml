@@ -4,7 +4,7 @@ title = 'Diego Lopes | Data Engineer & AI Researcher'
 theme = 'datafromlopes'
 
 enableRobotsTXT = true
-pagination.pagerSize = 6
+pagination.pagerSize = 4
 pagination.path = "page"
 
 [params]

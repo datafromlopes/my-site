@@ -1,30 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-  <!-- Brand / Foto vira <a> válido -->
-  <a class="text-center w-100 d-block" href="{{ "/" | relURL }}">
+
+  <!-- Foto + Info básica (mais compacto) -->
+  <a class="text-center w-100 d-block text-decoration-none" href="{{ "/" | relURL }}">
     {{ $photo := "profile.jpeg" | relURL }}
     <img class="img-fluid img-profile rounded-circle mb-2"
          src="{{ $photo }}" alt="Foto de perfil" />
+
+    <div class="div-name">{{ .Site.Params.name }}</div>
+    <div class="div-tagline">{{ .Site.Params.tagline }}</div>
+    <div class="d-flex justify-content-center align-items-center div-location mt-1">
+      <i class="fa-solid fa-location-dot me-1"></i>
+      <span class="small">{{ .Site.Params.location }}</span>
+    </div>
   </a>
 
-  <div class="div-name">{{ .Site.Params.name }}</div>
-  <div class="div-tagline">{{ .Site.Params.tagline }}</div>
+  <div class="custom-line mt-2"></div>
 
-  <div class="d-flex justify-content-center div-location">
-    <i class="d-flex justify-content-center fa-solid fa-location-dot"></i>{{ .Site.Params.location }}
-  </div>
-
-  <div class="custom-line"></div>
-
+  <!-- Hamburger mobile -->
   <button class="navbar-toggler" type="button"
           data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
           aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <!-- COLAPSO DO MENU -->
+  <!-- Menu collapse -->
   <div class="collapse navbar-collapse" id="navbarResponsive">
-    <div class="custom-line-bottom" role="presentation"></div>
 
+    <!-- Navegação principal -->
     <ul class="navbar-nav">
       {{ range .Site.Menus.main }}
         {{ $isActive := or
@@ -40,41 +42,49 @@
       {{ end }}
     </ul>
 
-    <!-- CONTATO -->
-    <section class="contact-section" aria-labelledby="contact-title">
-      <h3 id="contact-title" class="ac-title">Contact</h3>
+    <div class="custom-line-bottom"></div>
 
-      <div class="contact-icons" role="group" aria-label="Redes e e-mail">
+    <!-- Contato - versão compacta -->
+    <section class="contact-section-compact" aria-label="Links de contato">
+
+      <!-- Redes sociais principais -->
+      <div class="social-icons-grid">
         {{ with .Site.Params.social.linkedin }}
-          <a href="{{ . }}" target="_blank" class="icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="{{ . }}" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
         {{ end }}
         {{ with .Site.Params.social.github }}
-          <a href="{{ . }}" target="_blank" class="icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="{{ . }}" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
         {{ end }}
         {{ with .Site.Params.social.twitter }}
-          <a href="{{ . }}" target="_blank" class="icon" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="{{ . }}" target="_blank" rel="noopener" class="social-icon" aria-label="X (Twitter)" title="X">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
         {{ end }}
         {{ with .Site.Params.social.email }}
-          <a href="mailto:{{ . }}" class="icon" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="mailto:{{ . }}" class="social-icon" aria-label="Email" title="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
         {{ end }}
       </div>
 
-      <div class="contact-links">
-        {{ $lattes := "icone-lattes.png" }}
-        {{ if fileExists (printf "assets/%s" $lattes) }}
-          {{ $res := resources.Get $lattes | fingerprint }}
-          <a href="{{ .Site.Params.social.lattes }}" target="_blank" class="ac-link" aria-label="Currículo Lattes">
-            <img src="{{ $res.RelPermalink }}" alt="Lattes" class="ac-lattes-logo" width="18" height="18" loading="lazy" decoding="async" />
-            <span>Lattes</span>
+      <!-- Links acadêmicos (menor, agrupado) -->
+      <details class="academic-links-toggle mt-2">
+        <summary class="text-center small text-muted cursor-pointer">
+          <i class="fa-solid fa-graduation-cap me-1"></i> Academic Profiles
+        </summary>
+        <div class="academic-links mt-2">
+          {{ with .Site.Params.social.orcid }}
+          <a href="{{ . }}" target="_blank" rel="noopener" class="academic-link" title="ORCID">
+            <i class="fa-brands fa-orcid"></i> <span>ORCID</span>
           </a>
-        {{ else if fileExists (printf "static/%s" $lattes) }}
-          <a href="{{ .Site.Params.social.lattes }}" target="_blank" class="ac-link" aria-label="Currículo Lattes">
-            <img src="{{ $lattes | relURL }}" alt="Lattes" class="ac-lattes-logo" width="18" height="18" loading="lazy" decoding="async" />
-            <span>Lattes</span>
-          </a>
-        {{ else if .Site.Params.social.lattes }}
-          <a href="{{ .Site.Params.social.lattes }}" target="_blank" class="ac-link" aria-label="Currículo Lattes">
-            <svg class="ac-lattes-svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          {{ end }}
+          {{ with .Site.Params.social.lattes }}
+          <a href="{{ . }}" target="_blank" rel="noopener" class="academic-link" title="Lattes">
+            <svg class="lattes-icon" viewBox="0 0 64 64" aria-hidden="true">
               <defs><linearGradient id="lat-g" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0" stop-color="#0056a6"/><stop offset="1" stop-color="#2aa2ff"/></linearGradient></defs>
               <circle cx="32" cy="32" r="30" fill="url(#lat-g)"/>
@@ -82,18 +92,15 @@
             </svg>
             <span>Lattes</span>
           </a>
-        {{ end }}
-        {{ with .Site.Params.social.orcid }}
-          <a href="{{ . }}" target="_blank" class="ac-link" aria-label="ORCID">
-            <i class="fa-brands fa-orcid ac-orcid-icon" aria-hidden="true"></i><span>Orcid</span>
+          {{ end }}
+          {{ with .Site.Params.academic_email }}
+          <a href="mailto:{{ . }}" class="academic-link" title="Email acadêmico">
+            <i class="fa-solid fa-envelope"></i> <span>@ime.usp.br</span>
           </a>
-        {{ end }}
-        {{ with .Site.Params.academic_email }}
-          <a href="mailto:{{ . }}" class="ac-link" aria-label="Email acadêmico">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i><span>@ime.usp.br</span>
-          </a>
-        {{ end }}
-      </div>
+          {{ end }}
+        </div>
+      </details>
+
     </section>
   </div>
 </nav>

@@ -1,9 +1,217 @@
 {{ define "main" }}
   <article class="about-section">
-    {{ if .Title }}
-      <h1 class="mb-3">{{ .Title }}</h1>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1 class="display-6 fw-bold">Hi there 👋</h1>
+      <p class="lead mb-4" style="max-width: 60rem;">
+        I'm a <strong>Senior Data Engineer at Pulsus</strong> with <span id="years-experience"></span> years
+        architecting distributed systems, and an <strong>MSc candidate at USP</strong>
+        researching how Large Language Models can understand geospatial queries.
+        <strong>AWS Certified</strong> and passionate about bridging AI research
+        with production-grade systems.
+      </p>
+    </section>
+
+     <!-- Core Expertise -->
+    <section class="technical-focus mb-5">
+      <h2 class="h3 fw-bold mb-4">Core Expertise</h2>
+      <div class="row g-4">
+
+        <!-- 1. AI Research & Engineering -->
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded h-100 bg-light">
+            <div class="d-flex align-items-center mb-3">
+              <div class="text-primary me-3" style="font-size: 2.5rem;">🧠</div>
+              <h4 class="fw-bold mb-0">AI Research</h4>
+            </div>
+            <p class="mb-3">
+              <strong>MSc Computer Science @ USP</strong><br>
+              Researching text-to-SQL for geospatial data using fine-tuned LLMs
+            </p>
+            <ul class="mb-3 ps-3">
+              <li>Large Language Models (LLaMA, GPT)</li>
+              <li>Computational Linguistics</li>
+              <li>Neural Network Architectures</li>
+              <li>NLP Pipeline Development</li>
+            </ul>
+            <p class="text-muted small mb-0">
+              <i class="bi bi-journal-text"></i>
+              Publishing research on geospatial query understanding
+            </p>
+          </div>
+        </div>
+
+        <!-- 2. Data Engineering at Scale -->
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded h-100 bg-light">
+            <div class="d-flex align-items-center mb-3">
+              <div class="text-primary me-3" style="font-size: 2.5rem;">⚙️</div>
+              <h4 class="fw-bold mb-0">Data Engineering</h4>
+            </div>
+            <p class="mb-3">
+              <strong><span id="years-experience"></span> years as Data Engineer</strong><br>
+              Architecting distributed systems for real-time & batch processing
+            </p>
+            <ul class="mb-3 ps-3">
+              <li>Apache Kafka & Cassandra</li>
+              <li>AWS Cloud Architecture (Certified)</li>
+              <li>Streaming & Batch Pipelines</li>
+              <li>PostGIS & Spatial Databases</li>
+            </ul>
+            <p class="text-muted small mb-0">
+              <i class="bi bi-graph-up"></i>
+              Scalable solutions processing millions of events/day
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. Performance & Systems -->
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded h-100 bg-light">
+            <div class="d-flex align-items-center mb-3">
+              <div class="text-primary me-3" style="font-size: 2.5rem;">🚀</div>
+              <h4 class="fw-bold mb-0">Systems & Performance</h4>
+            </div>
+            <p class="mb-3">
+              <strong>Low-level optimization</strong><br>
+              High-performance computing and algorithm engineering
+            </p>
+            <ul class="mb-3 ps-3">
+              <li>C/C++ Performance Optimization</li>
+              <li>Parallel & Distributed Computing</li>
+              <li>Query Optimization (SQL/NoSQL)</li>
+              <li>Profiling & Benchmarking</li>
+            </ul>
+            <p class="text-muted small mb-0">
+              <i class="bi bi-speedometer2"></i>
+              40%+ performance improvements on critical paths
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Latest Posts Preview -->
+    {{ $blogPosts := where .Site.RegularPages "Section" "blog" }}
+    {{ if gt (len $blogPosts) 0 }}
+    <section class="latest-posts mb-5">
+      <h2 class="h3 fw-bold mb-4">Latest Posts</h2>
+      <div class="row g-4">
+        {{ range first 3 $blogPosts }}
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <a href="{{ .RelPermalink }}" class="text-decoration-none">
+                <h5 class="card-title text-dark">{{ .Title }}</h5>
+              </a>
+              <p class="text-muted small mb-2">
+                <i class="bi bi-calendar3"></i> {{ .Date.Format "Jan 02, 2006" }}
+              </p>
+              {{ with .Params.tags }}
+              <div class="mb-2">
+                {{ range first 3 . }}
+                <span class="badge bg-light text-dark me-1">{{ . }}</span>
+                {{ end }}
+              </div>
+              {{ end }}
+              {{ with .Summary }}
+              <p class="card-text text-muted small">{{ . | truncate 100 }}</p>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </section>
     {{ end }}
 
-    {{ .Content }}
+    <!-- Featured Projects -->
+    {{ $featuredProjects := where (where .Site.RegularPages "Section" "projects") ".Params.featured" true }}
+    {{ if gt (len $featuredProjects) 0 }}
+    <section class="featured-projects mb-5">
+      <h2 class="h3 fw-bold mb-4">Latest Projects</h2>
+      <div class="row g-4">
+        {{ range first 2 $featuredProjects }}
+        <div class="col-12 col-md-6">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <a href="{{ .RelPermalink }}" class="text-decoration-none">
+                <h5 class="card-title text-dark">{{ .Title }}</h5>
+              </a>
+              <p class="text-muted small mb-3">
+                <i class="bi bi-calendar3"></i> {{ .Date.Format "Jan 02, 2006" }}
+              </p>
+              {{ with .Params.tags }}
+              <div class="mb-3 d-flex flex-wrap gap-1">
+                {{ range . }}
+                <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">{{ . }}</span>
+                {{ end }}
+              </div>
+              {{ end }}
+              {{ with .Summary }}
+              <p class="card-text">{{ . }}</p>
+              {{ end }}
+              <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-primary mt-2">
+                Learn more <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </section>
+    {{ else }}
+      <!-- Fallback: se nenhum projeto tem featured=true, mostra os 2 mais recentes -->
+      {{ $allProjects := where .Site.RegularPages "Section" "projects" }}
+      {{ if gt (len $allProjects) 0 }}
+      <section class="featured-projects mb-5">
+        <h2 class="h3 fw-bold mb-4">Latest Projects</h2>
+        <div class="row g-4">
+          {{ range first 2 $allProjects }}
+          <div class="col-12 col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <a href="{{ .RelPermalink }}" class="text-decoration-none">
+                  <h5 class="card-title text-dark">{{ .Title }}</h5>
+                </a>
+                <p class="text-muted small mb-3">
+                  <i class="bi bi-calendar3"></i> {{ .Date.Format "Jan 02, 2006" }}
+                </p>
+                {{ with .Params.tags }}
+                <div class="mb-3 d-flex flex-wrap gap-1">
+                  {{ range . }}
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">{{ . }}</span>
+                  {{ end }}
+                </div>
+                {{ end }}
+                {{ with .Summary }}
+                <p class="card-text">{{ . }}</p>
+                {{ end }}
+                <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-primary mt-2">
+                  Learn more <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </section>
+      {{ end }}
+    {{ end }}
+
+    <!-- CTA Section -->
+  <section class="cta-section text-center py-5 px-4 bg-light rounded">
+    <h2 class="h4 fw-bold mb-3">Ready to Build Something Amazing?</h2>
+    <p class="lead mb-4" style="max-width: 42rem; margin: 0 auto;">
+      I'm exploring opportunities as <strong>Principal/Staff Engineer</strong> where
+      I can leverage my experience in distributed systems and AI to build
+      ML infrastructure at scale.
+    </p>
+    <p class="text-muted">
+      <i class="bi bi-arrow-up-left"></i> Find my contact links in the sidebar
+    </p>
+  </section>
+
   </article>
 {{ end }}

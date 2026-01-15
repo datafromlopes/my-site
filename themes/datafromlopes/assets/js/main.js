@@ -106,4 +106,9 @@
       closeCollapse();
     }, { passive: true });
   });
+
+  const startDate = new Date('2018-08-01');
+  const today = new Date();
+  const years = Math.floor((today - startDate) / (365.25 * 24 * 60 * 60 * 1000));
+  document.getElementById('years-experience').textContent = years;
 })();

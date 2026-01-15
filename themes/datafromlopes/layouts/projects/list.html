@@ -1,6 +1,15 @@
 {{ define "main" }}
-<article class="project-section py-3">
+<article class="project-section py-4">
 
+  <!-- Header da página -->
+  <div class="mb-5">
+    <h1 class="display-6 fw-bold mb-3">Projects</h1>
+    <p class="lead text-muted mb-1">
+      Exploring ML systems, distributed architectures, and performance optimization
+    </p>
+  </div>
+
+  <!-- Filtro de tags melhorado -->
   {{ $allTags := slice }}
   {{ range $k, $_ := .Site.Taxonomies.tags }}
     {{ $allTags = $allTags | append $k }}
@@ -8,55 +17,102 @@
   {{ $allTags = sort $allTags }}
 
   {{ if gt (len $allTags) 0 }}
-    <div id="tag-filter" class="mb-3 d-flex flex-wrap gap-2">
-      <button class="btn btn-sm btn-outline-secondary active" data-tag="__all">All</button>
-      {{ range $allTags }}
-        <button class="btn btn-sm btn-outline-secondary" data-tag="{{ . }}">{{ . }}</button>
-      {{ end }}
+    <div class="filter-section mb-4">
+      <div class="d-flex align-items-center mb-3">
+        <i class="bi bi-funnel text-primary me-2"></i>
+        <span class="fw-semibold">Filter by topic:</span>
+      </div>
+      <div id="tag-filter" class="tag-filter-grid">
+        <button class="tag-filter-btn active" data-tag="__all">
+          <i class="bi bi-grid-3x3-gap"></i> All Projects
+        </button>
+        {{ range $allTags }}
+          <button class="tag-filter-btn" data-tag="{{ . }}">{{ . }}</button>
+        {{ end }}
+      </div>
     </div>
   {{ end }}
 
+  <!-- Grid de projetos -->
   {{ $p := .Paginate (.Pages.ByDate.Reverse) }}
 
-  <div id="post-list" class="row g-3">
+  <div id="post-list" class="projects-grid">
     {{ if gt (len $p.Pages) 0 }}
       {{ range $p.Pages }}
-        <div class="col-12 col-md-6" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
-          <div class="card h-100 d-flex flex-column">
-            <div class="card-body d-flex flex-column">
-              <a class="text-decoration-none" href="{{ .RelPermalink }}">
-                <h5 class="card-title mb-1">{{ .Title }}</h5>
+        <article class="project-card" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
+
+          <!-- Conteúdo do card -->
+          <div class="project-card-body">
+
+            <!-- Título -->
+            <a href="{{ .RelPermalink }}" class="project-card-title">
+              <h3>{{ .Title }}</h3>
+            </a>
+
+            <!-- Meta info -->
+            <div class="project-card-meta">
+              <span class="meta-item">
+                <i class="bi bi-calendar3"></i>
+                <time datetime="{{ .Date.Format "2006-01-02" }}">
+                  {{ .Date.Format "Jan 2006" }}
+                </time>
+              </span>
+              {{ with .Params.github }}
+              <a href="{{ . }}" target="_blank" rel="noopener" class="meta-item meta-link" onclick="event.stopPropagation();">
+                <i class="bi bi-github"></i> Code
               </a>
-              <div class="text-muted small mb-2">
-                {{ .Date.Format "02 Jan 2006" }} - by
-                {{ with .Params.author }} <span>{{ . }}</span>{{ end }}.
-              </div>
-
-              {{ with .Params.tags }}
-                <div class="d-flex flex-wrap gap-1 mb-2">
-                  {{ range . }}<span class="badge text-bg-light">{{ . }}</span>{{ end }}
-                </div>
-              {{ end }}
-
-              {{ with .Summary }}
-                <p class="mb-0 flex-grow-1">{{ . }}</p>
               {{ end }}
             </div>
+
+            <!-- Descrição -->
+            {{ with .Summary }}
+            <p class="project-card-description">{{ . }}</p>
+            {{ end }}
+
+            <!-- Tags (principais) -->
+            {{ with .Params.tags }}
+            <div class="project-card-tags">
+              {{ range first 4 . }}
+              <span class="project-tag">{{ . }}</span>
+              {{ end }}
+              {{ if gt (len .) 4 }}
+              <span class="project-tag project-tag-more">+{{ sub (len .) 4 }}</span>
+              {{ end }}
+            </div>
+            {{ end }}
+
+            <!-- Link para ver mais -->
+            <a href="{{ .RelPermalink }}" class="project-card-link">
+              View project <i class="bi bi-arrow-right"></i>
+            </a>
+
           </div>
-        </div>
+        </article>
       {{ end }}
     {{ else }}
       <div class="col-12">
-        <p class="text-muted">No projects found.</p>
+        <div class="alert alert-light text-center py-5">
+          <i class="bi bi-inbox display-4 text-muted d-block mb-3"></i>
+          <p class="lead text-muted mb-0">No projects found.</p>
+        </div>
       </div>
     {{ end }}
   </div>
-  {{ if gt $p.TotalPages 1 }}
-    <nav class="mt-4 d-flex justify-content-center" aria-label="Paginação do blog">
-      <ul class="pagination pagination-sm flex-nowrap">
 
+  <!-- Paginação -->
+  {{ if gt $p.TotalPages 1 }}
+    <nav class="mt-5 d-flex justify-content-center" aria-label="Paginação de projetos">
+      <ul class="pagination">
         {{ with $p.Prev }}
-          <li class="page-item"><a class="page-link" href="{{ .URL }}" aria-label="Anterior">&laquo;</a></li>
+          <li class="page-item">
+            <a class="page-link" href="{{ .URL }}" aria-label="Anterior">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+        {{ else }}
+          <li class="page-item disabled">
+            <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+          </li>
         {{ end }}
 
         {{ $current := $p.PageNumber }}
@@ -77,11 +133,19 @@
         {{ end }}
 
         {{ with $p.Next }}
-          <li class="page-item"><a class="page-link" href="{{ .URL }}" aria-label="Próxima">&raquo;</a></li>
+          <li class="page-item">
+            <a class="page-link" href="{{ .URL }}" aria-label="Próxima">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+        {{ else }}
+          <li class="page-item disabled">
+            <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+          </li>
         {{ end }}
-
       </ul>
     </nav>
   {{ end }}
+
 </article>
 {{ end }}

@@ -62,13 +62,13 @@
   
   
   
-    <link rel="stylesheet" href="/css/main.min.5750007d225ec4e26211eff29489e5b4aeb32347fb648988120002ff9ffeb776.css" integrity="sha256-V1AAfSJexOJiEe/ylInltK6zI0f7ZImIEgAC/5/&#43;t3Y=">
+    <link rel="stylesheet" href="/css/main.min.b5c83260b3422965f84b1e8ff28aefdaf42d251609b47cb6fe6b4da31640b281.css" integrity="sha256-tcgyYLNCKWX4Sx6P8orv2vQtJRYJtHy2/mtNoxZAsoE=">
   
 
   
   
   
-    <script src="/js/main.d6e57500e420518d7c744f1b2660746fdfb2637f919faa66afd7944600d792f2.js" integrity="sha256-1uV1AOQgUY18dE8bJmB0b9&#43;yY3&#43;Rn6pmr9eURgDXkvI=" defer></script>
+    <script src="/js/main.47ca69a9c02d80b65b018598a67117e1f34963cf9d036cdb62a91f2c120b150b.js" integrity="sha256-R8ppqcAtgLZbAYWYpnEX4fNJY8&#43;dA2zbYqkfLBILFQs=" defer></script>
   
 
   <script src="https://kit.fontawesome.com/e3c6a2b28e.js" crossorigin="anonymous"></script>
@@ -80,22 +80,24 @@
 </head>
 <body class="type-page is-home">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+
   
-  <a class="text-center w-100 d-block" href="/">
+  <a class="text-center w-100 d-block text-decoration-none" href="/">
     
     <img class="img-fluid img-profile rounded-circle mb-2"
          src="/profile.jpeg" alt="Foto de perfil" />
+
+    <div class="div-name">Diego Lopes</div>
+    <div class="div-tagline">Data Engineer &amp; Researcher</div>
+    <div class="d-flex justify-content-center align-items-center div-location mt-1">
+      <i class="fa-solid fa-location-dot me-1"></i>
+      <span class="small">São Paulo, Brazil</span>
+    </div>
   </a>
 
-  <div class="div-name">Diego Lopes</div>
-  <div class="div-tagline">Data Engineer &amp; Researcher</div>
+  <div class="custom-line mt-2"></div>
 
-  <div class="d-flex justify-content-center div-location">
-    <i class="d-flex justify-content-center fa-solid fa-location-dot"></i>São Paulo, Brazil
-  </div>
-
-  <div class="custom-line"></div>
-
+  
   <button class="navbar-toggler" type="button"
           data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
           aria-controls="navbarResponsive" aria-expanded="false" aria-label="Alternar navegação">
@@ -104,8 +106,8 @@
 
   
   <div class="collapse navbar-collapse" id="navbarResponsive">
-    <div class="custom-line-bottom" role="presentation"></div>
 
+    
     <ul class="navbar-nav">
       
         
@@ -134,44 +136,65 @@
       
     </ul>
 
-    
-    <section class="contact-section" aria-labelledby="contact-title">
-      <h3 id="contact-title" class="ac-title">Contact</h3>
+    <div class="custom-line-bottom"></div>
 
-      <div class="contact-icons" role="group" aria-label="Redes e e-mail">
+    
+    <section class="contact-section-compact" aria-label="Links de contato">
+
+      
+      <div class="social-icons-grid">
         
-          <a href="https://www.linkedin.com/in/datafromlopes" target="_blank" class="icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/datafromlopes" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
         
         
-          <a href="https://github.com/datafromlopes" target="_blank" class="icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/datafromlopes" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
         
         
-          <a href="https://x.com/datafromlopes" target="_blank" class="icon" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://x.com/datafromlopes" target="_blank" rel="noopener" class="social-icon" aria-label="X (Twitter)" title="X">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
         
         
-          <a href="mailto:diego.lopes@datafromlopes.com" class="icon" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="mailto:diego.lopes@datafromlopes.com" class="social-icon" aria-label="Email" title="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
         
       </div>
 
-      <div class="contact-links">
-        
-        
-          <a href="http://lattes.cnpq.br/4604428550643092" target="_blank" class="ac-link" aria-label="Currículo Lattes">
-            <img src="/icone-lattes.png" alt="Lattes" class="ac-lattes-logo" width="18" height="18" loading="lazy" decoding="async" />
+      
+      <details class="academic-links-toggle mt-2">
+        <summary class="text-center small text-muted cursor-pointer">
+          <i class="fa-solid fa-graduation-cap me-1"></i> Academic Profiles
+        </summary>
+        <div class="academic-links mt-2">
+          
+          <a href="https://orcid.org/0000-0002-5130-3728" target="_blank" rel="noopener" class="academic-link" title="ORCID">
+            <i class="fa-brands fa-orcid"></i> <span>ORCID</span>
+          </a>
+          
+          
+          <a href="http://lattes.cnpq.br/4604428550643092" target="_blank" rel="noopener" class="academic-link" title="Lattes">
+            <svg class="lattes-icon" viewBox="0 0 64 64" aria-hidden="true">
+              <defs><linearGradient id="lat-g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0056a6"/><stop offset="1" stop-color="#2aa2ff"/></linearGradient></defs>
+              <circle cx="32" cy="32" r="30" fill="url(#lat-g)"/>
+              <path d="M32 14c8.3 0 15 6.7 15 15s-6.7 15-15 15S17 37.3 17 29c0-2.7.7-5.3 2-7.6l5.2 3.1A10.8 10.8 0 0 0 21.8 29c0 5.6 4.6 10.2 10.2 10.2S42.2 34.6 42.2 29 37.6 18.8 32 18.8c-1.7 0-3.3.4-4.7 1.1L24 15.4A18.2 18.2 0 0 1 32 14z" fill="#fff" opacity=".95"/>
+            </svg>
             <span>Lattes</span>
           </a>
-        
-        
-          <a href="https://orcid.org/0000-0002-5130-3728" target="_blank" class="ac-link" aria-label="ORCID">
-            <i class="fa-brands fa-orcid ac-orcid-icon" aria-hidden="true"></i><span>Orcid</span>
+          
+          
+          <a href="mailto:diego.oliveiralopes@ime.usp.br" class="academic-link" title="Email acadêmico">
+            <i class="fa-solid fa-envelope"></i> <span>@ime.usp.br</span>
           </a>
-        
-        
-          <a href="mailto:diego.oliveiralopes@ime.usp.br" class="ac-link" aria-label="Email acadêmico">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i><span>@ime.usp.br</span>
-          </a>
-        
-      </div>
+          
+        </div>
+      </details>
+
     </section>
   </div>
 </nav>
@@ -180,30 +203,238 @@
     
   <article class="about-section">
     
+    <section class="hero-section">
+      <h1 class="display-6 fw-bold">Hi there 👋</h1>
+      <p class="lead mb-4" style="max-width: 60rem;">
+        I'm a <strong>Senior Data Engineer at Pulsus</strong> with <span id="years-experience"></span> years
+        architecting distributed systems, and an <strong>MSc candidate at USP</strong>
+        researching how Large Language Models can understand geospatial queries.
+        <strong>AWS Certified</strong> and passionate about bridging AI research
+        with production-grade systems.
+      </p>
+    </section>
 
-    <h2 id="hi-there-">Hi there 👋</h2>
-<p>I am a <strong>Senior Data Engineer</strong> and MSc candidate in Computer Science at USP, specializing in Generative AI and
-Natural Language Processing (NLP), with a research focus on enhancing text-to-SQL capabilities for geospatial data.
-Over the past six years, I have designed and implemented scalable solutions for both batch and real-time
-data processing, with expertise spanning distributed systems, cloud platforms, and modern data architectures.</p>
-<p>My background in data engineering directly complements my research in AI, enabling me to leverage advanced
-data processing, cleaning, and integration pipelines to build more reliable, efficient, and production-ready
-machine learning models. Passionate about bridging cutting-edge AI research with real-world applications,
-I focus on scalable, intelligent systems that deliver measurable impact.</p>
-<hr>
-<h5 id="interests">Interests</h5>
-<ul>
-<li>Artificial Intelligence</li>
-<li>Data Engineering</li>
-<li>Computational Linguistics</li>
-<li>SQL &amp; NoSQL Databases</li>
-<li>Natural Language Processing (NLP)</li>
-<li>Parallel and Distributed Computing</li>
-</ul>
-<hr>
-<p>🤝 I am looking to collaborate on Computational Linguistics, NLP, LLMs, Neural Networks,
-and Data Engineering projects of scalable data platforms &amp; intelligent systems.
-Feel free to reach out to me.</p>
+     
+    <section class="technical-focus mb-5">
+      <h2 class="h3 fw-bold mb-4">Core Expertise</h2>
+      <div class="row g-4">
+
+        
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded h-100 bg-light">
+            <div class="d-flex align-items-center mb-3">
+              <div class="text-primary me-3" style="font-size: 2.5rem;">🧠</div>
+              <h4 class="fw-bold mb-0">AI Research</h4>
+            </div>
+            <p class="mb-3">
+              <strong>MSc Computer Science @ USP</strong><br>
+              Researching text-to-SQL for geospatial data using fine-tuned LLMs
+            </p>
+            <ul class="mb-3 ps-3">
+              <li>Large Language Models (LLaMA, GPT)</li>
+              <li>Computational Linguistics</li>
+              <li>Neural Network Architectures</li>
+              <li>NLP Pipeline Development</li>
+            </ul>
+            <p class="text-muted small mb-0">
+              <i class="bi bi-journal-text"></i>
+              Publishing research on geospatial query understanding
+            </p>
+          </div>
+        </div>
+
+        
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded h-100 bg-light">
+            <div class="d-flex align-items-center mb-3">
+              <div class="text-primary me-3" style="font-size: 2.5rem;">⚙️</div>
+              <h4 class="fw-bold mb-0">Data Engineering</h4>
+            </div>
+            <p class="mb-3">
+              <strong><span id="years-experience"></span> years as Data Engineer</strong><br>
+              Architecting distributed systems for real-time & batch processing
+            </p>
+            <ul class="mb-3 ps-3">
+              <li>Apache Kafka & Cassandra</li>
+              <li>AWS Cloud Architecture (Certified)</li>
+              <li>Streaming & Batch Pipelines</li>
+              <li>PostGIS & Spatial Databases</li>
+            </ul>
+            <p class="text-muted small mb-0">
+              <i class="bi bi-graph-up"></i>
+              Scalable solutions processing millions of events/day
+            </p>
+          </div>
+        </div>
+
+        
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded h-100 bg-light">
+            <div class="d-flex align-items-center mb-3">
+              <div class="text-primary me-3" style="font-size: 2.5rem;">🚀</div>
+              <h4 class="fw-bold mb-0">Systems & Performance</h4>
+            </div>
+            <p class="mb-3">
+              <strong>Low-level optimization</strong><br>
+              High-performance computing and algorithm engineering
+            </p>
+            <ul class="mb-3 ps-3">
+              <li>C/C++ Performance Optimization</li>
+              <li>Parallel & Distributed Computing</li>
+              <li>Query Optimization (SQL/NoSQL)</li>
+              <li>Profiling & Benchmarking</li>
+            </ul>
+            <p class="text-muted small mb-0">
+              <i class="bi bi-speedometer2"></i>
+              40%+ performance improvements on critical paths
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    
+    
+    
+    <section class="latest-posts mb-5">
+      <h2 class="h3 fw-bold mb-4">Latest Posts</h2>
+      <div class="row g-4">
+        
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <a href="/blog/tf-idf/" class="text-decoration-none">
+                <h5 class="card-title text-dark">TF-IDF - An approach to determine the relevance of word in a corpus.</h5>
+              </a>
+              <p class="text-muted small mb-2">
+                <i class="bi bi-calendar3"></i> Oct 04, 2025
+              </p>
+              
+              <div class="mb-2">
+                
+                <span class="badge bg-light text-dark me-1">Statistics</span>
+                
+                <span class="badge bg-light text-dark me-1">Computational Linguistics</span>
+                
+                <span class="badge bg-light text-dark me-1">NLP</span>
+                
+              </div>
+              
+              
+              <p class="card-text text-muted small">teste</p>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+
+    
+    
+    
+      
+      
+      
+      <section class="featured-projects mb-5">
+        <h2 class="h3 fw-bold mb-4">Latest Projects</h2>
+        <div class="row g-4">
+          
+          <div class="col-12 col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <a href="/projects/matrix_multiply_optimizer/" class="text-decoration-none">
+                  <h5 class="card-title text-dark">Matrix Multiplication Optimization in C</h5>
+                </a>
+                <p class="text-muted small mb-3">
+                  <i class="bi bi-calendar3"></i> Nov 20, 2024
+                </p>
+                
+                <div class="mb-3 d-flex flex-wrap gap-1">
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">Algorithms</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">Computer Architecture</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">High-Performance Computing</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">Optimization</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">Parallel Computing</span>
+                  
+                </div>
+                
+                
+                <p class="card-text">This project provides optimized implementations of matrix multiplication algorithms in C.</p>
+                
+                <a href="/projects/matrix_multiply_optimizer/" class="btn btn-sm btn-outline-primary mt-2">
+                  Learn more <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-12 col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <a href="/projects/geo-nlq-to-sql/" class="text-decoration-none">
+                  <h5 class="card-title text-dark">Automated Translation of Natural Language Geospatial Queries into SQL</h5>
+                </a>
+                <p class="text-muted small mb-3">
+                  <i class="bi bi-calendar3"></i> Jul 31, 2023
+                </p>
+                
+                <div class="mb-3 d-flex flex-wrap gap-1">
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">SQL</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">Relational Databases</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">Geospatial Data</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">AI</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">NLP</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">LLM</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">Neural Networks</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">Fine-Tuning</span>
+                  
+                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">Text-to-SQL</span>
+                  
+                </div>
+                
+                
+                <p class="card-text">This project develops a fine-tuned LLM to translate natural language queries into geospatial SQL, addressing current text-to-SQL limitations.</p>
+                
+                <a href="/projects/geo-nlq-to-sql/" class="btn btn-sm btn-outline-primary mt-2">
+                  Learn more <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+    
+
+    
+  <section class="cta-section text-center py-5 px-4 bg-light rounded">
+    <h2 class="h4 fw-bold mb-3">Ready to Build Something Amazing?</h2>
+    <p class="lead mb-4" style="max-width: 42rem; margin: 0 auto;">
+      I'm exploring opportunities as <strong>Principal/Staff Engineer</strong> where
+      I can leverage my experience in distributed systems and AI to build
+      ML infrastructure at scale.
+    </p>
+    <p class="text-muted">
+      <i class="bi bi-arrow-up-left"></i> Find my contact links in the sidebar
+    </p>
+  </section>
 
   </article>
 

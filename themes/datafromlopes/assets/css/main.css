@@ -3,7 +3,7 @@
    ========================================= */
 :root {
   --font-base: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  --sidebar-width: 20rem;
+  --sidebar-width: 18rem;
 
   --bg: #f8fafc;
   --surface: #ffffff;
@@ -83,25 +83,41 @@ body {
 .img-profile {
   border: 0.25rem solid var(--surface);
   box-shadow: var(--shadow-1);
-  max-width: 10rem;
-  max-height: 10rem;
+  max-width: 7rem;
+  max-height: 7rem;
   margin-top: 10px;
   border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.img-profile:hover {
+  transform: scale(1.05);
 }
 
 .div-name {
   font-weight: 800;
-  font-size: 25px;
+  font-size: 22px;
+  margin-top: 8px;
+  line-height: 1.2;
+  color: var(--text);
 }
 
 .div-tagline {
-  font-size: 18px;
-  margin-bottom: 15px;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.div-location {
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .div-location i {
   color: #FF113C;
-  margin-top: 3px;
+  font-size: 12px;
+  margin-top: 0;
 }
 
 .custom-line,
@@ -124,8 +140,8 @@ body {
   border: 1px solid #e6e8ee;
   border-radius: 999px;
   display: block;
-  padding: 0.55rem 0.9rem;
-  margin: 0.25rem 0.6rem;
+  padding: 0.45rem 0.85rem;
+  margin: 0.2rem 0.6rem;
   color: var(--text);
   font-weight: 800;
   letter-spacing: 0.02em;
@@ -134,6 +150,7 @@ body {
   user-select: none;
   box-shadow: var(--shadow-inset);
   transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  font-size: 0.95rem;
 }
 
 #sideNav .navbar-nav .nav-link::before {
@@ -175,87 +192,103 @@ body {
 }
 
 /* =========================================
-   CONTATO
+   CONTATO - VERSÃO COMPACTA
    ========================================= */
-.contact-section {
+.contact-section-compact {
   width: 100%;
-  padding: 0.25rem 0.75rem 0.9rem;
+  padding: 0.75rem 0.75rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  font-family: var(--font-base);
 }
 
-.ac-title {
-  font-weight: 800;
-  font-size: 1rem;
-  margin: 6px 0;
-  color: var(--muted);
+/* Grid de ícones sociais (2x2) */
+.social-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 180px;
 }
 
-.contact-icons {
-  display: flex;
+.social-icon {
+  aspect-ratio: 1;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  margin: 0.35rem 0;
-}
-
-.contact-icons .icon {
   font-size: 1.25rem;
-  width: 2.25rem;
-  height: 2.25rem;
-  display: inline-grid;
-  place-items: center;
   border-radius: 10px;
   color: var(--text);
   text-decoration: none;
   box-shadow: var(--shadow-inset);
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.06s ease;
+  transition: all 0.15s ease;
+  background: transparent;
 }
 
-.contact-icons .icon:hover {
+.social-icon:hover {
   background: var(--accent-06);
   color: var(--accent-700);
+  transform: translateY(-2px);
 }
 
-.contact-links {
-  display: inline-flex;
-  gap: 0.6rem 0.75rem;
-  flex-wrap: wrap;
-  justify-content: center;
+/* Links acadêmicos colapsáveis */
+.academic-links-toggle {
+  width: 100%;
+  max-width: 240px;
 }
 
-.ac-link {
-  display: inline-flex;
+.academic-links-toggle summary {
+  cursor: pointer;
+  user-select: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+  list-style: none;
+}
+
+.academic-links-toggle summary::-webkit-details-marker {
+  display: none;
+}
+
+.academic-links-toggle summary:hover {
+  background: var(--accent-06);
+}
+
+.academic-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.academic-link {
+  display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
   color: var(--text);
   text-decoration: none;
-  font-size: 0.95rem;
-  padding: 0.32rem 0.6rem;
-  border-radius: 0.6rem;
+  font-size: 0.875rem;
   box-shadow: var(--shadow-inset);
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: all 0.15s ease;
 }
 
-.ac-link:hover {
+.academic-link:hover {
   background: var(--accent-06);
   color: var(--accent-700);
 }
 
-.ac-lattes-svg {
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  vertical-align: middle;
-  border-radius: 3px;
+.academic-link i,
+.academic-link svg {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
-.ac-orcid-icon {
-  font-size: 18px;
-  line-height: 1;
+.lattes-icon {
+  border-radius: 3px;
 }
 
 /* =========================================
@@ -309,7 +342,104 @@ body {
 }
 
 /* =========================================
-   MOBILE (<= 992px) — Collapse padrão
+   HOMEPAGE ENHANCEMENTS
+   ========================================= */
+
+.hero-section {
+  padding: 2rem 0;
+}
+
+.hero-section .lead {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.hero-section .btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+}
+
+.latest-posts .card,
+.featured-projects .card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.latest-posts .card:hover,
+.featured-projects .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.technical-focus .border {
+  border-color: var(--line) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.technical-focus .bg-light {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+  transition: all 0.3s ease;
+}
+
+.technical-focus .bg-light:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-color: var(--accent) !important;
+}
+
+.cta-section {
+  background: linear-gradient(135deg, var(--accent-06) 0%, var(--accent-12) 100%) !important;
+  border: 1px solid var(--line);
+}
+
+.about-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-section section {
+  scroll-margin-top: 2rem;
+}
+
+/* Animações sutis */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.latest-posts .card,
+.featured-projects .card,
+.technical-focus > div > div {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.latest-posts .card:nth-child(2) { animation-delay: 0.1s; }
+.latest-posts .card:nth-child(3) { animation-delay: 0.2s; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section .lead {
+    font-size: 1rem;
+  }
+
+  .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* =========================================
+   MOBILE (<= 992px) – Collapse padrão
    ========================================= */
 @media (max-width: 992px) {
   #sideNav {
@@ -330,7 +460,6 @@ body {
     background-color: var(--accent);
   }
 
-  /* Sem overlay tela cheia; deixa o comportamento padrão do Bootstrap */
   #sideNav .navbar-collapse {
     width: 100%;
     max-height: calc(100vh - 140px);
@@ -347,7 +476,7 @@ body {
   }
 
   #content {
-    margin-top: 22rem;
+    margin-top: 16rem;
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -363,6 +492,11 @@ body {
     display: block;
     margin: 0 auto;
     width: 100%;
+  }
+
+  .social-icons-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 100%;
   }
 }
 
@@ -383,7 +517,6 @@ body {
     height: 100vh;
   }
 
-  /* >>> MOVEU PRA CÁ: só no desktop o collapse vira "layout" fixo */
   #sideNav .navbar-collapse {
     display: flex !important;
     flex-direction: column !important;
@@ -418,7 +551,7 @@ body {
   order: 2;
 }
 
-#navbarResponsive .contact-section {
+#navbarResponsive .contact-section-compact {
   order: 3;
 }
 
@@ -432,13 +565,13 @@ body {
   * {
     transition: none !important;
     scroll-behavior: auto !important;
+    animation: none !important;
   }
 }
 
 /* =========================================
    BLOQUEIO DE CLIQUE NO COLAPSO (APENAS MOBILE)
    ========================================= */
-/* (ANTES estava global; agora limitado ao mobile para não quebrar o desktop) */
 @media (max-width: 991.98px) {
   #navbarResponsive.collapse:not(.show),
   #navbarResponsive.collapsing {
@@ -453,5 +586,313 @@ body {
 @media (min-width: 992px) {
   #navbarResponsive {
     pointer-events: auto;
+  }
+}
+
+/* =========================================
+   PROJECTS PAGE - DESIGN MELHORADO
+   ========================================= */
+
+/* Header da página */
+.project-section > .mb-5 {
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 1.5rem;
+}
+
+/* =========================================
+   FILTRO DE TAGS
+   ========================================= */
+.filter-section {
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+}
+
+.tag-filter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-filter-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tag-filter-btn:hover {
+  background: var(--accent-06);
+  border-color: var(--accent);
+  color: var(--accent-700);
+  transform: translateY(-1px);
+}
+
+.tag-filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--accent-20);
+}
+
+.tag-filter-btn i {
+  font-size: 1rem;
+}
+
+/* =========================================
+   GRID DE PROJETOS
+   ========================================= */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   CARDS DE PROJETO
+   ========================================= */
+.project-card {
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagem do projeto */
+.project-card-image {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+}
+
+/* Overlay no hover */
+.project-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(42, 103, 163, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-card-overlay {
+  opacity: 1;
+}
+
+.project-card-overlay i {
+  font-size: 3rem;
+  color: white;
+}
+
+/* Placeholder quando não tem imagem */
+.project-card-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-06) 0%, var(--accent-12) 100%);
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  color: var(--accent);
+  opacity: 0.3;
+}
+
+/* Corpo do card */
+.project-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Título */
+.project-card-title {
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.project-card-title h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.project-card:hover .project-card-title h3 {
+  color: var(--accent);
+}
+
+/* Meta informações */
+.project-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.meta-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.meta-link:hover {
+  color: var(--accent-700);
+  text-decoration: underline;
+}
+
+/* Descrição */
+.project-card-description {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+/* Tags do projeto */
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.project-tag {
+  padding: 0.25rem 0.65rem;
+  background: var(--accent-06);
+  color: var(--accent-700);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.project-tag-more {
+  background: var(--line);
+  color: var(--muted);
+}
+
+/* Link "View project" */
+.project-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: gap 0.2s ease;
+  margin-top: auto;
+}
+
+.project-card-link:hover {
+  gap: 0.75rem;
+  color: var(--accent-700);
+}
+
+.project-card-link i {
+  transition: transform 0.2s ease;
+}
+
+.project-card-link:hover i {
+  transform: translateX(4px);
+}
+
+/* =========================================
+   PAGINAÇÃO
+   ========================================= */
+.pagination {
+  gap: 0.5rem;
+}
+
+.pagination .page-link {
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.pagination .page-link:hover {
+  background: var(--accent-06);
+  border-color: var(--accent);
+  color: var(--accent-700);
+}
+
+.pagination .page-item.active .page-link {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  font-weight: 600;
+}
+
+.pagination .page-item.disabled .page-link {
+  background: var(--bg);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+/* =========================================
+   DARK MODE ADJUSTMENTS
+   ========================================= */
+@media (prefers-color-scheme: dark) {
+  .project-card-placeholder {
+    background: linear-gradient(135deg, var(--accent-12) 0%, var(--accent-20) 100%);
+  }
+
+  .placeholder-icon {
+    color: var(--accent);
+    opacity: 0.4;
   }
 }
