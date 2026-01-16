@@ -15,33 +15,5 @@
       <guid>http://localhost:1313/projects/matrix_multiply_optimizer/</guid>
       <description>This project provides optimized implementations of matrix multiplication algorithms in C.</description>
     </item>
-    <item>
-      <title>Matrix Multiplication Optimization in C</title>
-      <link>http://localhost:1313/projects/teste/</link>
-      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/teste/</guid>
-      <description>This project provides optimized implementations of matrix multiplication algorithms in C.</description>
-    </item>
-    <item>
-      <title>Matrix Multiplication Optimization in C</title>
-      <link>http://localhost:1313/projects/teste2/</link>
-      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/teste2/</guid>
-      <description>This project provides optimized implementations of matrix multiplication algorithms in C.</description>
-    </item>
-    <item>
-      <title>Matrix Multiplication Optimization in C</title>
-      <link>http://localhost:1313/projects/teste3/</link>
-      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/teste3/</guid>
-      <description>This project provides optimized implementations of matrix multiplication algorithms in C.</description>
-    </item>
-    <item>
-      <title>Matrix Multiplication Optimization in C</title>
-      <link>http://localhost:1313/projects/teste4/</link>
-      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/teste4/</guid>
-      <description>This project provides optimized implementations of matrix multiplication algorithms in C.</description>
-    </item>
   </channel>
 </rss>
