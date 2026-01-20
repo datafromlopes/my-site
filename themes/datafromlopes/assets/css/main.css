@@ -125,7 +125,7 @@ body {
   width: 80%;
   height: 1px;
   background-color: var(--line);
-  margin: 10px auto;
+  margin: 0.5rem auto;
 }
 
 /* =========================================
@@ -133,6 +133,7 @@ body {
    ========================================= */
 #sideNav .navbar-nav {
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #sideNav .navbar-nav .nav-item .nav-link {
@@ -192,103 +193,195 @@ body {
 }
 
 /* =========================================
-   CONTATO - VERSÃO COMPACTA
+   CONTATO - DESIGN REDESENHADO
    ========================================= */
-.contact-section-compact {
+.contact-section-redesign {
   width: 100%;
-  padding: 0.75rem 0.75rem 1rem;
+  padding: 0.75rem;
+  padding-top: 1.25rem;
   display: flex;
   flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Cards de contato */
+.contact-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.75rem;
+  box-shadow: var(--shadow-inset);
+  transition: all 0.2s ease;
+}
+
+.contact-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-06);
+}
+
+/* Título do card */
+.contact-card-title {
+  display: flex;
   align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin: 0 0 0.6rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--line);
 }
 
-/* Grid de ícones sociais (2x2) */
-.social-icons-grid {
+.contact-card-title i {
+  font-size: 0.8rem;
+}
+
+/* =========================================
+   ÍCONES SOCIAIS MODERNOS (Grid 2x2)
+   ========================================= */
+.social-icons-modern {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  width: 100%;
-  max-width: 180px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
 }
 
-.social-icon {
+.social-icon-modern {
   aspect-ratio: 1;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
-  border-radius: 10px;
-  color: var(--text);
+  font-size: 1.1rem;
+  border-radius: 8px;
   text-decoration: none;
-  box-shadow: var(--shadow-inset);
-  transition: all 0.15s ease;
-  background: transparent;
+  transition: all 0.2s ease;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+  min-height: 45px;
+  max-height: 45px;
 }
 
-.social-icon:hover {
+.social-icon-modern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--accent-06);
-  color: var(--accent-700);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.social-icon-modern i {
+  position: relative;
+  z-index: 1;
+  transition: all 0.2s ease;
+}
+
+.social-icon-modern:hover::before {
+  opacity: 1;
+}
+
+.social-icon-modern:hover {
+  border-color: var(--accent);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-12);
 }
 
-/* Links acadêmicos colapsáveis */
-.academic-links-toggle {
-  width: 100%;
-  max-width: 240px;
+/* Cores específicas para cada rede */
+.social-icon-modern.linkedin i {
+  color: #0A66C2;
 }
 
-.academic-links-toggle summary {
-  cursor: pointer;
-  user-select: none;
-  padding: 0.4rem 0.6rem;
-  border-radius: 6px;
-  transition: background 0.15s ease;
-  list-style: none;
+.social-icon-modern.github i {
+  color: var(--text);
 }
 
-.academic-links-toggle summary::-webkit-details-marker {
-  display: none;
+.social-icon-modern.bluesky i {
+  color: #1285FE;
 }
 
-.academic-links-toggle summary:hover {
-  background: var(--accent-06);
+.social-icon-modern.email i {
+  color: #EA4335;
 }
 
-.academic-links {
+.social-icon-modern:hover i {
+  transform: scale(1.1);
+}
+
+/* =========================================
+   LINKS ACADÊMICOS MODERNOS
+   ========================================= */
+.academic-links-modern {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  margin-top: 0.5rem;
 }
 
-.academic-link {
+.academic-link-modern {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0.6rem;
+  padding: 0.45rem 0.6rem;
   border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
   color: var(--text);
   text-decoration: none;
-  font-size: 0.875rem;
-  box-shadow: var(--shadow-inset);
-  transition: all 0.15s ease;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.academic-link:hover {
+.academic-link-modern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--accent-06);
-  color: var(--accent-700);
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-.academic-link i,
-.academic-link svg {
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
+.academic-link-modern:hover::before {
+  opacity: 1;
+}
+
+.academic-link-modern:hover {
+  border-color: var(--accent);
+  color: var(--accent-700);
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px var(--accent-12);
+}
+
+.academic-link-modern i,
+.academic-link-modern svg {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.academic-link-modern span {
+  position: relative;
+  z-index: 1;
 }
 
 .lattes-icon {
-  border-radius: 3px;
+  border-radius: 4px;
+}
+
+/* Cores específicas */
+.academic-link-modern i.fa-orcid {
+  color: #A6CE39;
+}
+
+.academic-link-modern i.fa-graduation-cap {
+  color: var(--accent);
 }
 
 /* =========================================
@@ -530,7 +623,7 @@ body {
   #sideNav .navbar-collapse .navbar-nav {
     flex-direction: column;
     width: 100%;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
   }
 
   #content {
@@ -551,7 +644,7 @@ body {
   order: 2;
 }
 
-#navbarResponsive .contact-section-compact {
+#navbarResponsive .contact-section-redesign {
   order: 3;
 }
 
@@ -894,5 +987,193 @@ body {
   .placeholder-icon {
     color: var(--accent);
     opacity: 0.4;
+  }
+}
+
+/* =========================================
+   BLOG PAGE - DESIGN MODERNO
+   ========================================= */
+
+/* Header da página */
+.blog-section > .mb-5 {
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 1.5rem;
+}
+
+/* =========================================
+   GRID DE BLOG POSTS
+   ========================================= */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   CARDS DE BLOG POST
+   ========================================= */
+.blog-card {
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagem do post */
+.blog-card-image {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  display: block;
+  background: var(--surface);
+}
+
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover .blog-card-image img {
+  transform: scale(1.08);
+}
+
+/* Overlay sutil no hover */
+.blog-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.blog-card:hover .blog-card-overlay {
+  opacity: 1;
+}
+
+/* Placeholder quando não tem imagem */
+.blog-card-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-06) 0%, var(--accent-12) 100%);
+}
+
+.placeholder-content {
+  font-size: 5rem;
+  color: var(--accent);
+  opacity: 0.2;
+}
+
+/* Corpo do card */
+.blog-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Tags no topo */
+.blog-card-tags-top {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-tag-inline {
+  padding: 0.25rem 0.75rem;
+  background: var(--accent-06);
+  color: var(--accent-700);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Título */
+.blog-card-title {
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.blog-card-title h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.blog-card:hover .blog-card-title h3 {
+  color: var(--accent);
+}
+
+/* Descrição */
+.blog-card-description {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+/* Meta informações */
+.blog-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.meta-item i {
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   FILTROS (reutiliza do projects)
+   ========================================= */
+/* Já está definido no CSS dos projects */
+
+/* =========================================
+   DARK MODE ADJUSTMENTS
+   ========================================= */
+@media (prefers-color-scheme: dark) {
+  .blog-card-placeholder {
+    background: linear-gradient(135deg, var(--accent-12) 0%, var(--accent-20) 100%);
   }
 }

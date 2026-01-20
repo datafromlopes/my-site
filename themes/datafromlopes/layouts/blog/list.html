@@ -1,6 +1,15 @@
 {{ define "main" }}
-<article class="blog-section py-3">
+<article class="blog-section py-4">
 
+  <!-- Header da página -->
+  <div class="mb-5">
+    <h1 class="display-6 fw-bold mb-3">Blog</h1>
+    <p class="lead text-muted mb-1">
+      Insights on ML systems, data engineering, and software architecture
+    </p>
+  </div>
+
+  <!-- Filtro de tags -->
   {{ $allTags := slice }}
   {{ range $k, $_ := .Site.Taxonomies.tags }}
     {{ $allTags = $allTags | append $k }}
@@ -8,80 +17,120 @@
   {{ $allTags = sort $allTags }}
 
   {{ if gt (len $allTags) 0 }}
-    <div id="tag-filter" class="mb-3 d-flex flex-wrap gap-2">
-      <button class="btn btn-sm btn-outline-secondary active" data-tag="__all">All</button>
-      {{ range $allTags }}
-        <button class="btn btn-sm btn-outline-secondary" data-tag="{{ . }}">{{ . }}</button>
-      {{ end }}
+    <div class="filter-section mb-4">
+      <div class="d-flex align-items-center mb-3">
+        <i class="bi bi-funnel text-primary me-2"></i>
+        <span class="fw-semibold">Filter by topic:</span>
+      </div>
+      <div id="tag-filter" class="tag-filter-grid">
+        <button class="tag-filter-btn active" data-tag="__all">
+          <i class="bi bi-grid-3x3-gap"></i> All Posts
+        </button>
+        {{ range $allTags }}
+          <button class="tag-filter-btn" data-tag="{{ . }}">{{ . }}</button>
+        {{ end }}
+      </div>
     </div>
   {{ end }}
 
-  {{ $p := .Paginate (.Pages.ByDate.Reverse) }}
+  <!-- Contador de resultados -->
+  <div id="results-info" class="mb-3 text-muted small">
+    <span id="showing-count"></span>
+  </div>
 
-  <div id="post-list" class="row g-3">
-    {{ if gt (len $p.Pages) 0 }}
-      {{ range $p.Pages }}
-        <div class="col-12 col-md-6" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
-          <div class="card h-100 d-flex flex-column">
-            <div class="card-body d-flex flex-column">
-              <a class="text-decoration-none" href="{{ .RelPermalink }}">
-                <h5 class="card-title mb-1">{{ .Title }}</h5>
+  <!-- Grid de posts (TODOS, sem paginação do Hugo) -->
+  <div id="post-list" class="blog-grid">
+    {{ if gt (len .Pages) 0 }}
+      {{ range .Pages.ByDate.Reverse }}
+        <article class="blog-card" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
+
+          <!-- Imagem de capa -->
+          {{ $coverName := cond (isset .Params "image") .Params.image (cond (isset .Params "cover") .Params.cover nil) }}
+          {{ if $coverName }}
+            {{ $img := .Resources.GetMatch $coverName }}
+            {{ if not $img }}{{ $img = resources.Get $coverName }}{{ end }}
+            {{ if $img }}
+              {{ $cover := $img.Fill "800x400 center" }}
+              <a href="{{ .RelPermalink }}" class="blog-card-image">
+                <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" loading="lazy" decoding="async">
+                <div class="blog-card-overlay"></div>
               </a>
-              <div class="text-muted small mb-2">
-                {{ .Date.Format "02 Jan 2006" }} - by
-                {{ with .Params.author }} <span>{{ . }}</span>{{ end }}.
-              </div>
-
-              {{ with .Params.tags }}
-                <div class="d-flex flex-wrap gap-1 mb-2">
-                  {{ range . }}<span class="badge text-bg-light">{{ . }}</span>{{ end }}
+            {{ else }}
+              <div class="blog-card-image blog-card-placeholder">
+                <div class="placeholder-content">
+                  <i class="bi bi-file-earmark-text"></i>
                 </div>
-              {{ end }}
+              </div>
+            {{ end }}
+          {{ else }}
+            <div class="blog-card-image blog-card-placeholder">
+              <div class="placeholder-content">
+                <i class="bi bi-file-earmark-text"></i>
+              </div>
+            </div>
+          {{ end }}
 
-              {{ with .Summary }}
-                <p class="mb-0 flex-grow-1">{{ . }}</p>
+          <!-- Conteúdo do card -->
+          <div class="blog-card-body">
+
+            <!-- Tags inline -->
+            {{ with .Params.tags }}
+            <div class="blog-card-tags-top">
+              {{ range first 2 . }}
+              <span class="blog-tag-inline">{{ . }}</span>
               {{ end }}
             </div>
+            {{ end }}
+
+            <!-- Título -->
+            <a href="{{ .RelPermalink }}" class="blog-card-title">
+              <h3>{{ .Title }}</h3>
+            </a>
+
+            <!-- Descrição/Excerpt -->
+            {{ with .Summary }}
+            <p class="blog-card-description">{{ . | truncate 150 }}</p>
+            {{ end }}
+
+            <!-- Meta info -->
+            <div class="blog-card-meta">
+              <span class="meta-item">
+                <i class="bi bi-calendar3"></i>
+                <time datetime="{{ .Date.Format "2006-01-02" }}">
+                  {{ .Date.Format "Jan 02, 2006" }}
+                </time>
+              </span>
+              <span class="meta-item">
+                <i class="bi bi-clock"></i>
+                {{ .ReadingTime }} min read
+              </span>
+              {{ with .Params.author }}
+              <span class="meta-item">
+                <i class="bi bi-person"></i>
+                {{ . }}
+              </span>
+              {{ end }}
+            </div>
+
           </div>
-        </div>
+        </article>
       {{ end }}
     {{ else }}
       <div class="col-12">
-        <p class="text-muted">No projects found.</p>
+        <div class="alert alert-light text-center py-5">
+          <i class="bi bi-inbox display-4 text-muted d-block mb-3"></i>
+          <p class="lead text-muted mb-0">No blog posts yet. Stay tuned!</p>
+        </div>
       </div>
     {{ end }}
   </div>
-  {{ if gt $p.TotalPages 1 }}
-    <nav class="mt-4 d-flex justify-content-center" aria-label="Paginação do blog">
-      <ul class="pagination pagination-sm flex-nowrap">
 
-        {{ with $p.Prev }}
-          <li class="page-item"><a class="page-link" href="{{ .URL }}" aria-label="Anterior">&laquo;</a></li>
-        {{ end }}
+  <!-- Paginação -->
+  <nav id="pagination" class="mt-5 d-flex justify-content-center" aria-label="Paginação do blog">
+    <ul class="pagination">
+      <!-- Será preenchido pelo JavaScript -->
+    </ul>
+  </nav>
 
-        {{ $current := $p.PageNumber }}
-        {{ $total := $p.TotalPages }}
-        {{ $window := 2 }}
-
-        {{ range $i, $pg := $p.Pagers }}
-          {{ $num := add $i 1 }}
-          {{ if or (eq $num 1) (eq $num $total) (and (ge $num (sub $current $window)) (le $num (add $current $window))) }}
-            <li class="page-item {{ if eq $pg.PageNumber $current }}active{{ end }}">
-              <a class="page-link" href="{{ $pg.URL }}">{{ $pg.PageNumber }}</a>
-            </li>
-          {{ else if eq $num (sub $current (add $window 1)) }}
-            <li class="page-item disabled"><span class="page-link">…</span></li>
-          {{ else if eq $num (add $current (add $window 1)) }}
-            <li class="page-item disabled"><span class="page-link">…</span></li>
-          {{ end }}
-        {{ end }}
-
-        {{ with $p.Next }}
-          <li class="page-item"><a class="page-link" href="{{ .URL }}" aria-label="Próxima">&raquo;</a></li>
-        {{ end }}
-
-      </ul>
-    </nav>
-  {{ end }}
 </article>
 {{ end }}

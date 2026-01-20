@@ -1,0 +1,138 @@
+{{ define "main" }}
+<article class="tag-page py-4">
+
+  <!-- Header da tag -->
+  <div class="mb-5">
+    <div class="d-flex align-items-center mb-3">
+      <i class="bi bi-tag-fill text-primary me-2"></i>
+      <h1 class="display-6 fw-bold mb-0">{{ .Title }}</h1>
+    </div>
+    <p class="lead text-muted">
+      {{ .Pages | len }} {{ if eq (.Pages | len) 1 }}item{{ else }}items{{ end }} com esta tag
+    </p>
+  </div>
+
+  <!-- Paginação dos posts -->
+  {{ $p := .Paginate .Pages }}
+
+  <!-- Grid de projetos/posts -->
+  <div class="projects-grid">
+    {{ range $p.Pages }}
+      <article class="project-card">
+        <div class="project-card-body">
+          
+          <!-- Título -->
+          <a href="{{ .RelPermalink }}" class="project-card-title">
+            <h3>{{ .Title }}</h3>
+          </a>
+
+          <!-- Meta info -->
+          <div class="project-card-meta">
+            <span class="meta-item">
+              <i class="bi bi-calendar3"></i>
+              <time datetime="{{ .Date.Format "2006-01-02" }}">
+                {{ .Date.Format "Jan 2006" }}
+              </time>
+            </span>
+            
+            <!-- Tipo de conteúdo (Blog ou Project) -->
+            <span class="meta-item">
+              <i class="bi bi-{{ if eq .Section "blog" }}newspaper{{ else }}folder{{ end }}"></i>
+              {{ if eq .Section "blog" }}Blog{{ else }}Project{{ end }}
+            </span>
+
+            {{ with .Params.github }}
+            <a href="{{ . }}" target="_blank" rel="noopener" class="meta-item meta-link" onclick="event.stopPropagation();">
+              <i class="bi bi-github"></i> Code
+            </a>
+            {{ end }}
+          </div>
+
+          <!-- Descrição -->
+          {{ with .Summary }}
+          <p class="project-card-description">{{ . }}</p>
+          {{ end }}
+
+          <!-- Tags -->
+          {{ with .Params.tags }}
+          <div class="project-card-tags">
+            {{ range first 4 . }}
+            <span class="project-tag">{{ . }}</span>
+            {{ end }}
+            {{ if gt (len .) 4 }}
+            <span class="project-tag project-tag-more">+{{ sub (len .) 4 }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+
+          <!-- Link para ver mais -->
+          <a href="{{ .RelPermalink }}" class="project-card-link">
+            {{ if eq .Section "blog" }}Read post{{ else }}View project{{ end }} 
+            <i class="bi bi-arrow-right"></i>
+          </a>
+
+        </div>
+      </article>
+    {{ end }}
+  </div>
+
+  <!-- Paginação -->
+  {{ if gt $p.TotalPages 1 }}
+    <nav class="mt-5 d-flex justify-content-center" aria-label="Paginação">
+      <ul class="pagination">
+        <!-- Botão Anterior -->
+        {{ with $p.Prev }}
+          <li class="page-item">
+            <a class="page-link" href="{{ .URL }}" aria-label="Anterior">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+        {{ else }}
+          <li class="page-item disabled">
+            <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+          </li>
+        {{ end }}
+
+        <!-- Números das páginas -->
+        {{ $current := $p.PageNumber }}
+        {{ $total := $p.TotalPages }}
+        {{ $window := 2 }}
+
+        {{ range $i, $pg := $p.Pagers }}
+          {{ $num := add $i 1 }}
+          {{ if or (eq $num 1) (eq $num $total) (and (ge $num (sub $current $window)) (le $num (add $current $window))) }}
+            <li class="page-item {{ if eq $pg.PageNumber $current }}active{{ end }}">
+              <a class="page-link" href="{{ $pg.URL }}">{{ $pg.PageNumber }}</a>
+            </li>
+          {{ else if eq $num (sub $current (add $window 1)) }}
+            <li class="page-item disabled"><span class="page-link">…</span></li>
+          {{ else if eq $num (add $current (add $window 1)) }}
+            <li class="page-item disabled"><span class="page-link">…</span></li>
+          {{ end }}
+        {{ end }}
+
+        <!-- Botão Próximo -->
+        {{ with $p.Next }}
+          <li class="page-item">
+            <a class="page-link" href="{{ .URL }}" aria-label="Próxima">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+        {{ else }}
+          <li class="page-item disabled">
+            <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+          </li>
+        {{ end }}
+      </ul>
+    </nav>
+  {{ end }}
+
+  <!-- Link para voltar -->
+  <div class="mt-5 text-center">
+    <a href="{{ .Site.BaseURL }}projects/" class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left"></i> Ver todos os projetos
+    </a>
+  </div>
+
+</article>
+{{ end }}

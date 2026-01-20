@@ -1,39 +1,5 @@
 /* =========================
- * 1) Filtro por tags (como estava, com trims)
- * ========================= */
-(function () {
-  const container = document.getElementById('tag-filter');
-  if (!container) return;
-
-  const buttons = container.querySelectorAll('[data-tag]');
-  const cards = document.querySelectorAll('#post-list [data-tags]');
-  if (!buttons.length || !cards.length) return;
-
-  function setActive(btn) {
-    buttons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-
-  function apply(tag) {
-    const t = (tag || '').toLowerCase().trim();
-    cards.forEach(card => {
-      const tags = (card.getAttribute('data-tags') || '')
-        .toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
-      const show = (t === '__all') || tags.includes(t);
-      card.style.display = show ? '' : 'none';
-    });
-  }
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      setActive(btn);
-      apply(btn.getAttribute('data-tag'));
-    }, { passive: true });
-  });
-})();
-
-/* =========================
- * 2) Header mobile (opcional; não interfere em clique)
+ * 1) Header mobile
  * ========================= */
 (function () {
   const nav = document.getElementById('sideNav');
@@ -81,7 +47,7 @@
 })();
 
 /* =========================
- * 3) Fechar o collapse ao clicar em um link do menu (sem impedir navegação)
+ * 2) Fechar o collapse ao clicar em um link do menu
  * ========================= */
 (function () {
   const collapseEl = document.getElementById('navbarResponsive');
@@ -102,11 +68,15 @@
 
   collapseEl.querySelectorAll('a.nav-link, a.dropdown-item').forEach(a => {
     a.addEventListener('click', () => {
-      // NÃO usa preventDefault; deixa o navegador navegar naturalmente
       closeCollapse();
     }, { passive: true });
   });
+})();
 
+/* =========================
+ * 3) Calcular anos de experiência
+ * ========================= */
+(function() {
   const startDate = new Date('2018-08-01');
   const today = new Date();
   const years = Math.floor((today - startDate) / (365.25 * 24 * 60 * 60 * 1000));
@@ -115,4 +85,155 @@
   elements.forEach(function(element) {
     element.textContent = years;
   });
+})();
+
+/* =========================
+ * 4) Filtro COM PAGINAÇÃO (Projects e Blog)
+ * ========================= */
+(function() {
+  // Detecta se é página de projetos ou blog
+  const projectCards = Array.from(document.querySelectorAll('.project-card'));
+  const blogCards = Array.from(document.querySelectorAll('.blog-card'));
+  
+  const cards = projectCards.length ? projectCards : blogCards;
+  if (!cards.length) return;
+
+  const itemType = projectCards.length ? 'projects' : 'posts';
+  const itemsPerPage = 4;
+  let currentPage = 1;
+  let currentTag = '__all';
+  let filteredItems = [];
+
+  const tagButtons = document.querySelectorAll('.tag-filter-btn');
+  const pagination = document.querySelector('#pagination .pagination');
+  const resultsInfo = document.getElementById('showing-count');
+
+  // Função para filtrar items
+  function filterItems(tag) {
+    const t = (tag || '').toLowerCase().trim();
+    
+    if (t === '__all') {
+      filteredItems = cards;
+    } else {
+      filteredItems = cards.filter(card => {
+        const tags = (card.getAttribute('data-tags') || '')
+          .toLowerCase()
+          .split(',')
+          .map(s => s.trim())
+          .filter(Boolean);
+        return tags.includes(t);
+      });
+    }
+    
+    currentPage = 1;
+    renderPage();
+  }
+
+  // Função para renderizar a página atual
+  function renderPage() {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+    // Esconde todos os cards
+    cards.forEach(card => card.style.display = 'none');
+
+    // Mostra apenas os da página atual
+    filteredItems.slice(start, end).forEach(card => {
+      card.style.display = 'block';
+    });
+
+    // Atualiza info de resultados
+    if (resultsInfo) {
+      const showing = Math.min(end, filteredItems.length);
+      if (filteredItems.length === 0) {
+        resultsInfo.textContent = `No ${itemType} found`;
+      } else {
+        resultsInfo.textContent = `Showing ${start + 1}-${showing} of ${filteredItems.length} ${itemType}`;
+      }
+    }
+
+    // Renderiza paginação
+    renderPagination(totalPages);
+  }
+
+  // Função para renderizar os botões de paginação
+  function renderPagination(totalPages) {
+    if (!pagination) return;
+    
+    if (totalPages <= 1) {
+      pagination.innerHTML = '';
+      return;
+    }
+
+    let html = '';
+
+    // Botão Anterior
+    if (currentPage > 1) {
+      html += `<li class="page-item">
+        <a class="page-link" href="#" data-page="${currentPage - 1}">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+      </li>`;
+    } else {
+      html += `<li class="page-item disabled">
+        <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+      </li>`;
+    }
+
+    // Números das páginas
+    const window = 2;
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === 1 || i === totalPages || (i >= currentPage - window && i <= currentPage + window)) {
+        html += `<li class="page-item ${i === currentPage ? 'active' : ''}">
+          <a class="page-link" href="#" data-page="${i}">${i}</a>
+        </li>`;
+      } else if (i === currentPage - window - 1 || i === currentPage + window + 1) {
+        html += `<li class="page-item disabled"><span class="page-link">…</span></li>`;
+      }
+    }
+
+    // Botão Próximo
+    if (currentPage < totalPages) {
+      html += `<li class="page-item">
+        <a class="page-link" href="#" data-page="${currentPage + 1}">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+      </li>`;
+    } else {
+      html += `<li class="page-item disabled">
+        <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+      </li>`;
+    }
+
+    pagination.innerHTML = html;
+
+    // Adiciona event listeners nos botões de página
+    pagination.querySelectorAll('a[data-page]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentPage = parseInt(btn.dataset.page);
+        renderPage();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  }
+
+  // Event listeners para os botões de tag
+  if (tagButtons.length) {
+    tagButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active de todos
+        tagButtons.forEach(b => b.classList.remove('active'));
+        // Adiciona active no clicado
+        btn.classList.add('active');
+        
+        currentTag = btn.getAttribute('data-tag');
+        filterItems(currentTag);
+      });
+    });
+  }
+
+  // Inicializa mostrando todos os items
+  filterItems('__all');
 })();
