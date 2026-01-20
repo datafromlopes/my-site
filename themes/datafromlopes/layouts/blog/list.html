@@ -76,8 +76,13 @@
             <!-- Tags inline -->
             {{ with .Params.tags }}
             <div class="blog-card-tags-top">
-              {{ range first 2 . }}
-              <span class="blog-tag-inline">{{ . }}</span>
+              {{ range first 4 . }}
+                <span class="blog-tag-inline">{{ . }}</span>
+              {{ end }}
+              {{ if gt (len .) 4 }}
+                <span class="blog-tag-inline blog-tag-more">
+                  +{{ sub (len .) 4 }}
+                </span>
               {{ end }}
             </div>
             {{ end }}
