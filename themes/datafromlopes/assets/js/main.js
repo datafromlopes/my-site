@@ -99,7 +99,7 @@
   if (!cards.length) return;
 
   const itemType = projectCards.length ? 'projects' : 'posts';
-  const itemsPerPage = 4;
+  const itemsPerPage = 6;
   let currentPage = 1;
   let currentTag = '__all';
   let filteredItems = [];

@@ -12,16 +12,15 @@ pagination.path = "page"
   description = 'MSc in Computer Science @ IME-USP'
   tagline = "Data Engineer & Researcher"
   location = "São Paulo, Brazil"
-  academic_email = "diego.oliveiralopes@ime.usp.br"
 
   [params.social]
     linkedin = "https://www.linkedin.com/in/datafromlopes"
     github   = "https://github.com/datafromlopes"
-    twitter  = "https://x.com/datafromlopes"
+    huggingface = "https://huggingface.co/datafromlopes"
+    bluesky = "https://bsky.app/profile/datafromlopes.com"
     orcid  = "https://orcid.org/0000-0002-5130-3728"
     lattes = "http://lattes.cnpq.br/4604428550643092"
-    kaggle = "https://www.kaggle.com/datafromlopes"
-    email    = "diego.lopes@datafromlopes.com"
+    academic_email = "diego.oliveiralopes@ime.usp.br"
 
 [taxonomies]
   tag = "tags"

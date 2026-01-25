@@ -65,14 +65,14 @@
               <i class="fa-brands fa-github"></i>
             </a>
           {{ end }}
+          {{ with .Site.Params.social.huggingface }}
+            <a href="{{ . }}" target="_blank" rel="noopener" class="social-icon-modern huggingface" aria-label="Hugging Face" title="Hugging Face">
+              <img src="/hf-logo.png" alt="Hugging Face" class="social-icon-img">
+            </a>
+          {{ end }}
           {{ with .Site.Params.social.bluesky }}
             <a href="{{ . }}" target="_blank" rel="noopener" class="social-icon-modern bluesky" aria-label="Bluesky" title="Bluesky">
               <i class="fa-brands fa-bluesky"></i>
-            </a>
-          {{ end }}
-          {{ with .Site.Params.social.email }}
-            <a href="mailto:{{ . }}" class="social-icon-modern email" aria-label="Email" title="Email">
-              <i class="fa-solid fa-envelope"></i>
             </a>
           {{ end }}
         </div>
@@ -102,10 +102,10 @@
             <span>Lattes</span>
           </a>
           {{ end }}
-          {{ with .Site.Params.academic_email }}
+          {{ with .Site.Params.social.academic_email }}
           <a href="mailto:{{ . }}" class="academic-link-modern" title="Email acadêmico">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <span>@ime.usp.br</span>
+            <i class="fa-solid fa-envelope"></i>
+            <span>{{ . }}</span>
           </a>
           {{ end }}
         </div>
