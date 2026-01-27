@@ -1,13 +1,18 @@
 ---
 title: "Automated Translation of Natural Language Geospatial Queries into SQL"
 author: "Diego Lopes"
-date: 2023-07-31
-tags: [ "SQL", "Relational Databases", "Geospatial Data", 
-  "AI", "NLP", "LLM", "Neural Networks", "Fine-Tuning", "Text-to-SQL"
-]
+date: 2026-01-01
+lastmod: 2026-01-20
+projectStartDate: "2023-08-01"
+projectEndDate: ""
+projectStatus: "ongoing"
+organization: "IME-USP"
+organizationType: "university"
+organizationUrl: "https://ime.usp.br"
+tags: [ "SQL", "Geospatial Data", "NLP", "LLM", "Fine-Tuning", "Text-to-SQL"]
 github: "https://github.com/datafromlopes/geo-nlq-to-sql"
 summary: "This project develops a fine-tuned LLM to translate natural language queries into geospatial SQL, addressing current text-to-SQL limitations."
-image: "img/text-to-sql-cover.png"
+tech_stack: "Python, Trasformers, PyTorch"
 ---
 
 ---

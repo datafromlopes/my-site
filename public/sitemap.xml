@@ -3,7 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-10-04T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/projects/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/projects/geo-nlq-to-sql/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/distributed-systems/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/fine-tuning/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/geospatial-data/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/projects/cassandra-cluster/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/llm/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/nlp/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/nosql/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/sql/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/text-to-sql/</loc>
+    <lastmod>2026-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
     <lastmod>2025-10-04T00:00:00+00:00</lastmod>
@@ -11,20 +47,11 @@
     <loc>http://localhost:1313/tags/computational-linguistics/</loc>
     <lastmod>2025-10-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/nlp/</loc>
-    <lastmod>2025-10-04T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/statistics/</loc>
-    <lastmod>2025-10-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-10-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/tf-idf/</loc>
     <lastmod>2025-10-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/projects/</loc>
-    <lastmod>2024-11-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/algorithms/</loc>
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
@@ -43,33 +70,6 @@
   </url><url>
     <loc>http://localhost:1313/tags/parallel-computing/</loc>
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/ai/</loc>
-    <lastmod>2023-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/projects/geo-nlq-to-sql/</loc>
-    <lastmod>2023-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/fine-tuning/</loc>
-    <lastmod>2023-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/geospatial-data/</loc>
-    <lastmod>2023-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/llm/</loc>
-    <lastmod>2023-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/neural-networks/</loc>
-    <lastmod>2023-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/relational-databases/</loc>
-    <lastmod>2023-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/sql/</loc>
-    <lastmod>2023-07-31T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/text-to-sql/</loc>
-    <lastmod>2023-07-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url>

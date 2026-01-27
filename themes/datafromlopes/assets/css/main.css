@@ -857,6 +857,7 @@ body {
 /* Corpo do card */
 .project-card-body {
   padding: 1.5rem;
+  padding-bottom: 0;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -948,25 +949,119 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--accent);
+  color: white;
+  background: var(--accent);
   font-weight: 600;
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: gap 0.2s ease;
-  margin-top: auto;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  margin-left: auto; /* Empurra para a direita */
+  width: fit-content; /* Ocupa apenas o espaço necessário */
+  box-shadow: 0 2px 4px var(--accent-20);
 }
 
 .project-card-link:hover {
   gap: 0.75rem;
-  color: var(--accent-700);
+  background: var(--accent-700);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-20);
+  color: white;
 }
 
 .project-card-link i {
   transition: transform 0.2s ease;
+  font-size: 0.85rem;
 }
 
 .project-card-link:hover i {
   transform: translateX(4px);
+}
+
+.tech-stack-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0;
+}
+
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #fbbf24;
+  transition: all 0.2s ease;
+}
+
+.tech-pill i {
+  font-size: 0.7rem;
+  margin-right: 0.3rem;
+}
+
+.tech-pill:hover {
+  background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+  border-color: #f59e0b;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
+}
+
+/* Status badge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid;
+  transition: all 0.2s ease;
+}
+
+.status-completed {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #10b981;
+}
+
+.status-ongoing {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #3b82f6;
+}
+
+.status-archived {
+  background: #f3f4f6;
+  color: #374151;
+  border-color: #9ca3af;
+}
+
+@media (prefers-color-scheme: dark) {
+  .status-completed {
+    background: rgba(16, 185, 129, 0.15);
+    color: #6ee7b7;
+    border-color: #10b981;
+  }
+
+  .status-ongoing {
+    background: rgba(59, 130, 246, 0.15);
+    color: #93c5fd;
+    border-color: #3b82f6;
+  }
+
+  .status-archived {
+    background: rgba(156, 163, 175, 0.15);
+    color: #d1d5db;
+    border-color: #6b7280;
+  }
 }
 
 /* =========================================
@@ -1210,5 +1305,565 @@ body {
 @media (prefers-color-scheme: dark) {
   .blog-card-placeholder {
     background: linear-gradient(135deg, var(--accent-12) 0%, var(--accent-20) 100%);
+  }
+}
+/* =========================================
+   BADGES DE ORGANIZAÇÃO E PERÍODO NO CARD
+   ========================================= */
+.project-meta-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.organization-badge,
+.period-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--accent-06);
+  color: var(--text);
+  border: 1px solid var(--accent-12);
+  transition: all 0.2s ease;
+}
+
+.organization-badge i,
+.period-badge i {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.organization-badge a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.organization-badge:hover {
+  background: var(--accent-12);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.organization-badge a:hover {
+  color: var(--accent);
+}
+
+.period-badge {
+  background: var(--surface);
+}
+
+/* Ícones diferentes por tipo de organização */
+.organization-badge .bi-mortarboard {
+  color: #4CAF50; /* Verde para universidade */
+}
+
+.organization-badge .bi-rocket {
+  color: #FF6B6B; /* Vermelho para startup */
+}
+
+.organization-badge .bi-building {
+  color: #2196F3; /* Azul para empresa */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .project-meta-badges {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =========================================
+   DATAS DO PROJETO
+   ========================================= */
+.project-card-dates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.date-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.date-label {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.date-separator {
+  color: var(--line);
+  font-weight: bold;
+}
+
+/* =========================================
+   FOOTER DO CARD (linha divisória + badges)
+   ========================================= */
+.project-meta-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding: 1rem 0 1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid;
+  transition: all 0.2s ease;
+}
+
+/* Organização */
+.organization-badge {
+  background: var(--accent-06);
+  color: var(--text);
+  border-color: var(--accent-12);
+}
+
+.organization-badge i {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.organization-badge .bi-mortarboard {
+  color: #4CAF50;
+}
+
+.organization-badge .bi-rocket {
+  color: #FF6B6B;
+}
+
+.organization-badge .bi-building {
+  color: #2196F3;
+}
+
+/* Status */
+.status-badge.status-completed {
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #10b981;
+}
+
+.status-badge.status-ongoing {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #3b82f6;
+}
+
+.status-badge.status-archived {
+  background: #f3f4f6;
+  color: #374151;
+  border-color: #9ca3af;
+}
+
+/* Duração */
+.duration-badge {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--line);
+}
+
+.duration-badge i {
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .status-badge.status-completed {
+    background: rgba(16, 185, 129, 0.15);
+    color: #6ee7b7;
+    border-color: #10b981;
+  }
+
+  .status-badge.status-ongoing {
+    background: rgba(59, 130, 246, 0.15);
+    color: #93c5fd;
+    border-color: #3b82f6;
+  }
+
+  .status-badge.status-archived {
+    background: rgba(156, 163, 175, 0.15);
+    color: #d1d5db;
+    border-color: #6b7280;
+  }
+}
+
+/* =========================================
+   BOTÃO VIEW PROJECT (à esquerda)
+   ========================================= */
+.project-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: gap 0.2s ease;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  align-self: flex-start; /* Mantém à esquerda */
+}
+
+.project-card-link:hover {
+  gap: 0.75rem;
+  color: var(--accent-700);
+}
+
+.project-card-link i {
+  transition: transform 0.2s ease;
+}
+
+.project-card-link:hover i {
+  transform: translateX(4px);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .project-card-dates {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .date-separator {
+    display: none;
+  }
+  
+  .project-meta-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .project-card-link {
+    width: 100%; /* Em mobile ocupa largura total */
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
+/* =========================================
+   FOOTER DO CARD COM BOTÃO
+   ========================================= */
+.project-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.project-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid var(--line);
+}
+
+.project-card-link:hover {
+  gap: 0.75rem;
+  background: var(--accent-06);
+  border-color: var(--accent);
+  color: var(--accent-700);
+}
+
+.project-card-link i {
+  transition: transform 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.project-card-link:hover i {
+  transform: translateX(4px);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .project-card-dates {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .date-separator {
+    display: none;
+  }
+  
+  .project-meta-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .project-card-footer {
+    justify-content: center;
+  }
+  
+  .project-card-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =========================================
+   ORGANIZATION BADGE CLICÁVEL
+   ========================================= */
+
+/* Quando é link */
+a.organization-badge {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.organization-badge:hover {
+  background: var(--accent-12);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px var(--accent-20);
+}
+
+/* Quando não é link (span) */
+span.organization-badge {
+  cursor: default;
+}
+
+/* Remove o sublinhado padrão de links */
+a.organization-badge:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   FORMATAÇÃO DO CONTEÚDO DOS PROJETOS
+   ========================================= */
+
+/* Container do conteúdo */
+.project-section .content {
+  line-height: 1.8;
+  color: var(--text);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Parágrafos justificados */
+.project-section .content p {
+  text-align: justify;
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+
+/* Imagens centralizadas */
+.project-section .content img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow-1);
+}
+
+/* Parágrafos que contêm apenas imagens */
+.project-section .content p:has(img) {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.project-section .content p img {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Listas no conteúdo */
+.project-section .content ul,
+.project-section .content ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.project-section .content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+/* Títulos dentro do conteúdo */
+.project-section .content h2,
+.project-section .content h3,
+.project-section .content h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.project-section .content h2 {
+  font-size: 1.75rem;
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 0.5rem;
+}
+
+.project-section .content h3 {
+  font-size: 1.35rem;
+}
+
+.project-section .content h4 {
+  font-size: 1.15rem;
+}
+
+/* Blocos de código */
+.project-section .content pre {
+  background: #1e293b;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-inset);
+}
+
+.project-section .content code {
+  background: var(--accent-06);
+  color: var(--accent-700);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: 'Courier New', monospace;
+}
+
+.project-section .content pre code {
+  background: transparent;
+  padding: 0;
+  color: #e2e8f0;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+/* Syntax highlighting básico para bash */
+.project-section .content pre code {
+  display: block;
+}
+
+/* Dark mode ajustado */
+@media (prefers-color-scheme: dark) {
+  .project-section .content pre {
+    background: #0f172a;
+    border-color: #334155;
+  }
+  
+  .project-section .content pre code {
+    color: #cbd5e1;
+  }
+}
+
+/* Blockquotes */
+.project-section .content blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Links no conteúdo */
+.project-section .content a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.project-section .content a:hover {
+  color: var(--accent-700);
+  text-decoration: underline;
+}
+
+/* Tabelas */
+.project-section .content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+}
+
+.project-section .content th,
+.project-section .content td {
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+
+.project-section .content th {
+  background: var(--accent-06);
+  font-weight: 600;
+}
+
+/* Strong (negrito) */
+.project-section .content strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Emphasis (itálico) */
+.project-section .content em {
+  font-style: italic;
+}
+
+/* Linhas horizontais */
+.project-section .content hr {
+  border: none;
+  border-top: 2px solid var(--line);
+  margin: 2rem 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .project-section .content p {
+    text-align: left; /* Em mobile, texto alinhado à esquerda é mais legível */
+  }
+  
+  .project-section .content img {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .project-section .content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .project-section .content h3 {
+    font-size: 1.25rem;
+  }
+  
+  .project-section .content h4 {
+    font-size: 1.1rem;
   }
 }
