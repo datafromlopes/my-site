@@ -464,6 +464,9 @@ body {
 /* =========================================
    HOMEPAGE ENHANCEMENTS
    ========================================= */
+.hero-section h1 {
+  font-size: 2rem;
+}
 
 .hero-section {
   padding: 2rem 0;
@@ -1865,5 +1868,320 @@ a.organization-badge:focus {
   
   .project-section .content h4 {
     font-size: 1.1rem;
+  }
+}
+
+/* =========================================
+   CORE EXPERTISE - LISTAS EM COLUNA ÚNICA
+   ========================================= */
+
+/* Força listas na seção Core Expertise a ficarem em uma única coluna */
+.technical-focus .expertise-list {
+  column-count: 1 !important;
+  -webkit-column-count: 1 !important;
+  -moz-column-count: 1 !important;
+  columns: 1 !important;
+}
+
+/* Remove qualquer grid aplicado às listas */
+.technical-focus .expertise-list {
+  display: block !important;
+  grid-template-columns: none !important;
+}
+
+/* Garante que os itens da lista fiquem um embaixo do outro */
+.technical-focus .expertise-list li {
+  display: list-item !important;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
+
+/* Cor de fundo suave e única para todos os itens */
+.technical-focus .expertise-list li {
+  background: #eff6ff;
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  border-left: 3px solid #bfdbfe;
+}
+
+/* Hover effect sutil */
+.technical-focus .expertise-list li:hover {
+  background: #dbeafe;
+  border-left-color: #2A67A3;
+  transform: translateX(3px);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .technical-focus .expertise-list li {
+    background: rgba(255, 255, 255, 0.04);
+    border-left-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .technical-focus .expertise-list li:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: #5aa0e0;
+  }
+}
+
+/* =========================================
+   TECH STACK SECTION
+   ========================================= */
+
+.tech-stack {
+  margin-top: 3rem;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 0.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.tech-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-color: var(--accent);
+}
+
+.tech-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.tech-item:hover .tech-logo {
+  transform: scale(1.1);
+}
+
+.tech-item span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .tech-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 0.6rem;
+  }
+  
+  .tech-item {
+    padding: 0.6rem 0.4rem;
+  }
+  
+  .tech-logo {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .tech-item span {
+    font-size: 0.65rem;
+  }
+}
+
+/* =========================================
+   EXPERIENCE TIMELINE
+   ========================================= */
+
+.experience-timeline {
+  margin-top: 3rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 2rem;
+}
+
+/* Linha vertical da timeline */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--line) 100%);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Marcador da timeline */
+.timeline-marker {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.25rem;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border: 3px solid var(--surface);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--accent-12);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 5px var(--accent-12);
+}
+
+/* Conteúdo da timeline */
+.timeline-content {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.timeline-item:hover .timeline-content {
+  border-color: var(--accent);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transform: translateX(4px);
+}
+
+/* Logo da empresa */
+.company-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: white;
+  padding: 4px;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.timeline-content h5 {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+}
+
+.timeline-content > span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-period {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.timeline-period i {
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+.timeline-duration {
+  padding: 0.15rem 0.5rem;
+  background: var(--accent-06);
+  color: var(--accent-700);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+/* Badge "Current" */
+.timeline-period .badge {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.4rem;
+  font-weight: 600;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 1.5rem;
+  }
+  
+  .timeline-marker {
+    left: -2rem;
+    width: 10px;
+    height: 10px;
+  }
+  
+  .timeline-item {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .timeline-content {
+    padding: 0.75rem 0.85rem;
+  }
+  
+  .timeline-content h5 {
+    font-size: 0.9rem;
+  }
+  
+  .company-logo {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Animação de entrada */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.timeline-item {
+  animation: fadeInLeft 0.6s ease forwards;
+}
+
+.timeline-item:nth-child(2) { animation-delay: 0.1s; }
+.timeline-item:nth-child(3) { animation-delay: 0.2s; }
+.timeline-item:nth-child(4) { animation-delay: 0.3s; }
+.timeline-item:nth-child(5) { animation-delay: 0.4s; }
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .timeline-marker {
+    border-color: var(--surface);
   }
 }

@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
   {{ end }}
 
+  <!-- DevIcon CDN para logos coloridos -->
+  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
   <!-- JS seu, se houver build -->
   {{ $js := resources.Get "js/main.js" | js.Build | fingerprint }}
   {{ if $js }}
