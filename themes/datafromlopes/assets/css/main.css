@@ -464,12 +464,16 @@ body {
 /* =========================================
    HOMEPAGE ENHANCEMENTS
    ========================================= */
+.hero-section {
+  margin-bottom: 1rem;
+}
+
 .hero-section h1 {
   font-size: 2rem;
 }
 
-.hero-section {
-  padding: 2rem 0;
+.hero-section p {
+  max-width: 70rem;
 }
 
 .hero-section .lead {
@@ -558,6 +562,34 @@ body {
   .btn-lg {
     padding: 0.5rem 1rem;
     font-size: 1rem;
+  }
+}
+
+/* =========================================
+   ESPAÇAMENTO DA PÁGINA ABOUT
+   ========================================= */
+
+/* Desktop - adiciona espaço à esquerda */
+@media (min-width: 992px) {
+  .about-section {
+    padding-left: 1.5rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Tablet */
+@media (max-width: 991px) and (min-width: 768px) {
+  .about-section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Mobile - mantém padding padrão */
+@media (max-width: 767px) {
+  .about-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -2006,6 +2038,59 @@ a.organization-badge:focus {
 
 .experience-timeline {
   margin-top: 3rem;
+}
+
+/* Total Experience Card */
+.total-experience-card {
+  background: linear-gradient(135deg, var(--accent-06) 0%, var(--accent-12) 100%);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  display: inline-block;
+  width: auto;
+}
+
+.total-experience-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.experience-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.experience-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 0.1rem;
+}
+
+.experience-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent-700);
+  line-height: 1;
+}
+
+/* Linha separadora de seções */
+.section-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 3rem 0 2rem 0;
 }
 
 .timeline {

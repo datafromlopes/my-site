@@ -74,16 +74,43 @@
 })();
 
 /* =========================
- * 3) Calcular anos de experiência
+ * Calcular anos de experiência
  * ========================= */
 (function() {
   const startDate = new Date('2018-08-01');
   const today = new Date();
-  const years = Math.floor((today - startDate) / (365.25 * 24 * 60 * 60 * 1000));
-
-  const elements = document.querySelectorAll('.years-experience');
-  elements.forEach(function(element) {
-    element.textContent = years;
+  
+  // Calcular diferença total em meses
+  const totalMonths = (today.getFullYear() - startDate.getFullYear()) * 12 
+                    + (today.getMonth() - startDate.getMonth());
+  
+  // Calcular anos e meses restantes
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  
+  // Apenas anos (para bio)
+  const yearsOnly = years;
+  
+  // Anos e meses (para timeline)
+  let yearsMonthsText = '';
+  if (years > 0 && months > 0) {
+    yearsMonthsText = `${years}y ${months}m`;
+  } else if (years > 0) {
+    yearsMonthsText = `${years}y`;
+  } else {
+    yearsMonthsText = `${months}m`;
+  }
+  
+  // Atualizar elementos que mostram apenas anos
+  const yearsElements = document.querySelectorAll('.years-experience');
+  yearsElements.forEach(function(element) {
+    element.textContent = yearsOnly;
+  });
+  
+  // Atualizar elementos que mostram anos e meses
+  const yearsMonthsElements = document.querySelectorAll('.years-months-experience');
+  yearsMonthsElements.forEach(function(element) {
+    element.textContent = yearsMonthsText;
   });
 })();
 
