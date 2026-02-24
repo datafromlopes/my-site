@@ -18,9 +18,19 @@ pagination.path = "page"
     github   = "https://github.com/datafromlopes"
     huggingface = "https://huggingface.co/datafromlopes"
     bluesky = "https://bsky.app/profile/datafromlopes.com"
+    x = "https://x.com/datafromlopes" 
     orcid  = "https://orcid.org/0000-0002-5130-3728"
     lattes = "http://lattes.cnpq.br/4604428550643092"
     academic_email = "diego.oliveiralopes@ime.usp.br"
+    rss = "http://localhost:1313/blog/index.xml"
+  
+  [params.companies]
+    ollie = "https://meuollie.com.br"
+    pulsus = "https://pulsus.mobi"
+    actdigital = "https://actdigital.com"
+    ciandt = "https://ciandt.com/br/pt-br/home"
+    ey = "https://www.ey.com"
+    wavy = "https://sinch.com/pt/blog/sinch-e-wavy-unem-forcas"
 
 [taxonomies]
   tag = "tags"
@@ -35,15 +45,19 @@ pagination.path = "page"
   [[menus.main]]
     name = 'Projects'
     pageRef = '/projects/'
-    weight = 20
+    weight = 40
 
   [[menus.main]]
     name = 'Blog'
     pageRef = '/blog/'
-    weight = 40
+    weight = 80
 
 
 [module]
   [module.hugoVersion]
     extended = false
     min = '0.146.0'
+
+[outputs]
+  home    = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]

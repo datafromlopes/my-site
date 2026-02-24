@@ -6,7 +6,7 @@
   if (!nav) return;
 
   const collapse = document.getElementById('navbarResponsive');
-  const toggler  = document.querySelector('[data-bs-target="#navbarResponsive"]');
+  const toggler = document.querySelector('[data-bs-target="#navbarResponsive"]');
 
   const mq = window.matchMedia('(max-width: 991.98px)');
   const isMobile = () => mq.matches;
@@ -20,8 +20,8 @@
   function updateVisibility() {
     if (!isMobile()) { nav.classList.remove('is-hidden', 'menu-open'); return; }
     const nearTop = window.scrollY <= TOP_REVEAL;
-    const open    = collapse && collapse.classList.contains('show');
-    const show    = nearTop || open;
+    const open = collapse && collapse.classList.contains('show');
+    const show = nearTop || open;
     nav.classList.toggle('is-hidden', !show);
     nav.classList.toggle('menu-open', !!open);
   }
@@ -76,21 +76,21 @@
 /* =========================
  * Calcular anos de experiência
  * ========================= */
-(function() {
+(function () {
   const startDate = new Date('2018-08-01');
   const today = new Date();
-  
+
   // Calcular diferença total em meses
-  const totalMonths = (today.getFullYear() - startDate.getFullYear()) * 12 
-                    + (today.getMonth() - startDate.getMonth());
-  
+  const totalMonths = (today.getFullYear() - startDate.getFullYear()) * 12
+    + (today.getMonth() - startDate.getMonth());
+
   // Calcular anos e meses restantes
   const years = Math.floor(totalMonths / 12);
   const months = totalMonths % 12;
-  
+
   // Apenas anos (para bio)
   const yearsOnly = years;
-  
+
   // Anos e meses (para timeline)
   let yearsMonthsText = '';
   if (years > 0 && months > 0) {
@@ -100,16 +100,16 @@
   } else {
     yearsMonthsText = `${months}m`;
   }
-  
+
   // Atualizar elementos que mostram apenas anos
   const yearsElements = document.querySelectorAll('.years-experience');
-  yearsElements.forEach(function(element) {
+  yearsElements.forEach(function (element) {
     element.textContent = yearsOnly;
   });
-  
+
   // Atualizar elementos que mostram anos e meses
   const yearsMonthsElements = document.querySelectorAll('.years-months-experience');
-  yearsMonthsElements.forEach(function(element) {
+  yearsMonthsElements.forEach(function (element) {
     element.textContent = yearsMonthsText;
   });
 })();
@@ -117,11 +117,11 @@
 /* =========================
  * 4) Filtro COM PAGINAÇÃO (Projects e Blog)
  * ========================= */
-(function() {
+(function () {
   // Detecta se é página de projetos ou blog
   const projectCards = Array.from(document.querySelectorAll('.project-card'));
   const blogCards = Array.from(document.querySelectorAll('.blog-card'));
-  
+
   const cards = projectCards.length ? projectCards : blogCards;
   if (!cards.length) return;
 
@@ -138,7 +138,7 @@
   // Função para filtrar items
   function filterItems(tag) {
     const t = (tag || '').toLowerCase().trim();
-    
+
     if (t === '__all') {
       filteredItems = cards;
     } else {
@@ -151,7 +151,7 @@
         return tags.includes(t);
       });
     }
-    
+
     currentPage = 1;
     renderPage();
   }
@@ -187,7 +187,7 @@
   // Função para renderizar os botões de paginação
   function renderPagination(totalPages) {
     if (!pagination) return;
-    
+
     if (totalPages <= 1) {
       pagination.innerHTML = '';
       return;
@@ -254,7 +254,7 @@
         tagButtons.forEach(b => b.classList.remove('active'));
         // Adiciona active no clicado
         btn.classList.add('active');
-        
+
         currentTag = btn.getAttribute('data-tag');
         filterItems(currentTag);
       });
@@ -264,3 +264,17 @@
   // Inicializa mostrando todos os items
   filterItems('__all');
 })();
+
+
+/* =========================
+ * 5) MailerLite Universal Form
+ * ========================= */
+(function (w, d, e, u, f, l, n) {
+  w[f] = w[f] || function () {
+    (w[f].q = w[f].q || [])
+    .push(arguments);
+  }, l = d.createElement(e), l.async = 1, l.src = u,
+  n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+})
+  (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+ml('account', '2139800');

@@ -2,20 +2,57 @@
   <article class="about-section">
     <!-- Hero Section -->
     <section class="hero-section">
-      <h1 class="display-6 fw-bold">Hi there 👋</h1>
+      <h1 class="display-6">Hi there 👋</h1>
       <p class="lead mb-4">
-        I'm a <strong>Senior Data Engineer</strong> with <span class="years-experience"></span> years
-        architecting distributed systems, and an <strong>MSc candidate at USP</strong>
+        I'm a <strong>Data Engineer</strong> with <span class="years-experience"></span> years
+        architecting distributed systems, batch and real-time processing pipelines, and I am <strong>MSc candidate at USP</strong>
         researching how Large Language Models can understand geospatial queries and passionate about bridging AI research
-        with production-grade systems.
+        with production systems.
       </p>
+    </section>
+
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- About Me Section -->
+    <section class="about-me-section mb-5">
+      <div class="row g-4 align-items-center">
+        <div class="col-12 col-md-5">
+          <div class="aviation-photo-wrapper">
+            <img src="/aviation.jpeg" alt="Flying an aircraft" class="aviation-photo">
+            <div class="photo-caption">
+              <i class="bi bi-airplane"></i>
+              <span>Flying over Brazilian Airspace</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-7">
+          <h4 class="h4 mb-3">Beyond the Code</h4>
+          <p class="mb-3">
+            When I'm not architecting data pipelines or fine-tuning language models, 
+            you'll find me in the cockpit pursuing my second passion: <strong>aviation</strong>.
+          </p>
+          <p class="mb-3">
+            There's something deeply satisfying about the parallels between flying and engineering—both 
+            require meticulous planning, precise execution, and the ability to adapt when conditions change. 
+            Whether I'm debugging a distributed system at 30,000 feet of altitude or optimizing query 
+            performance on the ground, the challenge is what drives me.
+          </p>
+          <p class="mb-0">
+            Flying has taught me to stay calm under pressure, make critical decisions with incomplete 
+            information, and always have a backup plan. Skills that translate surprisingly well to 
+            production systems running at scale.
+          </p>
+        </div>
+      </div>
     </section>
 
     <div class="section-divider"></div>
 
     <!-- Tech Stack -->
     <section class="tech-stack mb-5">
-      <h2 class="h4 fw-bold mb-4">Tech Stack</h2>
+      <h4 class="h4 mb-4">Tech Stack</h4>
       <div class="tech-grid">
         <div class="tech-item">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" class="tech-logo">
@@ -66,6 +103,12 @@
           <span>AWS</span>
         </div>
         <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg"
+              alt="Google Cloud"
+              class="tech-logo">
+          <span>GCP</span>
+        </div>
+        <div class="tech-item">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="Docker" class="tech-logo">
           <span>Docker</span>
         </div>
@@ -76,7 +119,7 @@
 
     <!-- Experience Timeline -->
     <section class="experience-timeline mb-5">
-      <h2 class="h4 fw-bold mb-4">Professional Journey</h2>
+      <h4 class="h4 mb-4">Professional Journey</h4>
       <div class="total-experience-card mb-4">
         <div class="d-flex align-items-center gap-2">
           <div class="experience-icon">
@@ -95,16 +138,34 @@
           <div class="timeline-marker"></div>
           <div class="timeline-content">
             <div class="d-flex align-items-center gap-2 mb-2">
-              <img src="/companies/pulsus.png" alt="Pulsus" class="company-logo">
+              <img src="/companies/ollie.png" alt="Pulsus" class="company-logo">
               <div>
-                <h5 class="fw-bold mb-0">Senior Data Engineer</h5>
-                <span class="text-muted small">Pulsus</span>
+                <h5 class="fw-bold mb-0">Lead Data Engineer</h5>
+                <a class="small company-name" href="{{ .Site.Params.companies.ollie }}" target="_blank">Ollie</a>
               </div>
             </div>
             <div class="timeline-period">
               <i class="bi bi-calendar3"></i>
-              <span>Aug 2022 – Present</span>
+              <span>Feb 2026 – Present</span>
               <span class="badge bg-success ms-2">Current</span>
+              <!-- <span class="timeline-duration">3y 5m</span> -->
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <img src="/companies/pulsus.png" alt="Pulsus" class="company-logo">
+              <div>
+                <h5 class="fw-bold mb-0">Senior Data Engineer</h5>
+                <a class="small company-name" href="{{ .Site.Params.companies.pulsus }}" target="_blank">Pulsus</a>
+              </div>
+            </div>
+            <div class="timeline-period">
+              <i class="bi bi-calendar3"></i>
+              <span>Aug 2022 – Feb 2026</span>
+              <span class="timeline-duration">3y 6m</span>
               <!-- <span class="timeline-duration">3y 5m</span> -->
             </div>
           </div>
@@ -117,7 +178,7 @@
               <img src="/companies/act.png" alt="Grupo Globo" class="company-logo">
               <div>
                 <h5 class="fw-bold mb-0">Senior Data Engineer</h5>
-                <span class="text-muted small">ACT Digital (Grupo Globo)</span>
+                <a class="small company-name" href="{{ .Site.Params.companies.actdigital }}" target="_blank">ACT Digital</a>
               </div>
             </div>
             <div class="timeline-period">
@@ -135,7 +196,7 @@
               <img src="/companies/ciandt.png" alt="CI&T" class="company-logo">
               <div>
                 <h5 class="fw-bold mb-0">Data Engineer</h5>
-                <span class="text-muted small">CI&T (Bradesco)</span>
+                <a class="small company-name" href="{{ .Site.Params.companies.ciandt }}" target="_blank">CI&T</a>
               </div>
             </div>
             <div class="timeline-period">
@@ -153,7 +214,7 @@
               <img src="/companies/ey.png" alt="Ernst & Young" class="company-logo">
               <div>
                 <h5 class="fw-bold mb-0">Data Engineer</h5>
-                <span class="text-muted small">Ernst & Young (Bradesco)</span>
+                <a class="small company-name" href="{{ .Site.Params.companies.ey }}" target="_blank">Ernst & Young</a>
               </div>
             </div>
             <div class="timeline-period">
@@ -168,10 +229,10 @@
           <div class="timeline-marker"></div>
           <div class="timeline-content">
             <div class="d-flex align-items-center gap-2 mb-2">
-              <img src="/companies/movile.png" alt="Movile" class="company-logo">
+              <img src="/companies/wavy.png" alt="Movile" class="company-logo">
               <div>
-                <h5 class="fw-bold mb-0">Business Analyst / Data Engineer</h5>
-                <span class="text-muted small">Movile</span>
+                <h5 class="fw-bold mb-0">Business Analyst</h5>
+                <a class="small company-name" href="{{ .Site.Params.companies.wavy }}" target="_blank">Wavy (Now Sinch)</a>
               </div>
             </div>
             <div class="timeline-period">
@@ -187,26 +248,86 @@
 
     <div class="section-divider"></div>
 
+    <!-- Education -->
+    <section class="education-section mb-5">
+      <h4 class="h4 mb-4">Education</h4>
+      <div class="education-grid">
+        
+        <!-- Mestrado -->
+        <div class="education-item">
+          <img src="/universities/usp.png" alt="USP" class="university-logo">
+          <div class="education-content">
+            <h5 class="education-degree">
+              MSc in Computer Science
+              <span class="education-badge">
+                <i class="bi bi-clock"></i>
+                In Progress
+              </span>
+            </h5>
+            <a class="education-institution" href="https://www5.usp.br" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-geo-alt-fill"></i>
+              University of São Paulo (USP)
+            </a>
+            <div class="education-period">2023 – Present</div>
+            <div class="education-research">
+              <strong>Research:</strong> Automated Translation of Natural Language Geospatial Queries into SQL
+            </div>
+          </div>
+        </div>
+        
+        <!-- Graduação -->
+        <div class="education-item">
+          <img src="/universities/ifsp.png" alt="IFSP" class="university-logo">
+          <div class="education-content">
+            <h5 class="education-degree">Associate Degree in Systems Analysis and Development</h5>
+            <a class="education-institution" href="https://bra.ifsp.edu.br" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-geo-alt-fill"></i>
+              Federal Institute of São Paulo (IFSP)
+            </a>
+            <div class="education-period">2016 – 2021</div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    <div class="section-divider"></div>
+    <!-- Research Interests -->
+    <section class="research-interests mb-5">
+      <h4 class="h4 mb-4">Research Interests</h4>
+
+      <div class="research-box">
+       <ul class="research-list">
+        <li>Natural Language Processing</li>
+        <li>Computational Linguistics</li>
+        <li>Neural-Symbolic Integration</li>
+        <li>Text-to-Code Generation</li>
+        <li>Semantic Parsing</li>
+        <li>Database Systems</li>
+      </ul>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+
      <!-- Core Expertise -->
     <section class="technical-focus mb-5">
-      <h2 class="h4 fw-bold mb-4">Core Expertise</h2>
+      <h4 class="h4 mb-4">Technical Expertise</h4>
       <div class="row g-4">
 
         <!-- 1. Distributed Systems & Platform Engineering -->
         <div class="col-12 col-md-4">
           <div class="p-4 border rounded h-100 bg-light">
             <div class="d-flex align-items-center mb-3">
-              <div class="text-primary me-3" style="font-size: 2.5rem;">🏗️</div>
-              <h4 class="fw-bold mb-0">Distributed Systems</h4>
+              <div class="text-primary me-3" style="font-size: 1.5rem;">🏗️</div>
+              <h5 class="mb-0">Distributed Systems</h5>
             </div>
-            <p class="mb-3">
-              <strong>Platform Engineering at Scale</strong><br>
-            </p>
             <ul class="mb-3 ps-3 expertise-list">
-              <li>Apache Cassandra (multi-AZ, 13μs P50 latency)</li>
-              <li>Lakehouse Architecture (Iceberg + S3 + Trino)</li>
-              <li>Exactly-once Processing & Fault Tolerance</li>
-              <li>AWS Multi-Region Architectures</li>
+              <li>High-availability architectures</li>
+              <li>Fault-tolerant pipelines</li>
+              <li>Low-latency distributed databases</li>
+              <li>Multi-region replication</li>
+              <li>Exactly-once processing semantics</li>
             </ul>
             <p class="text-muted small mb-0">
               <i class="bi bi-shield-check"></i>
@@ -219,17 +340,15 @@
         <div class="col-12 col-md-4">
           <div class="p-4 border rounded h-100 bg-light">
             <div class="d-flex align-items-center mb-3">
-              <div class="text-primary me-3" style="font-size: 2.5rem;">⚙️</div>
-              <h4 class="fw-bold mb-0">Data Engineering</h4>
+              <div class="text-primary me-3" style="font-size: 1.5rem;">⚙️</div>
+              <h5 class="mb-0">Data Engineering</h5>
             </div>
-            <p class="mb-3">
-              <strong><span class="years-experience"></span> years building data platforms</strong><br>
-            </p>
             <ul class="mb-3 ps-3 expertise-list">
-              <li>Stream & Batch Processing (Kafka, Spark, Flink)</li>
-              <li>Query Federation & Optimization (Trino, Hive)</li>
-              <li>Data Quality & Governance (Glue, lineage)</li>
-              <li>ELT Pipelines & Orchestration (Airflow)</li>
+              <li>Real-time & batch processing</li>
+              <li>Query optimization & federation</li>
+              <li>Lakehouse architecture</li>
+              <li>Data governance & lineage</li>
+              <li>Pipeline orchestration</li>
             </ul>
             <p class="text-muted small mb-0">
               <i class="bi bi-graph-up"></i>
@@ -239,27 +358,27 @@
         </div>
 
         <!-- 3. AI Research & Performance -->
+        <!-- 3. ML Systems & Applied AI -->
         <div class="col-12 col-md-4">
           <div class="p-4 border rounded h-100 bg-light">
             <div class="d-flex align-items-center mb-3">
-              <div class="text-primary me-3" style="font-size: 2.5rem;">🧠</div>
-              <h4 class="fw-bold mb-0">AI & Performance</h4>
+              <div class="text-primary me-3" style="font-size: 1.5rem;">🧠</div>
+              <h5 class="mb-0">Applied AI</h5>
             </div>
-            <p class="mb-3">
-              <strong>MSc Research @ USP</strong><br>
-            </p>
             <ul class="mb-3 ps-3 expertise-list">
-              <li>Text-to-SQL with LLM Fine-tuning (Transformers)</li>
-              <li>Parameter-efficient Training (PEFT Models)</li>
-              <li>HPC Optimization (C++, SIMD, profiling)</li>
-              <li>Geospatial Analytics (PostGIS)</li>
+              <li>LLM fine-tuning pipelines</li>
+              <li>Evaluation frameworks for ML models</li>
+              <li>Model integration with data platforms</li>
+              <li>Feature engineering & data preparation for ML</li>
+              <li>Performance optimization of ML workloads</li>
             </ul>
             <p class="text-muted small mb-0">
-              <i class="bi bi-journal-text"></i>
-              Brazilian Portuguese text-to-SQL dataset and LLM for Text-to-SQL fine-tuning for geospatial data.
+              <i class="bi bi-cpu"></i>
+              Bridging research models with production-grade data systems.
             </p>
           </div>
         </div>
+
 
       </div>
     </section>
@@ -270,7 +389,7 @@
     {{ $blogPosts := where .Site.RegularPages "Section" "blog" }}
     {{ if gt (len $blogPosts) 0 }}
     <section class="latest-posts mb-5">
-      <h2 class="h4 fw-bold mb-4">Latest Posts</h2>
+      <h2 class="h4 mb-4">Latest Posts</h2>
       <div class="row g-4">
         {{ range first 3 $blogPosts }}
         <div class="col-12 col-md-6 col-lg-4">
@@ -298,14 +417,31 @@
         {{ end }}
       </div>
     </section>
+    <section class="newsletter-section mt-5">
+      <div class="newsletter-card">
+        <div class="newsletter-card-header">
+          <div class="newsletter-icon">
+            <span class="newsletter-emoji-icon">📬</span>
+          </div>
+          <div>
+            <h4 class="newsletter-title">Enjoyed the posts?</h4>
+            <p class="newsletter-description">
+              Get new articles on data engineering, distributed systems and AI research — straight to your inbox. No spam, unsubscribe anytime.
+            </p>
+          </div>
+        </div>
+        <div class="ml-embedded" data-form="0ZWAxD"></div>
+      </div>
+    </section>
+
     <div class="section-divider"></div>
     {{ end }}
-
+    
     <!-- Featured Projects -->
     {{ $featuredProjects := where (where .Site.RegularPages "Section" "projects") ".Params.featured" true }}
     {{ if gt (len $featuredProjects) 0 }}
     <section class="featured-projects mb-5">
-      <h2 class="h4 fw-bold mb-4">Latest Projects</h2>
+      <h2 class="h4 mb-4">Latest Projects</h2>
       <div class="row g-4">
         {{ range first 2 $featuredProjects }}
         <div class="col-12 col-md-6">
@@ -342,7 +478,7 @@
       {{ $allProjects := where .Site.RegularPages "Section" "projects" }}
       {{ if gt (len $allProjects) 0 }}
       <section class="featured-projects mb-5">
-        <h2 class="h4 fw-bold mb-4">Latest Projects</h2>
+        <h2 class="h4 mb-4">Latest Projects</h2>
         <div class="row g-4">
           {{ range first 2 $allProjects }}
           <div class="col-12 col-md-6">
@@ -376,7 +512,7 @@
       <div class="section-divider"></div>
       {{ end }}
     {{ end }}
-
+    
     <!-- CTA Section -->
   <section class="cta-section text-center py-5 px-4 bg-light rounded">
     <h2 class="h4 fw-bold mb-3">Ready to Build Something Amazing?</h2>
