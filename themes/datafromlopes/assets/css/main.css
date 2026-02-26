@@ -2608,6 +2608,32 @@ a.organization-badge:focus {
   }
 }
 
+.research-box .research-list {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  gap: 0.75rem;
+}
+
+.research-box .research-list li {
+  display: block !important;
+  background: rgba(159, 176, 201, 0.08) !important;
+  border-radius: 8px !important;
+  padding: 1rem 1.25rem 1rem 2.75rem !important;
+  width: auto !important;
+  margin-bottom: 0 !important;
+  font-size: 1rem !important;
+  border-left: 3px solid var(--accent) !important;
+  position: relative !important;
+}
+
+@media (max-width: 768px) {
+  .research-box .research-list li {
+    padding: 0.875rem 1rem 0.875rem 2.5rem !important;
+    font-size: 0.95rem !important;
+  }
+}
 /* =========================================
    ABOUT ME SECTION
    ========================================= */
