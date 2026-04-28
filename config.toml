@@ -1,6 +1,6 @@
 baseURL = 'https://www.datafromlopes.com/'
 languageCode = 'en-us'
-title = 'Diego Lopes | Data Engineer & AI Researcher'
+title = 'Diego Lopes | Software Engineer, Data & NLP Researcher'
 theme = 'datafromlopes'
 
 enableRobotsTXT = true
@@ -10,8 +10,8 @@ pagination.path = "page"
 [params]
   name = "Diego Lopes"
   description = 'MSc in Computer Science @ IME-USP'
-  tagline = "Data Engineer & Researcher"
-  location = "São Paulo, Brazil"
+  tagline = "SWE, Data & NLP Researcher"
+  location = "São Paulo, São Paulo, Brazil"
 
   [params.social]
     linkedin = "https://www.linkedin.com/in/datafromlopes"
