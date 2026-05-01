@@ -1,15 +1,15 @@
 {{ define "main" }}
 <article class="blog-section py-4">
 
-  <!-- Header da página -->
+  <!-- Header -->
   <div class="mb-5">
-    <h1 class="display-6 fw-bold mb-3">Blog</h1>
-    <p class="lead text-muted mb-1">
+    <h1 class="fw-bold mb-2" style="font-size: 1.875rem; letter-spacing: -.025em; color: var(--text);">Blog</h1>
+    <p class="lead mb-0" style="font-size: .9375rem; color: var(--text-2);">
       Insights on ML systems, data engineering, and software architecture
     </p>
   </div>
 
-  <!-- Filtro de tags -->
+  <!-- Filter -->
   {{ $allTags := slice }}
   {{ range $k, $_ := .Site.Taxonomies.tags }}
     {{ $allTags = $allTags | append $k }}
@@ -17,124 +17,117 @@
   {{ $allTags = sort $allTags }}
 
   {{ if gt (len $allTags) 0 }}
-    <div class="filter-section mb-4">
-      <div class="d-flex align-items-center mb-3">
-        <i class="bi bi-funnel text-primary me-2"></i>
-        <span class="fw-semibold">Filter by topic:</span>
-      </div>
-      <div id="tag-filter" class="tag-filter-grid">
-        <button class="tag-filter-btn active" data-tag="__all">
-          <i class="bi bi-grid-3x3-gap"></i> All Posts
-        </button>
-        {{ range $allTags }}
-          <button class="tag-filter-btn" data-tag="{{ . }}">{{ . }}</button>
-        {{ end }}
-      </div>
+  <div class="filter-section mb-4">
+    <div class="d-flex align-items-center mb-3" style="gap: .4rem;">
+      <i class="bi bi-funnel" style="color: var(--accent); font-size: .875rem;"></i>
+      <span style="font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);">Filter by topic</span>
     </div>
+    <div id="tag-filter" class="tag-filter-grid">
+      <button class="tag-filter-btn active" data-tag="__all">
+        <i class="bi bi-grid-3x3-gap"></i> All
+      </button>
+      {{ range $allTags }}
+      <button class="tag-filter-btn" data-tag="{{ . }}">{{ . }}</button>
+      {{ end }}
+    </div>
+  </div>
   {{ end }}
 
-  <!-- Contador de resultados -->
-  <div id="results-info" class="mb-3 text-muted small">
+  <!-- Results count -->
+  <div id="results-info" class="mb-3" style="font-size: .75rem; color: var(--muted); font-family: var(--font-mono);">
     <span id="showing-count"></span>
   </div>
 
-  <!-- Grid de posts (TODOS, sem paginação do Hugo) -->
+  <!-- Blog grid -->
   <div id="post-list" class="blog-grid">
     {{ if gt (len .Pages) 0 }}
       {{ range .Pages.ByDate.Reverse }}
-        <article class="blog-card" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
+      <article class="blog-card" data-tags="{{ with .Params.tags }}{{ delimit . "," }}{{ end }}">
 
-          <!-- Imagem de capa -->
-          {{ $coverName := cond (isset .Params "image") .Params.image (cond (isset .Params "cover") .Params.cover nil) }}
-          {{ if $coverName }}
-            {{ $img := .Resources.GetMatch $coverName }}
-            {{ if not $img }}{{ $img = resources.Get $coverName }}{{ end }}
-            {{ if $img }}
-              {{ $cover := $img.Fill "800x400 center" }}
-              <a href="{{ .RelPermalink }}" class="blog-card-image">
-                <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" loading="lazy" decoding="async">
-                <div class="blog-card-overlay"></div>
-              </a>
-            {{ else }}
-              <div class="blog-card-image blog-card-placeholder">
-                <div class="placeholder-content">
-                  <i class="bi bi-file-earmark-text"></i>
-                </div>
-              </div>
-            {{ end }}
+        <!-- Cover image -->
+        {{ $coverName := cond (isset .Params "image") .Params.image (cond (isset .Params "cover") .Params.cover nil) }}
+        {{ if $coverName }}
+          {{ $img := .Resources.GetMatch $coverName }}
+          {{ if not $img }}{{ $img = resources.Get $coverName }}{{ end }}
+          {{ if $img }}
+            {{ $cover := $img.Fill "800x400 center" }}
+            <a href="{{ .RelPermalink }}" class="blog-card-image">
+              <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" loading="lazy" decoding="async">
+              <div class="blog-card-overlay"></div>
+            </a>
           {{ else }}
             <div class="blog-card-image blog-card-placeholder">
-              <div class="placeholder-content">
-                <i class="bi bi-file-earmark-text"></i>
-              </div>
+              <div class="placeholder-content"><i class="bi bi-file-earmark-text"></i></div>
             </div>
           {{ end }}
-
-          <!-- Conteúdo do card -->
-          <div class="blog-card-body">
-
-            <!-- Tags inline -->
-            {{ with .Params.tags }}
-            <div class="blog-card-tags-top">
-              {{ range first 4 . }}
-                <span class="blog-tag-inline">{{ . }}</span>
-              {{ end }}
-              {{ if gt (len .) 4 }}
-                <span class="blog-tag-inline blog-tag-more">
-                  +{{ sub (len .) 4 }}
-                </span>
-              {{ end }}
-            </div>
-            {{ end }}
-
-            <!-- Título -->
-            <a href="{{ .RelPermalink }}" class="blog-card-title">
-              <h3>{{ .Title }}</h3>
-            </a>
-
-            <!-- Descrição/Excerpt -->
-            {{ with .Summary }}
-            <p class="blog-card-description">{{ . | truncate 150 }}</p>
-            {{ end }}
-
-            <!-- Meta info -->
-            <div class="blog-card-meta">
-              <span class="meta-item">
-                <i class="bi bi-calendar3"></i>
-                <time datetime="{{ .Date.Format "2006-01-02" }}">
-                  {{ .Date.Format "Jan 02, 2006" }}
-                </time>
-              </span>
-              <span class="meta-item">
-                <i class="bi bi-clock"></i>
-                {{ .ReadingTime }} min read
-              </span>
-              {{ with .Params.author }}
-              <span class="meta-item">
-                <i class="bi bi-person"></i>
-                {{ . }}
-              </span>
-              {{ end }}
-            </div>
-
+        {{ else }}
+          <div class="blog-card-image blog-card-placeholder">
+            <div class="placeholder-content"><i class="bi bi-file-earmark-text"></i></div>
           </div>
-        </article>
+        {{ end }}
+
+        <!-- Card body -->
+        <div class="blog-card-body">
+
+          <!-- Tags -->
+          {{ with .Params.tags }}
+          <div class="blog-card-tags-top">
+            {{ range first 4 . }}
+            <span class="blog-tag-inline">{{ . }}</span>
+            {{ end }}
+            {{ if gt (len .) 4 }}
+            <span class="blog-tag-inline blog-tag-more">+{{ sub (len .) 4 }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+
+          <!-- Title -->
+          <a href="{{ .RelPermalink }}" class="blog-card-title">
+            <h3>{{ .Title }}</h3>
+          </a>
+
+          <!-- Description -->
+          {{ with .Summary }}
+          <p class="blog-card-description">{{ . | truncate 150 }}</p>
+          {{ end }}
+
+          <!-- Meta -->
+          <div class="blog-card-meta">
+            <span class="meta-item">
+              <i class="bi bi-calendar3"></i>
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02, 2006" }}</time>
+            </span>
+            <span class="meta-item">
+              <i class="bi bi-clock"></i>
+              {{ .ReadingTime }} min read
+            </span>
+            {{ with .Params.author }}
+            <span class="meta-item">
+              <i class="bi bi-person"></i>
+              {{ . }}
+            </span>
+            {{ end }}
+          </div>
+
+        </div>
+      </article>
       {{ end }}
     {{ else }}
       <div class="col-12">
-        <div class="alert alert-light text-center py-5">
-          <i class="bi bi-inbox display-4 text-muted d-block mb-3"></i>
-          <p class="lead text-muted mb-0">No blog posts yet. Stay tuned!</p>
+        <div class="text-center py-5" style="color: var(--muted);">
+          <i class="bi bi-inbox" style="font-size: 2.5rem; display: block; margin-bottom: 1rem; opacity: .4;"></i>
+          <p style="font-size: .9375rem; margin: 0;">No blog posts yet. Stay tuned!</p>
         </div>
       </div>
     {{ end }}
   </div>
 
+  <!-- Newsletter -->
   <section class="newsletter-section mt-5 mb-4">
     <div class="newsletter-card">
       <div class="newsletter-card-header">
         <div class="newsletter-icon">
-          📬
+          <span>📬</span>
         </div>
         <div>
           <h4 class="newsletter-title">Enjoyed the posts?</h4>
@@ -146,12 +139,10 @@
       <div class="ml-embedded" data-form="0ZWAxD"></div>
     </div>
   </section>
-  
-  <!-- Paginação -->
-  <nav id="pagination" class="mt-5 d-flex justify-content-center" aria-label="Paginação do blog">
-    <ul class="pagination">
-      <!-- Será preenchido pelo JavaScript -->
-    </ul>
+
+  <!-- Pagination -->
+  <nav id="pagination" class="mt-5 d-flex justify-content-center" aria-label="Blog pagination">
+    <ul class="pagination"></ul>
   </nav>
 
 </article>

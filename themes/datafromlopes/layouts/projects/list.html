@@ -1,28 +1,29 @@
 {{ define "main" }}
 <article class="project-section py-4">
-  <!-- Header da página -->
+
+  <!-- Header -->
   <div class="mb-5">
-    <h1 class="display-6 fw-bold mb-3">Projects</h1>
-    <p class="lead text-muted mb-1">
+    <h1 class="fw-bold mb-2" style="font-size: 1.875rem; letter-spacing: -.025em; color: var(--text);">Projects</h1>
+    <p class="lead mb-0" style="font-size: .9375rem; color: var(--text-2);">
       Exploring ML systems, distributed architectures, and performance optimization
     </p>
   </div>
 
-  <!-- Filtro de tags -->
+  <!-- Filter -->
   {{ $allTags := slice }}
   {{ range $k, $_ := .Site.Taxonomies.tags }}
-  {{ $allTags = $allTags | append $k }}
+    {{ $allTags = $allTags | append $k }}
   {{ end }}
   {{ $allTags = sort $allTags }}
   {{ if gt (len $allTags) 0 }}
   <div class="filter-section mb-4">
-    <div class="d-flex align-items-center mb-3">
-      <i class="bi bi-funnel text-primary me-2"></i>
-      <span class="fw-semibold">Filter by topic:</span>
+    <div class="d-flex align-items-center mb-3" style="gap: .4rem;">
+      <i class="bi bi-funnel" style="color: var(--accent); font-size: .875rem;"></i>
+      <span style="font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);">Filter by topic</span>
     </div>
     <div id="tag-filter" class="tag-filter-grid">
       <button class="tag-filter-btn active" data-tag="__all">
-        <i class="bi bi-grid-3x3-gap"></i> All Projects
+        <i class="bi bi-grid-3x3-gap"></i> All
       </button>
       {{ range $allTags }}
       <button class="tag-filter-btn" data-tag="{{ . }}">{{ . }}</button>
@@ -31,47 +32,43 @@
   </div>
   {{ end }}
 
-  <!-- Contador de resultados -->
-  <div id="results-info" class="mb-3 text-muted small">
+  <!-- Results count -->
+  <div id="results-info" class="mb-3" style="font-size: .75rem; color: var(--muted); font-family: var(--font-mono);">
     <span id="showing-count"></span>
   </div>
 
-  <!-- Grid de projetos -->
+  <!-- Projects grid -->
   <div id="post-list" class="projects-grid">
     {{ $ongoing := where .Pages "Params.projectStatus" "ongoing" }}
-    {{ $others := where .Pages "Params.projectStatus" "!=" "ongoing" }}
+    {{ $others  := where .Pages "Params.projectStatus" "!=" "ongoing" }}
     {{ $sortedPages := union ($ongoing.ByDate.Reverse) ($others.ByDate.Reverse) }}
     {{ range $sortedPages }}
     <article class="project-card" data-tags="{{ with .Params.tags }}{{ delimit . " ," }}{{ end }}">
       <div class="project-card-body">
 
-        <!-- 1. Título -->
+        <!-- Title -->
         <a href="{{ .RelPermalink }}" class="project-card-title">
           <h3>{{ .Title }}</h3>
         </a>
 
-        <!-- 2. Datas (Postagem e Última Atualização) -->
+        <!-- Dates -->
         <div class="project-card-dates">
           <span class="date-item">
             <span class="date-label">Posted:</span>
-            <time datetime="{{ .Date.Format " 2006-01-02" }}">
-              {{ .Date.Format "Jan 2006" }}
-            </time>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
           </span>
           {{ if .Lastmod }}
-          {{ if ne (.Date.Format "2006-01-02") (.Lastmod.Format "2006-01-02") }}
-          <span class="date-separator">•</span>
-          <span class="date-item">
-            <span class="date-label">Updated:</span>
-            <time datetime="{{ .Lastmod.Format " 2006-01-02" }}">
-              {{ .Lastmod.Format "Jan 2006" }}
-            </time>
-          </span>
-          {{ end }}
+            {{ if ne (.Date.Format "2006-01-02") (.Lastmod.Format "2006-01-02") }}
+            <span class="date-separator">·</span>
+            <span class="date-item">
+              <span class="date-label">Updated:</span>
+              <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "Jan 2006" }}</time>
+            </span>
+            {{ end }}
           {{ end }}
         </div>
 
-        <!-- 3. Tech Stack -->
+        <!-- Tech Stack -->
         {{ with .Params.tech_stack }}
         <div class="tech-stack-pills">
           {{ range split . ", " }}
@@ -82,12 +79,12 @@
         </div>
         {{ end }}
 
-        <!-- 4. Descrição -->
+        <!-- Description -->
         {{ with .Summary }}
         <p class="project-card-description">{{ . }}</p>
         {{ end }}
 
-        <!-- 5. Tags -->
+        <!-- Tags -->
         {{ with .Params.tags }}
         <div class="project-card-tags">
           {{ range first 4 . }}
@@ -99,11 +96,10 @@
         </div>
         {{ end }}
 
-        <!-- 6. Linha divisória + Badges (Organização, Status, Duração) -->
+        <!-- Footer badges -->
         {{ if or .Params.organization .Params.projectStatus .Params.projectStartDate }}
         <div class="project-meta-footer">
 
-          <!-- Organização -->
           {{ if .Params.organization }}
             {{ if .Params.organizationUrl }}
               <a href="{{ .Params.organizationUrl }}" class="footer-badge organization-badge" target="_blank" rel="noopener">
@@ -120,7 +116,6 @@
             {{ end }}
           {{ end }}
 
-          <!-- Status -->
           {{ if .Params.projectStatus }}
           <span class="footer-badge status-badge status-{{ .Params.projectStatus }}">
             {{ $status := .Params.projectStatus }}
@@ -132,25 +127,21 @@
           </span>
           {{ end }}
 
-          <!-- Duração (em meses ou anos) -->
           {{ if and .Params.projectStartDate .Params.projectEndDate }}
           {{ $start := time.AsTime .Params.projectStartDate }}
-          {{ $end := time.AsTime .Params.projectEndDate }}
+          {{ $end   := time.AsTime .Params.projectEndDate }}
           {{ $diffDays := $end.Sub $start }}
           {{ $totalMonths := div (int (div $diffDays.Hours 24)) 30 }}
-
           {{ if gt $totalMonths 0 }}
           <span class="footer-badge duration-badge">
             <i class="bi bi-clock-history"></i>
             {{ if ge $totalMonths 12 }}
-            {{ $years := div $totalMonths 12 }}
-            {{ $remainingMonths := mod $totalMonths 12 }}
-            {{ $years }} {{ if eq $years 1 }}year{{ else }}years{{ end }}
-            {{ if gt $remainingMonths 0 }}
-            {{ $remainingMonths }} {{ if eq $remainingMonths 1 }}month{{ else }}months{{ end }}
-            {{ end }}
+              {{ $years := div $totalMonths 12 }}
+              {{ $rem   := mod $totalMonths 12 }}
+              {{ $years }} {{ if eq $years 1 }}year{{ else }}years{{ end }}
+              {{ if gt $rem 0 }} {{ $rem }} {{ if eq $rem 1 }}month{{ else }}months{{ end }}{{ end }}
             {{ else }}
-            {{ $totalMonths }} {{ if eq $totalMonths 1 }}month{{ else }}months{{ end }}
+              {{ $totalMonths }} {{ if eq $totalMonths 1 }}month{{ else }}months{{ end }}
             {{ end }}
           </span>
           {{ end }}
@@ -159,9 +150,9 @@
         </div>
         {{ end }}
 
-      </div> <!-- Fecha project-card-body -->
+      </div><!-- /project-card-body -->
 
-      <!-- 7. Botão View Project (FORA do card-body, à direita) -->
+      <!-- View project button -->
       <div class="project-card-footer">
         <a href="{{ .RelPermalink }}" class="project-card-link">
           View project <i class="bi bi-arrow-right"></i>
@@ -172,11 +163,10 @@
     {{ end }}
   </div>
 
-  <!-- Paginação -->
+  <!-- Pagination -->
   <nav id="pagination" class="mt-5 d-flex justify-content-center" aria-label="Project pagination">
-    <ul class="pagination">
-      <!-- Será preenchido pelo JavaScript -->
-    </ul>
+    <ul class="pagination"></ul>
   </nav>
+
 </article>
 {{ end }}

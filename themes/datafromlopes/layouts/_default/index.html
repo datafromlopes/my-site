@@ -1,15 +1,14 @@
 {{ define "main" }}
   <article class="about-section">
+
     <!-- Hero Section -->
     <section class="hero-section">
       <h1 class="display-6">Hi there 👋</h1>
       <p class="lead mb-4">
-        <strong>Lead Software Engineer, Data</strong> with <span class="years-experience"></span> years building distributed systems, large-scale data platforms, and high-throughput pipelines in production.
-I'm an MSc researcher at the University of São Paulo (USP), where my work sits at the intersection of NLP and databases — specifically, natural language interfaces for structured data and Text-to-SQL systems. I study how large language models can be fine-tuned to understand complex data schemas, connecting production-grade infrastructure with research in computational linguistics.
-I write about distributed systems, data platform engineering, and NLP research — with a focus on what actually works at scale.
+        <strong>Software Engineer, Data</strong> with <span class="years-experience"></span> years building large-scale distributed systems in production — and an <strong>MSc researcher at USP</strong> studying how language models can understand and interact with complex computational systems.
+        My engineering work lives at the boundary of distributed systems, high-throughput data platforms, and low-level performance. My research asks a harder question: can a model read a scientific paper and reproduce the experiment described in it?
+        I write about systems engineering, NLP research, and what happens when the two collide.
       </p>
-    </section>
-
     </section>
 
     <div class="section-divider"></div>
@@ -29,18 +28,18 @@ I write about distributed systems, data platform engineering, and NLP research �
         <div class="col-12 col-md-7">
           <h4 class="h4 mb-3">Beyond the Code</h4>
           <p class="mb-3">
-            When I'm not architecting data pipelines or fine-tuning language models, 
+            When I'm not architecting data pipelines or fine-tuning language models,
             you'll find me in the cockpit pursuing my second passion: <strong>aviation</strong>.
           </p>
           <p class="mb-3">
-            There's something deeply satisfying about the parallels between flying and engineering—both 
-            require meticulous planning, precise execution, and the ability to adapt when conditions change. 
-            Whether I'm debugging a distributed system at 30,000 feet of altitude or optimizing query 
+            There's something deeply satisfying about the parallels between flying and engineering — both
+            require meticulous planning, precise execution, and the ability to adapt when conditions change.
+            Whether I'm debugging a distributed system at 30,000 feet of altitude or optimizing query
             performance on the ground, the challenge is what drives me.
           </p>
           <p class="mb-0">
-            Flying has taught me to stay calm under pressure, make critical decisions with incomplete 
-            information, and always have a backup plan. Skills that translate surprisingly well to 
+            Flying has taught me to stay calm under pressure, make critical decisions with incomplete
+            information, and always have a backup plan. Skills that translate surprisingly well to
             production systems running at scale.
           </p>
         </div>
@@ -102,9 +101,7 @@ I write about distributed systems, data platform engineering, and NLP research �
           <span>AWS</span>
         </div>
         <div class="tech-item">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg"
-              alt="Google Cloud"
-              class="tech-logo">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" class="tech-logo">
           <span>GCP</span>
         </div>
         <div class="tech-item">
@@ -116,275 +113,272 @@ I write about distributed systems, data platform engineering, and NLP research �
 
     <div class="section-divider"></div>
 
-    <!-- Experience Timeline -->
-    <section class="experience-timeline mb-5">
-      <h4 class="h4 mb-4">Professional Journey</h4>
-      <div class="total-experience-card mb-4">
-        <div class="d-flex align-items-center gap-2">
-          <div class="experience-icon">
-            <i class="bi bi-briefcase-fill"></i>
-          </div>
-          <div>
-            <div class="experience-label">Total Experience</div>
-            <div class="experience-value">
-              <span class="years-months-experience"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="d-flex align-items-center gap-2 mb-2">
-              <img src="/companies/ollie.png" alt="Pulsus" class="company-logo">
-              <div>
-                <h5 class="fw-bold mb-0">Lead Software Engineer, Data</h5>
-                <a class="small company-name" href="{{ .Site.Params.companies.ollie }}" target="_blank">Ollie</a>
-              </div>
-            </div>
-            <div class="timeline-period">
-              <i class="bi bi-calendar3"></i>
-              <span>Feb 2026 – Present</span>
-              <span class="badge bg-success ms-2">Current</span>
-              <!-- <span class="timeline-duration">3y 5m</span> -->
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="d-flex align-items-center gap-2 mb-2">
-              <img src="/companies/pulsus.png" alt="Pulsus" class="company-logo">
-              <div>
-                <h5 class="fw-bold mb-0">Senior Software Engineer, Data</h5>
-                <a class="small company-name" href="{{ .Site.Params.companies.pulsus }}" target="_blank">Pulsus</a>
-              </div>
-            </div>
-            <div class="timeline-period">
-              <i class="bi bi-calendar3"></i>
-              <span>Aug 2022 – Feb 2026</span>
-              <span class="timeline-duration">3y 6m</span>
-              <!-- <span class="timeline-duration">3y 5m</span> -->
-            </div>
-          </div>
-        </div>
+    <!-- Professional Journey + Education side by side -->
+    <div class="journey-education-grid">
 
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="d-flex align-items-center gap-2 mb-2">
-              <img src="/companies/act.png" alt="Grupo Globo" class="company-logo">
-              <div>
-                <h5 class="fw-bold mb-0">Senior Software Engineer, Data</h5>
-                <a class="small company-name" href="{{ .Site.Params.companies.actdigital }}" target="_blank">ACT Digital</a>
-              </div>
+      <!-- Professional Journey -->
+      <section class="experience-timeline mb-5">
+        <h4 class="h4 mb-4">Professional Journey</h4>
+        <div class="total-experience-card mb-4">
+          <div class="d-flex align-items-center gap-2">
+            <div class="experience-icon">
+              <i class="bi bi-briefcase-fill"></i>
             </div>
-            <div class="timeline-period">
-              <i class="bi bi-calendar3"></i>
-              <span>May 2022 – Aug 2022</span>
-              <span class="timeline-duration">4m</span>
+            <div>
+              <div class="experience-label">Total Experience</div>
+              <div class="experience-value">
+                <span class="years-months-experience"></span>
+              </div>
             </div>
           </div>
         </div>
+        <div class="timeline">
 
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="d-flex align-items-center gap-2 mb-2">
-              <img src="/companies/ciandt.png" alt="CI&T" class="company-logo">
-              <div>
-                <h5 class="fw-bold mb-0">Software Engineer, Data</h5>
-                <a class="small company-name" href="{{ .Site.Params.companies.ciandt }}" target="_blank">CI&T</a>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img src="/companies/ollie.png" alt="Ollie" class="company-logo">
+                <div>
+                  <h5 class="fw-bold mb-0">Lead Software Engineer, Data</h5>
+                  <a class="small company-name" href="{{ .Site.Params.companies.ollie }}" target="_blank">Ollie</a>
+                </div>
+              </div>
+              <div class="timeline-period">
+                <i class="bi bi-calendar3"></i>
+                <span>Feb 2026 – Present</span>
+                <span class="badge bg-success ms-2">Current</span>
               </div>
             </div>
-            <div class="timeline-period">
-              <i class="bi bi-calendar3"></i>
-              <span>Mar 2021 – Mar 2022</span>
-              <span class="timeline-duration">1y 2m</span>
-            </div>
           </div>
-        </div>
 
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="d-flex align-items-center gap-2 mb-2">
-              <img src="/companies/ey.png" alt="Ernst & Young" class="company-logo">
-              <div>
-                <h5 class="fw-bold mb-0">Software Engineer, Data</h5>
-                <a class="small company-name" href="{{ .Site.Params.companies.ey }}" target="_blank">Ernst & Young</a>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img src="/companies/pulsus.png" alt="Pulsus" class="company-logo">
+                <div>
+                  <h5 class="fw-bold mb-0">Senior Software Engineer, Data</h5>
+                  <a class="small company-name" href="{{ .Site.Params.companies.pulsus }}" target="_blank">Pulsus</a>
+                </div>
+              </div>
+              <div class="timeline-period">
+                <i class="bi bi-calendar3"></i>
+                <span>Aug 2022 – Feb 2026</span>
+                <span class="timeline-duration">3y 6m</span>
               </div>
             </div>
-            <div class="timeline-period">
-              <i class="bi bi-calendar3"></i>
-              <span>Sep 2020 – Mar 2021</span>
-              <span class="timeline-duration">7m</span>
-            </div>
           </div>
-        </div>
 
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <div class="d-flex align-items-center gap-2 mb-2">
-              <img src="/companies/wavy.png" alt="Movile" class="company-logo">
-              <div>
-                <h5 class="fw-bold mb-0">Data Engineer</h5>
-                <a class="small company-name" href="{{ .Site.Params.companies.wavy }}" target="_blank">Wavy (Now Sinch)</a>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img src="/companies/act.png" alt="ACT Digital" class="company-logo">
+                <div>
+                  <h5 class="fw-bold mb-0">Senior Software Engineer, Data</h5>
+                  <a class="small company-name" href="{{ .Site.Params.companies.actdigital }}" target="_blank">ACT Digital</a>
+                </div>
+              </div>
+              <div class="timeline-period">
+                <i class="bi bi-calendar3"></i>
+                <span>May 2022 – Aug 2022</span>
+                <span class="timeline-duration">4m</span>
               </div>
             </div>
-            <div class="timeline-period">
-              <i class="bi bi-calendar3"></i>
-              <span>Aug 2018 – May 2020</span>
-              <span class="timeline-duration">1y 10m</span>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img src="/companies/ciandt.png" alt="CI&T" class="company-logo">
+                <div>
+                  <h5 class="fw-bold mb-0">Software Engineer, Data</h5>
+                  <a class="small company-name" href="{{ .Site.Params.companies.ciandt }}" target="_blank">CI&T</a>
+                </div>
+              </div>
+              <div class="timeline-period">
+                <i class="bi bi-calendar3"></i>
+                <span>Mar 2021 – Mar 2022</span>
+                <span class="timeline-duration">1y 2m</span>
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
-    </section>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img src="/companies/ey.png" alt="Ernst & Young" class="company-logo">
+                <div>
+                  <h5 class="fw-bold mb-0">Software Engineer, Data</h5>
+                  <a class="small company-name" href="{{ .Site.Params.companies.ey }}" target="_blank">Ernst & Young</a>
+                </div>
+              </div>
+              <div class="timeline-period">
+                <i class="bi bi-calendar3"></i>
+                <span>Sep 2020 – Mar 2021</span>
+                <span class="timeline-duration">7m</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img src="/companies/wavy.png" alt="Wavy" class="company-logo">
+                <div>
+                  <h5 class="fw-bold mb-0">Data Engineer</h5>
+                  <a class="small company-name" href="{{ .Site.Params.companies.wavy }}" target="_blank">Wavy (Now Sinch)</a>
+                </div>
+              </div>
+              <div class="timeline-period">
+                <i class="bi bi-calendar3"></i>
+                <span>Aug 2018 – May 2020</span>
+                <span class="timeline-duration">1y 10m</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Vertical divider (desktop only) -->
+      <div class="section-divider-vertical"></div>
+
+      <!-- Education -->
+      <section class="education-section mb-5">
+        <h4 class="h4 mb-4">Education</h4>
+        <div class="education-grid">
+
+          <div class="education-item">
+            <img src="/universities/usp.png" alt="USP" class="university-logo">
+            <div class="education-content">
+              <h5 class="education-degree">
+                MSc in Computer Science
+                <span class="education-badge">
+                  <i class="bi bi-clock"></i>
+                  In Progress
+                </span>
+              </h5>
+              <a class="education-institution" href="https://www5.usp.br" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-geo-alt-fill"></i>
+                University of São Paulo (USP)
+              </a>
+              <div class="education-period">2023 – Present</div>
+              <div class="education-research">
+                <strong>Research:</strong> Natural Language Interfaces for Databases &amp; Automatic Reproduction of Scientific Experiments via LLMs
+              </div>
+            </div>
+          </div>
+
+          <div class="education-item">
+            <img src="/universities/ifsp.png" alt="IFSP" class="university-logo">
+            <div class="education-content">
+              <h5 class="education-degree">Associate Degree in Systems Analysis and Development</h5>
+              <a class="education-institution" href="https://bra.ifsp.edu.br" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-geo-alt-fill"></i>
+                Federal Institute of São Paulo (IFSP)
+              </a>
+              <div class="education-period">2016 – 2021</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div><!-- end journey-education-grid -->
 
     <div class="section-divider"></div>
 
-    <!-- Education -->
-    <section class="education-section mb-5">
-      <h4 class="h4 mb-4">Education</h4>
-      <div class="education-grid">
-        
-        <!-- Mestrado -->
-        <div class="education-item">
-          <img src="/universities/usp.png" alt="USP" class="university-logo">
-          <div class="education-content">
-            <h5 class="education-degree">
-              MSc in Computer Science
-              <span class="education-badge">
-                <i class="bi bi-clock"></i>
-                In Progress
-              </span>
-            </h5>
-            <a class="education-institution" href="https://www5.usp.br" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-geo-alt-fill"></i>
-              University of São Paulo (USP)
-            </a>
-            <div class="education-period">2023 – Present</div>
-            <div class="education-research">
-              <strong>Research:</strong> Automated Translation of Natural Language Geospatial Queries into SQL
-            </div>
-          </div>
-        </div>
-        
-        <!-- Graduação -->
-        <div class="education-item">
-          <img src="/universities/ifsp.png" alt="IFSP" class="university-logo">
-          <div class="education-content">
-            <h5 class="education-degree">Associate Degree in Systems Analysis and Development</h5>
-            <a class="education-institution" href="https://bra.ifsp.edu.br" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-geo-alt-fill"></i>
-              Federal Institute of São Paulo (IFSP)
-            </a>
-            <div class="education-period">2016 – 2021</div>
-          </div>
-        </div>
-        
-      </div>
-    </section>
-    <div class="section-divider"></div>
     <!-- Research Interests -->
     <section class="research-interests mb-5">
       <h4 class="h4 mb-4">Research Interests</h4>
-
       <div class="research-box">
-       <ul class="research-list">
-        <li>Natural Language Processing</li>
-        <li>Computational Linguistics</li>
-        <li>Neural-Symbolic Integration</li>
-        <li>Text-to-Code Generation</li>
-        <li>Semantic Parsing</li>
-        <li>Database Systems</li>
-      </ul>
+        <ul class="research-list">
+          <li>Natural Language Interfaces for Computational Systems</li>
+          <!--<li>NLP for High Performance Computing</li>-->
+          <li>Text-to-SQL &amp; Semantic Parsing</li>
+          <li>Computational Linguistics</li>
+        </ul>
       </div>
     </section>
 
     <div class="section-divider"></div>
 
-
-     <!-- Core Expertise -->
+    <!-- Technical Expertise -->
     <section class="technical-focus mb-5">
       <h4 class="h4 mb-4">Technical Expertise</h4>
       <div class="row g-4">
 
-        <!-- 1. Distributed Systems & Platform Engineering -->
         <div class="col-12 col-md-4">
           <div class="p-4 border rounded h-100 bg-light">
             <div class="d-flex align-items-center mb-3">
               <div class="text-primary me-3" style="font-size: 1.5rem;">🏗️</div>
-              <h5 class="mb-0">Distributed Systems</h5>
+              <h5 class="mb-0">Systems Engineering</h5>
             </div>
             <ul class="mb-3 ps-3 expertise-list">
-              <li>High-availability architectures</li>
-              <li>Fault-tolerant pipelines</li>
-              <li>Low-latency distributed databases</li>
-              <li>Multi-region replication</li>
-              <li>Exactly-once processing semantics</li>
+              <li>Distributed storage — Cassandra, PostgreSQL, Iceberg</li>
+              <li>High-throughput pipelines — Kafka, Spark, Trino</li>
+              <li>Fault-tolerant architectures — multi-AZ, exactly-once semantics</li>
+              <li>Low-latency systems — microsecond-level performance engineering</li>
+              <li>Backend integration — APIs, event-driven architecture</li>
             </ul>
             <p class="text-muted small mb-0">
               <i class="bi bi-shield-check"></i>
-              Multi-AZ architectures processing 47M writes/day with 99.99% availability.
+              47M writes/day · 13μs P50 latency · 99.99% availability
             </p>
           </div>
         </div>
 
-        <!-- 2. Data Engineering at Scale -->
-        <div class="col-12 col-md-4">
-          <div class="p-4 border rounded h-100 bg-light">
-            <div class="d-flex align-items-center mb-3">
-              <div class="text-primary me-3" style="font-size: 1.5rem;">⚙️</div>
-              <h5 class="mb-0">Data Engineering</h5>
-            </div>
-            <ul class="mb-3 ps-3 expertise-list">
-              <li>Real-time & batch processing</li>
-              <li>Query optimization & federation</li>
-              <li>Lakehouse architecture</li>
-              <li>Data governance & lineage</li>
-              <li>Pipeline orchestration</li>
-            </ul>
-            <p class="text-muted small mb-0">
-              <i class="bi bi-graph-up"></i>
-              66% reduction in pipeline processing time
-            </p>
-          </div>
-        </div>
-
-        <!-- 3. AI Research & Performance -->
-        <!-- 3. ML Systems & Applied AI -->
         <div class="col-12 col-md-4">
           <div class="p-4 border rounded h-100 bg-light">
             <div class="d-flex align-items-center mb-3">
               <div class="text-primary me-3" style="font-size: 1.5rem;">🧠</div>
-              <h5 class="mb-0">Applied AI</h5>
+              <h5 class="mb-0">NLP Research</h5>
             </div>
             <ul class="mb-3 ps-3 expertise-list">
-              <li>LLM fine-tuning pipelines</li>
-              <li>Evaluation frameworks for ML models</li>
-              <li>Model integration with data platforms</li>
-              <li>Feature engineering & data preparation for ML</li>
-              <li>Performance optimization of ML workloads</li>
+              <li>Text-to-SQL — schema linking, execution accuracy</li>
+              <li>LLM fine-tuning — LoRA, QLoRA, PEFT</li>
+              <li>Transformer architecture — attention, positional encoding</li>
+              <li>Semantic parsing and structured prediction</li>
+              <li>Dataset construction and evaluation for Portuguese NLP</li>
             </ul>
             <p class="text-muted small mb-0">
-              <i class="bi bi-cpu"></i>
-              Bridging research models with production-grade data systems.
+              <i class="bi bi-mortarboard"></i>
+              MSc researcher @ USP — NLP &amp; Databases
             </p>
           </div>
         </div>
 
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded h-100 bg-light">
+            <div class="d-flex align-items-center mb-3">
+              <div class="text-primary me-3" style="font-size: 1.5rem;">⚡</div>
+              <h5 class="mb-0">High Performance Computing</h5>
+            </div>
+            <ul class="mb-3 ps-3 expertise-list">
+              <li>Parallel programming — OpenMP, MPI, CUDA</li>
+              <li>Memory hierarchy and cache optimization</li>
+              <li>Performance profiling — roofline model, perf, Nsight</li>
+              <li>Apple Silicon — Metal, unified memory architecture</li>
+              <li>Scientific benchmarks — STREAM, NAS, HPL</li>
+            </ul>
+            <p class="text-muted small mb-0">
+              <i class="bi bi-cpu"></i>
+              Building expertise at the intersection of NLP × HPC
+            </p>
+          </div>
+        </div>
 
       </div>
     </section>
 
     <div class="section-divider"></div>
 
-    <!-- Latest Posts Preview -->
+    <!-- Latest Posts -->
     {{ $blogPosts := where .Site.RegularPages "Section" "blog" }}
     {{ if gt (len $blogPosts) 0 }}
     <section class="latest-posts mb-5">
@@ -416,6 +410,7 @@ I write about distributed systems, data platform engineering, and NLP research �
         {{ end }}
       </div>
     </section>
+
     <section class="newsletter-section mt-5">
       <div class="newsletter-card">
         <div class="newsletter-card-header">
@@ -435,7 +430,7 @@ I write about distributed systems, data platform engineering, and NLP research �
 
     <div class="section-divider"></div>
     {{ end }}
-    
+
     <!-- Featured Projects -->
     {{ $featuredProjects := where (where .Site.RegularPages "Section" "projects") ".Params.featured" true }}
     {{ if gt (len $featuredProjects) 0 }}
@@ -473,57 +468,54 @@ I write about distributed systems, data platform engineering, and NLP research �
     </section>
     <div class="section-divider"></div>
     {{ else }}
-      <!-- Fallback: se nenhum projeto tem featured=true, mostra os 2 mais recentes -->
-      {{ $allProjects := where .Site.RegularPages "Section" "projects" }}
-      {{ if gt (len $allProjects) 0 }}
-      <section class="featured-projects mb-5">
-        <h2 class="h4 mb-4">Latest Projects</h2>
-        <div class="row g-4">
-          {{ range first 2 $allProjects }}
-          <div class="col-12 col-md-6">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body">
-                <a href="{{ .RelPermalink }}" class="text-decoration-none">
-                  <h5 class="card-title text-dark">{{ .Title }}</h5>
-                </a>
-                <p class="text-muted small mb-3">
-                  <i class="bi bi-calendar3"></i> {{ .Date.Format "Jan 02, 2006" }}
-                </p>
-                {{ with .Params.tags }}
-                <div class="mb-3 d-flex flex-wrap gap-1">
-                  {{ range . }}
-                  <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">{{ . }}</span>
-                  {{ end }}
-                </div>
+    {{ $allProjects := where .Site.RegularPages "Section" "projects" }}
+    {{ if gt (len $allProjects) 0 }}
+    <section class="featured-projects mb-5">
+      <h2 class="h4 mb-4">Latest Projects</h2>
+      <div class="row g-4">
+        {{ range first 2 $allProjects }}
+        <div class="col-12 col-md-6">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <a href="{{ .RelPermalink }}" class="text-decoration-none">
+                <h5 class="card-title text-dark">{{ .Title }}</h5>
+              </a>
+              <p class="text-muted small mb-3">
+                <i class="bi bi-calendar3"></i> {{ .Date.Format "Jan 02, 2006" }}
+              </p>
+              {{ with .Params.tags }}
+              <div class="mb-3 d-flex flex-wrap gap-1">
+                {{ range . }}
+                <span class="badge bg-primary bg-opacity-10 text-primary fw-normal">{{ . }}</span>
                 {{ end }}
-                {{ with .Summary }}
-                <p class="card-text">{{ . }}</p>
-                {{ end }}
-                <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-primary mt-2">
-                  Learn more <i class="bi bi-arrow-right"></i>
-                </a>
               </div>
+              {{ end }}
+              {{ with .Summary }}
+              <p class="card-text">{{ . }}</p>
+              {{ end }}
+              <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-primary mt-2">
+                Learn more <i class="bi bi-arrow-right"></i>
+              </a>
             </div>
           </div>
-          {{ end }}
         </div>
-      </section>
-      <div class="section-divider"></div>
-      {{ end }}
+        {{ end }}
+      </div>
+    </section>
+    <div class="section-divider"></div>
     {{ end }}
-    
+    {{ end }}
+
     <!-- CTA Section -->
-  <section class="cta-section text-center py-5 px-4 bg-light rounded">
-    <h2 class="h4 fw-bold mb-3">Ready to Build Something Amazing?</h2>
-    <p class="lead mb-4" style="max-width: 42rem; margin: 0 auto;">
-      I'm exploring opportunities as <strong>Principal/Staff Engineer</strong> where
-      I can leverage my experience in distributed systems and AI to build
-      ML infrastructure at scale.
-    </p>
-    <p class="lead mb-6" style="max-width: 42rem; margin: 0 auto;">
-      For professional contact, please reach out via <a href="{{ .Site.Params.social.linkedin }}" target="_blank">LinkedIn.</a>
-    </p>
-  </section>
+    <section class="cta-section text-center py-5 px-4 bg-light rounded">
+      <h2 class="h4 fw-bold mb-3">Let's Build What Doesn't Exist Yet</h2>
+      <p class="lead mb-4" style="max-width: 42rem; margin: 0 auto;">
+        I'm building toward <strong>Principal Engineer</strong> roles at the intersection of large-scale systems and language model research — the kind of problems that don't fit neatly into one job description.
+      </p>
+      <p class="lead mb-0" style="max-width: 42rem; margin: 0 auto;">
+        For professional contact, please reach out via <a href="{{ .Site.Params.social.linkedin }}" target="_blank">LinkedIn.</a>
+      </p>
+    </section>
 
   </article>
 {{ end }}
