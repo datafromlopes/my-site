@@ -6,8 +6,15 @@
     <description>Recent content in Text-to-SQL on Diego Lopes | Software Engineer, Data &amp; NLP Researcher</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/text-to-sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AtlasSQL-BR: A Brazilian Portuguese Geospatial Text-to-SQL Dataset with Spatial Hierarchies</title>
+      <link>http://localhost:1313/articles/sbbd-2026/</link>
+      <pubDate>Fri, 30 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/articles/sbbd-2026/</guid>
+      <description>&lt;h2 id=&#34;notas-e-contexto&#34;&gt;Notas e contexto&lt;/h2&gt;&#xA;&lt;p&gt;Aqui você pode escrever em markdown qualquer conteúdo adicional — uma versão estendida,&#xA;notas sobre a apresentação, dificuldades, próximos passos, etc. Este bloco aparece&#xA;abaixo do abstract na página individual.&lt;/p&gt;&#xA;&lt;h3 id=&#34;motivação&#34;&gt;Motivação&lt;/h3&gt;&#xA;&lt;p&gt;Explicação informal do problema&amp;hellip;&lt;/p&gt;&#xA;&lt;h3 id=&#34;próximos-passos&#34;&gt;Próximos passos&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Estender o método para X&lt;/li&gt;&#xA;&lt;li&gt;Avaliar em datasets Y e Z&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>Automated Translation of Natural Language Geospatial Queries into SQL</title>
       <link>http://localhost:1313/projects/geo-nlq-to-sql/</link>

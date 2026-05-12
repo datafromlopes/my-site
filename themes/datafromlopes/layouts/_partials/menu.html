@@ -35,10 +35,19 @@
             (or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .))
             (and $.IsHome (or (eq .URL "/") (eq .PageRef "/")))
         }}
+        {{/* Also mark active when visiting a single page inside the section */}}
+        {{ if not $isActive }}
+          {{ with .URL }}
+            {{ $sectionURL := . | relURL }}
+            {{ if and (ne $sectionURL "/") (hasPrefix $.RelPermalink $sectionURL) }}
+              {{ $isActive = true }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
         <li class="nav-item">
           <a class="nav-link {{ if $isActive }}active{{ end }}"
              href="{{ .URL | relURL }}" {{ if $isActive }}aria-current="page"{{ end }}>
-            {{ .Name }}
+            {{ with .Pre }}<i class="{{ . }}"></i> {{ end }}{{ .Name }}
           </a>
         </li>
       {{ end }}

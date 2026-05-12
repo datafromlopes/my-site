@@ -40,17 +40,22 @@ pagination.path = "page"
   [[menus.main]]
     name = 'About Me'
     pageRef = '/'
+    weight = 5
+
+  [[menus.main]]
+    name = 'Articles'
+    pageRef = '/articles/'
     weight = 10
 
   [[menus.main]]
     name = 'Projects'
     pageRef = '/projects/'
-    weight = 40
+    weight = 20
 
   [[menus.main]]
     name = 'Blog'
     pageRef = '/blog/'
-    weight = 80
+    weight = 40
 
 
 [module]

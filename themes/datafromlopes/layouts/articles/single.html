@@ -1,0 +1,199 @@
+{{ define "main" }}
+<article class="article-single py-4">
+
+  <!-- Back navigation -->
+  <div class="mb-3">
+    <a href="{{ "/articles/" | relURL }}" class="back-link">
+      <i class="bi bi-arrow-left"></i> Back to publications
+    </a>
+  </div>
+
+  <!-- Header -->
+  <header class="article-header">
+
+    <!-- Type + Date -->
+    <div class="article-meta-top">
+      {{ with .Params.publication_type }}
+      <span class="publication-type-badge type-{{ . }}">
+        {{ $pt := . }}
+        <i class="bi bi-{{ if eq $pt "conference" }}people-fill{{ else if eq $pt "journal" }}journal{{ else if eq $pt "workshop" }}chat-square-text{{ else if eq $pt "preprint" }}file-earmark-text{{ else if eq $pt "thesis" }}mortarboard{{ else }}file-text{{ end }}"></i>
+        {{ . | humanize }}
+      </span>
+      {{ end }}
+      <time class="publication-date" datetime="{{ .Date.Format "2006-01-02" }}">
+        <i class="bi bi-calendar3"></i> {{ .Date.Format "January 2006" }}
+      </time>
+      {{ with .Params.status }}
+      <span class="article-status status-{{ . }}">{{ . | humanize }}</span>
+      {{ end }}
+    </div>
+
+    <!-- Title -->
+    <h1 class="article-title">{{ .Title }}</h1>
+
+    <!-- Authors -->
+    {{ with .Params.authors }}
+    <div class="article-authors">
+      {{ range $i, $a := . }}
+        {{ if $i }}, {{ end }}
+        {{ if eq $a "Você" }}<strong>{{ $a }}</strong>{{ else }}{{ $a }}{{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <!-- Venue info -->
+    {{ if or .Params.venue .Params.publication }}
+    <div class="article-venue">
+      <em>{{ .Params.venue | default .Params.publication }}</em>
+      {{ with .Params.venue_short }} <span class="venue-short">({{ . }})</span>{{ end }}
+      {{ with .Params.location }} · {{ . }}{{ end }}
+      {{ with .Params.pages }} · pp. {{ . }}{{ end }}
+    </div>
+    {{ end }}
+
+    <!-- Action buttons -->
+    <div class="article-actions">
+      {{ with .Params.pdf_url }}
+      <a href="{{ . }}" target="_blank" rel="noopener" class="action-btn primary">
+        <i class="bi bi-filetype-pdf"></i> Read PDF
+      </a>
+      {{ end }}
+      {{ with .Params.doi }}
+      <a href="https://doi.org/{{ . }}" target="_blank" rel="noopener" class="action-btn">
+        <i class="bi bi-link-45deg"></i> DOI
+      </a>
+      {{ end }}
+      {{ with .Params.code_url }}
+      <a href="{{ . }}" target="_blank" rel="noopener" class="action-btn">
+        <i class="bi bi-github"></i> Code
+      </a>
+      {{ end }}
+      {{ with .Params.slides_url }}
+      <a href="{{ . }}" target="_blank" rel="noopener" class="action-btn">
+        <i class="bi bi-easel"></i> Slides
+      </a>
+      {{ end }}
+      {{ with .Params.video_url }}
+      <a href="{{ . }}" target="_blank" rel="noopener" class="action-btn">
+        <i class="bi bi-play-circle"></i> Video
+      </a>
+      {{ end }}
+      {{ with .Params.poster_url }}
+      <a href="{{ . }}" target="_blank" rel="noopener" class="action-btn">
+        <i class="bi bi-easel2"></i> Poster
+      </a>
+      {{ end }}
+    </div>
+
+  </header>
+
+  <!-- Info sidebar / details grid -->
+  <div class="article-details-grid">
+
+    <!-- Abstract -->
+    {{ with .Params.abstract }}
+    <section class="article-abstract">
+      <h2 class="section-heading"><i class="bi bi-card-text"></i> Abstract</h2>
+      <p>{{ . }}</p>
+    </section>
+    {{ end }}
+
+    <!-- Metadata sidebar -->
+    <aside class="article-sidebar">
+      <h3 class="sidebar-heading">Publication info</h3>
+      <dl class="metadata-list">
+        {{ with .Params.publication_type }}
+        <dt>Type</dt><dd>{{ . | humanize }}</dd>
+        {{ end }}
+        {{ with .Params.venue }}
+        <dt>Venue</dt><dd>{{ . }}{{ with $.Params.venue_short }} ({{ . }}){{ end }}</dd>
+        {{ end }}
+        {{ with .Params.publisher }}
+        <dt>Publisher</dt><dd>{{ . }}</dd>
+        {{ end }}
+        {{ with .Params.location }}
+        <dt>Location</dt><dd>{{ . }}</dd>
+        {{ end }}
+        {{ with .Params.pages }}
+        <dt>Pages</dt><dd>{{ . }}</dd>
+        {{ end }}
+        {{ with .Params.doi }}
+        <dt>DOI</dt><dd><a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">{{ . }}</a></dd>
+        {{ end }}
+        {{ with .Params.isbn }}
+        <dt>ISBN</dt><dd>{{ . }}</dd>
+        {{ end }}
+        {{ with .Params.issn }}
+        <dt>ISSN</dt><dd>{{ . }}</dd>
+        {{ end }}
+        <dt>Date</dt><dd>{{ .Date.Format "January 2006" }}</dd>
+      </dl>
+
+      {{ with .Params.tags }}
+      <h3 class="sidebar-heading mt-3">Topics</h3>
+      <div class="sidebar-tags">
+        {{ range . }}
+        <span class="publication-tag">#{{ . }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+    </aside>
+
+  </div>
+
+  <!-- BibTeX -->
+  {{ with .Params.bibtex }}
+  <section class="article-bibtex">
+    <h2 class="section-heading">
+      <i class="bi bi-quote"></i> BibTeX
+      <button class="copy-btn" onclick="copyBibtex(this)">
+        <i class="bi bi-clipboard"></i> Copy
+      </button>
+    </h2>
+    <pre><code id="bibtex-content">{{ . }}</code></pre>
+  </section>
+  {{ end }}
+
+  <!-- Main content / extended notes -->
+  {{ if .Content }}
+  <section class="article-content content">
+    {{ if .Params.abstract }}
+    <h2 class="section-heading"><i class="bi bi-pencil-square"></i> Notes & Discussion</h2>
+    {{ end }}
+    {{ .Content }}
+  </section>
+  {{ end }}
+
+  <!-- Citation footer -->
+  {{ if or .Params.cite_as .Params.authors }}
+  <section class="article-citation">
+    <h2 class="section-heading"><i class="bi bi-bookmark-star"></i> Cite as</h2>
+    <p class="citation-text">
+      {{ if .Params.cite_as }}
+        {{ .Params.cite_as }}
+      {{ else }}
+        {{ with .Params.authors }}
+          {{ delimit . ", " " & " }}.
+        {{ end }}
+        ({{ .Date.Format "2006" }}).
+        {{ .Title }}.
+        {{ with .Params.venue }}<em>{{ . }}</em>.{{ end }}
+        {{ with .Params.doi }}https://doi.org/{{ . }}{{ end }}
+      {{ end }}
+    </p>
+  </section>
+  {{ end }}
+
+</article>
+
+<script>
+function copyBibtex(btn) {
+  const text = document.getElementById('bibtex-content').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.innerHTML;
+    btn.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+    setTimeout(() => { btn.innerHTML = original; }, 2000);
+  });
+}
+</script>
+{{ end }}

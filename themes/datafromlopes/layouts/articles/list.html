@@ -1,0 +1,221 @@
+{{ define "main" }}
+<article class="articles-section py-4">
+
+  <!-- Header -->
+  <div class="mb-5">
+    <h1 class="fw-bold mb-2" style="font-size: 1.875rem; letter-spacing: -.025em; color: var(--text);">
+      Publications
+    </h1>
+    <p class="lead mb-0" style="font-size: .9375rem; color: var(--text-2);">
+      Peer-reviewed articles, conference papers, and academic publications
+    </p>
+  </div>
+
+  <!-- Stats summary -->
+  {{ $total := len .Pages }}
+  {{ $years := slice }}
+  {{ range .Pages }}
+    {{ $y := .Date.Format "2006" }}
+    {{ if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}
+  {{ end }}
+
+  {{ if gt $total 0 }}
+  <div class="publications-stats mb-4">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="bi bi-journal-text"></i></div>
+      <div class="stat-content">
+        <div class="stat-label">Total</div>
+        <div class="stat-value">{{ $total }}</div>
+      </div>
+    </div>
+    {{ if gt (len $years) 0 }}
+    <div class="stat-card">
+      <div class="stat-icon"><i class="bi bi-calendar-range"></i></div>
+      <div class="stat-content">
+        <div class="stat-label">Active years</div>
+        <div class="stat-value">{{ len $years }}</div>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <!-- Filter by venue type -->
+  {{ $allTypes := slice }}
+  {{ range .Pages }}
+    {{ with .Params.publication_type }}
+      {{ if not (in $allTypes .) }}{{ $allTypes = $allTypes | append . }}{{ end }}
+    {{ end }}
+  {{ end }}
+  {{ $allTypes = sort $allTypes }}
+
+  {{ if gt (len $allTypes) 0 }}
+  <div class="filter-section mb-4">
+    <div class="d-flex align-items-center mb-3" style="gap: .4rem;">
+      <i class="bi bi-funnel" style="color: var(--accent); font-size: .875rem;"></i>
+      <span style="font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);">Filter by type</span>
+    </div>
+    <div id="type-filter" class="tag-filter-grid">
+      <button class="tag-filter-btn active" data-type="__all">
+        <i class="bi bi-grid-3x3-gap"></i> All
+      </button>
+      {{ range $allTypes }}
+      <button class="tag-filter-btn" data-type="{{ . }}">{{ . | humanize }}</button>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Publications list, grouped by year -->
+  {{ $pages := .Pages.ByDate.Reverse }}
+  {{ $grouped := $pages.GroupByDate "2006" }}
+
+  <div id="publications-list" class="publications-list">
+    {{ range $grouped }}
+    <section class="year-group" data-year="{{ .Key }}">
+      <h2 class="year-heading">
+        <span class="year-label">{{ .Key }}</span>
+        <span class="year-count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}publication{{ else }}publications{{ end }}</span>
+      </h2>
+
+      <div class="publications-items">
+        {{ range .Pages }}
+        <article class="publication-card" data-type="{{ .Params.publication_type | default "" }}">
+
+          <!-- Type badge + Year -->
+          <div class="publication-header">
+            {{ with .Params.publication_type }}
+            <span class="publication-type-badge type-{{ . }}">
+              {{ $pt := . }}
+              <i class="bi bi-{{ if eq $pt "conference" }}people-fill{{ else if eq $pt "journal" }}journal{{ else if eq $pt "workshop" }}chat-square-text{{ else if eq $pt "preprint" }}file-earmark-text{{ else if eq $pt "thesis" }}mortarboard{{ else }}file-text{{ end }}"></i>
+              {{ . | humanize }}
+            </span>
+            {{ end }}
+            <time class="publication-date" datetime="{{ .Date.Format "2006-01-02" }}">
+              {{ .Date.Format "Jan 2006" }}
+            </time>
+          </div>
+
+          <!-- Title -->
+          <h3 class="publication-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+
+          <!-- Authors -->
+          {{ with .Params.authors }}
+          <div class="publication-authors">
+            {{ range $i, $a := . }}
+              {{ if $i }}, {{ end }}
+              {{ if eq $a "Você" }}<strong>{{ $a }}</strong>{{ else }}{{ $a }}{{ end }}
+            {{ end }}
+          </div>
+          {{ end }}
+
+          <!-- Venue -->
+          {{ if or .Params.venue .Params.publication }}
+          <div class="publication-venue">
+            <i class="bi bi-geo-alt"></i>
+            <em>{{ .Params.venue | default .Params.publication }}</em>
+            {{ with .Params.venue_short }}<span class="venue-short">({{ . }})</span>{{ end }}
+            {{ with .Params.location }} · {{ . }}{{ end }}
+          </div>
+          {{ end }}
+
+          <!-- Summary / Abstract preview -->
+          {{ with .Params.abstract_short | default .Summary }}
+          <p class="publication-abstract">{{ . }}</p>
+          {{ end }}
+
+          <!-- Tags -->
+          {{ with .Params.tags }}
+          <div class="publication-tags">
+            {{ range first 5 . }}
+            <span class="publication-tag">#{{ . }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+
+          <!-- Action links -->
+          <div class="publication-actions">
+            <a href="{{ .RelPermalink }}" class="action-link primary">
+              <i class="bi bi-file-text"></i> Details
+            </a>
+            {{ with .Params.pdf_url }}
+            <a href="{{ . }}" target="_blank" rel="noopener" class="action-link">
+              <i class="bi bi-filetype-pdf"></i> PDF
+            </a>
+            {{ end }}
+            {{ with .Params.doi }}
+            <a href="https://doi.org/{{ . }}" target="_blank" rel="noopener" class="action-link">
+              <i class="bi bi-link-45deg"></i> DOI
+            </a>
+            {{ end }}
+            {{ with .Params.code_url }}
+            <a href="{{ . }}" target="_blank" rel="noopener" class="action-link">
+              <i class="bi bi-github"></i> Code
+            </a>
+            {{ end }}
+            {{ with .Params.slides_url }}
+            <a href="{{ . }}" target="_blank" rel="noopener" class="action-link">
+              <i class="bi bi-easel"></i> Slides
+            </a>
+            {{ end }}
+            {{ with .Params.video_url }}
+            <a href="{{ . }}" target="_blank" rel="noopener" class="action-link">
+              <i class="bi bi-play-circle"></i> Video
+            </a>
+            {{ end }}
+            {{ with .Params.bibtex }}
+            <button class="action-link" onclick="document.getElementById('bib-{{ $.File.UniqueID }}').classList.toggle('show')">
+              <i class="bi bi-quote"></i> BibTeX
+            </button>
+            {{ end }}
+          </div>
+
+          {{ with .Params.bibtex }}
+          <pre id="bib-{{ $.File.UniqueID }}" class="bibtex-block"><code>{{ . }}</code></pre>
+          {{ end }}
+
+        </article>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+  </div>
+
+  {{ if eq $total 0 }}
+  <div class="empty-state">
+    <i class="bi bi-journal-x"></i>
+    <p>No publications yet. Check back soon.</p>
+  </div>
+  {{ end }}
+
+</article>
+
+<script>
+(function () {
+  const buttons = document.querySelectorAll('#type-filter .tag-filter-btn');
+  const cards = document.querySelectorAll('.publication-card');
+  const groups = document.querySelectorAll('.year-group');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.type;
+
+      cards.forEach(card => {
+        const type = card.dataset.type;
+        card.style.display = (filter === '__all' || type === filter) ? '' : 'none';
+      });
+
+      // Hide empty year groups
+      groups.forEach(group => {
+        const visible = group.querySelectorAll('.publication-card:not([style*="none"])');
+        group.style.display = visible.length > 0 ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+{{ end }}

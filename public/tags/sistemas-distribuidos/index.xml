@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sistemas-Distribuidos on Diego Lopes | Software Engineer, Data &amp; NLP Researcher</title>
+    <link>http://localhost:1313/tags/sistemas-distribuidos/</link>
+    <description>Recent content in Sistemas-Distribuidos on Diego Lopes | Software Engineer, Data &amp; NLP Researcher</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/sistemas-distribuidos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Título do seu artigo no SBBD</title>
+      <link>http://localhost:1313/articles/sbbd-2026/</link>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/articles/sbbd-2026/</guid>
+      <description>&lt;h2 id=&#34;notas-e-contexto&#34;&gt;Notas e contexto&lt;/h2&gt;&#xA;&lt;p&gt;Aqui você pode escrever em markdown qualquer conteúdo adicional — uma versão estendida,&#xA;notas sobre a apresentação, dificuldades, próximos passos, etc. Este bloco aparece&#xA;abaixo do abstract na página individual.&lt;/p&gt;&#xA;&lt;h3 id=&#34;motivação&#34;&gt;Motivação&lt;/h3&gt;&#xA;&lt;p&gt;Explicação informal do problema&amp;hellip;&lt;/p&gt;&#xA;&lt;h3 id=&#34;próximos-passos&#34;&gt;Próximos passos&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Estender o método para X&lt;/li&gt;&#xA;&lt;li&gt;Avaliar em datasets Y e Z&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>
