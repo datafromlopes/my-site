@@ -1,53 +1,57 @@
 {{ define "main" }}
 <article class="blog-section container py-3">
+  <header class="article-header mb-4">
 
-  <header class="mb-3">
-    <h1 class="mb-1">{{ .Title }}</h1>
-    <div class="text-muted">
-      {{ .Date.Format "02 Jan 2006" }} - by
-      {{ with .Params.author }} <span>{{ . }}</span>{{ end }}.
-    </div>
-
-    {{ with .Params.tags }}
-      <div class="mt-2 d-flex flex-wrap gap-1">
-        {{ range . }}<span class="badge text-bg-light">{{ . }}</span>{{ end }}
-      </div>
+  <!-- Meta top: tipo + data -->
+  <div class="article-meta-top">
+    <span class="publication-type-badge type-conference">
+      <i class="bi bi-journal-text"></i> Blog Post
+    </span>
+    {{ with .Date }}
+    <span class="publication-date">
+      <i class="bi bi-calendar3"></i>
+      {{ .Format "02 Jan 2006" }}
+    </span>
     {{ end }}
-
-    {{ $coverName := cond (isset .Params "image") .Params.image (cond (isset .Params "cover") .Params.cover nil) }}
-    {{ with $coverName }}
-      {{ $img := $.Resources.GetMatch . }}
-      {{ if not $img }}{{ $img = resources.Get . }}{{ end }}
-      {{ if $img }}
-        {{ $cover := $img.Resize "900x center" }}
-        <figure class="mt-3 mb-4">
-          <img
-            src="{{ $cover.RelPermalink }}"
-            class="img-fluid rounded"
-            alt="{{ or $.Params.coverAlt $.Title }}"
-            loading="lazy"
-            decoding="async"
-          >
-          {{ with $.Params.coverCaption }}
-            <figcaption class="mt-2 text-muted small">{{ . }}</figcaption>
-          {{ end }}
-        </figure>
-      {{ else }}
-        <figure class="mt-3 mb-4">
-          <img
-            src="{{ . }}"
-            class="img-fluid rounded"
-            alt="{{ or $.Params.coverAlt $.Title }}"
-            loading="lazy"
-            decoding="async"
-          >
-          {{ with $.Params.coverCaption }}
-            <figcaption class="mt-2 text-muted small">{{ . }}</figcaption>
-          {{ end }}
-        </figure>
-      {{ end }}
+    {{ with .Params.author }}
+    <span class="publication-date">
+      <i class="bi bi-person"></i> {{ . }}
+    </span>
     {{ end }}
-  </header>
+  </div>
+
+  <!-- Título -->
+  <h1 class="article-title">{{ .Title }}</h1>
+
+  <!-- Tags -->
+  {{ with .Params.tags }}
+  <div class="publication-tags mt-2">
+    {{ range . }}<span class="publication-tag">{{ . }}</span>{{ end }}
+  </div>
+  {{ end }}
+
+  <!-- Imagem de capa -->
+  {{ $coverName := cond (isset .Params "image") .Params.image (cond (isset .Params "cover") .Params.cover nil) }}
+  {{ with $coverName }}
+    {{ $img := $.Resources.GetMatch . }}
+    {{ if not $img }}{{ $img = resources.Get . }}{{ end }}
+    {{ if $img }}
+      {{ $cover := $img.Resize "900x center" }}
+      <figure class="mt-4 mb-0 text-center">
+        <img
+          src="{{ $cover.RelPermalink }}"
+          class="img-fluid rounded"
+          style="max-height: 420px; width: 100%; object-fit: cover;"
+          alt="{{ or $.Params.coverAlt $.Title }}"
+          loading="lazy" decoding="async">
+        {{ with $.Params.coverCaption }}
+        <figcaption class="mt-2 text-muted small">{{ . }}</figcaption>
+        {{ end }}
+      </figure>
+    {{ end }}
+  {{ end }}
+
+</header>
   {{ with .Params.github }}
       <div class="mt-3">
         <a href="{{ . }}" class="btn btn-dark" target="_blank" rel="noopener">

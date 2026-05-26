@@ -2,8 +2,9 @@
 title: "TF-IDF - An approach to determine the relevance of word in a corpus."
 author: "Diego Lopes"
 date: 2026-05-25
-tags: [ "Statistics", "Computational Linguistics", "NLP"]
+tags: ["Computational Linguistics", "NLP"]
 summary: "How to create and interpret the TF-IDF matrix."
+image: tfidf-wallpaper.png
 ---
 
 In the context of text processing, we sometimes need to determine the relevance of a term, a specific word, within a corpus.
@@ -25,7 +26,7 @@ For instance, the word "the" might appear dozens of times in a document, giving 
 
 ## Formal Definition and Formulas
 
-The TF-IDF score for a given term $t$ in a specific document $d$, given a corpus $D$, is calculated by multiplying two distinct metrics:
+The TF-IDF score for a given term \(t\) in a specific document \(d\), given a corpus \(D\), is calculated by multiplying two distinct metrics:
 
 $$TF\text{-}IDF(t, d, D) = TF(t, d) \times IDF(t, D)$$
 
@@ -35,8 +36,8 @@ Term frequency measures how frequently a term occurs in a document. Because docu
 $$TF(t, d) = \frac{f_{t,d}}{\sum_{t' \in d} f_{t',d}}$$
 
 Where:
-* $f_{t,d}$ is the raw count of term $t$ in document $d$.
-* The denominator represents the total number of terms in document $d$.
+* \(f_{t,d}\) is the raw count of term \(t\) in document \(d\).
+* The denominator represents the total number of terms in document \(d\).
 
 ### 2. Inverse Document Frequency (IDF)
 IDF measures the informational value of the word across the entire corpus. It scales down the weight of terms that occur very frequently and scales up the weight of rare terms.
@@ -44,8 +45,8 @@ IDF measures the informational value of the word across the entire corpus. It sc
 $$IDF(t, D) = \log \left( \frac{N}{|\{d \in D : t \in d\}|} \right)$$
 
 Where:
-* $N$ is the total number of documents in the corpus $D$.
-* $|\{d \in D : t \in d\}|$ is the number of documents where the term $t$ appears. If the term is not in the corpus, this can lead to a division-by-zero, which is why a constant $+1$ is often added to the denominator in practical implementations (like Scikit-Learn's `TfidfVectorizer`).
+* \(N\) is the total number of documents in the corpus \(D\).
+* \(|\{d \in D : t \in d\}|\) is the number of documents where the term \(t\) appears. If the term is not in the corpus, this can lead to a division-by-zero, which is why a constant \(+1\) is often added to the denominator in practical implementations (like Scikit-Learn's `TfidfVectorizer`).
 
 ---
 
@@ -59,34 +60,42 @@ Let's build a TF-IDF matrix to see this in action. Consider a tiny corpus of two
 ### Step 1: Calculate TF
 First, we calculate the Term Frequency for each word in Document A (which has 4 words total) and Document B (which has 3 words total).
 
-| Term | TF in Doc A | TF in Doc B |
-| :--- | :--- | :--- |
-| machine | $1/4 = 0.25$ | $0$ |
-| learning | $1/4 = 0.25$ | $1/3 \approx 0.33$ |
-| is | $1/4 = 0.25$ | $1/3 \approx 0.33$ |
-| fun | $1/4 = 0.25$ | $0$ |
-| awesome | $0$ | $1/3 \approx 0.33$ |
+$$\begin{array}{|l|l|l|}
+\hline
+\textbf{Term} & \textbf{TF in Doc A} & \textbf{TF in Doc B} \\
+\hline
+\text{machine} & 1/4 = 0.25 & 0 \\
+\text{learning} & 1/4 = 0.25 & 1/3 \approx 0.33 \\
+\text{is} & 1/4 = 0.25 & 1/3 \approx 0.33 \\
+\text{fun} & 1/4 = 0.25 & 0 \\
+\text{awesome} & 0 & 1/3 \approx 0.33 \\
+\hline
+\end{array}$$
 
 ### Step 2: Calculate IDF
-Our total number of documents $N = 2$. Let's use the base-10 logarithm for this example.
+Our total number of documents \(N = 2\). Let's use the base-10 logarithm for this example.
 
 * **"machine", "fun", "awesome"**: Each appears in only 1 document.
-  $$IDF = \log_{10}(2 / 1) \approx 0.301$$
+  $$IDF = \log_{10}\left(\frac{2}{1}\right) \approx 0.301$$
 * **"learning", "is"**: Each appears in 2 documents.
-  $$IDF = \log_{10}(2 / 2) = \log_{10}(1) = 0$$
+  $$IDF = \log_{10}\left(\frac{2}{2}\right) = \log_{10}(1) = 0$$
 
 ### Step 3: Calculate the Final TF-IDF Matrix
-Now, we multiply $TF \times IDF$ for each term per document.
+Now, we multiply \(TF \times IDF\) for each term per document.
 
-| Term | TF-IDF (Doc A) | TF-IDF (Doc B) |
-| :--- | :--- | :--- |
-| machine | $0.25 \times 0.301 = 0.075$ | $0 \times 0.301 = 0$ |
-| learning | $0.25 \times 0 = 0$ | $0.33 \times 0 = 0$ |
-| is | $0.25 \times 0 = 0$ | $0.33 \times 0 = 0$ |
-| fun | $0.25 \times 0.301 = 0.075$ | $0 \times 0.301 = 0$ |
-| awesome | $0 \times 0.301 = 0$ | $0.33 \times 0.301 \approx 0.1$ |
+$$\begin{array}{|l|l|l|}
+\hline
+\textbf{Term} & \textbf{TF-IDF (Doc A)} & \textbf{TF-IDF (Doc B)} \\
+\hline
+\text{machine} & 0.25 \times 0.301 = 0.075 & 0 \times 0.301 = 0 \\
+\text{learning} & 0.25 \times 0 = 0 & 0.33 \times 0 = 0 \\
+\text{is} & 0.25 \times 0 = 0 & 0.33 \times 0 = 0 \\
+\text{fun} & 0.25 \times 0.301 = 0.075 & 0 \times 0.301 = 0 \\
+\text{awesome} & 0 \times 0.301 = 0 & 0.33 \times 0.301 \approx 0.1 \\
+\hline
+\end{array}$$
 
-**Interpretation:** The words "learning" and "is" scored a $0$. Since they appear in every document in our small corpus, they provide no unique identifying value to differentiate Document A from Document B. Meanwhile, "machine", "fun", and "awesome" emerge as the most relevant keywords.
+**Interpretation:** The words "learning" and "is" scored \(0\). Since they appear in every document in our small corpus, they provide no unique identifying value to differentiate Document A from Document B. Meanwhile, "machine", "fun", and "awesome" emerge as the most relevant keywords.
 
 ---
 
@@ -94,7 +103,7 @@ Now, we multiply $TF \times IDF$ for each term per document.
 
 The theoretical foundation for term weighting and its evolution into the TF-IDF framework we use today is heavily documented in the field of Information Retrieval. For those looking to dive deeper into the mathematics and history, I recommend exploring these seminal papers:
 
-1. **Sparck Jones, K. (1972).** *A statistical interpretation of term specificity and its application in retrieval.* Journal of Documentation, 28(1), 11-21. (This is the original paper introducing the concept of IDF).
-2. **Salton, G., & McGill, M. J. (1983).** *Introduction to Modern Information Retrieval.* McGraw-Hill. (This book is fundamental for establishing the Vector Space Model where TF-IDF is heavily utilized).
-3. **Ramos, J. (2003).** *Using TF-IDF to Determine Word Relevance in Document Queries.* Proceedings of the First Instructional Conference on Machine Learning. (A great, accessible paper on practical applications of TF-IDF).
-4. **Manning, C. D., Raghavan, P., & Schütze, H. (2008).** *Introduction to Information Retrieval.* Cambridge University Press. (A modern standard text covering the nuances of TF-IDF weighting variations).
+1. **Sparck Jones, K. (1972).** *A statistical interpretation of term specificity and its application in retrieval.* Journal of Documentation, 28(1), 11-21.
+2. **Salton, G., & McGill, M. J. (1983).** *Introduction to Modern Information Retrieval.* McGraw-Hill.
+3. **Ramos, J. (2003).** *Using TF-IDF to Determine Word Relevance in Document Queries.* Proceedings of the First Instructional Conference on Machine Learning.
+4. **Manning, C. D., Raghavan, P., & Schütze, H. (2008).** *Introduction to Information Retrieval.* Cambridge University Press.

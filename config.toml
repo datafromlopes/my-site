@@ -12,6 +12,7 @@ pagination.path = "page"
   description = 'MSc in Computer Science @ IME-USP'
   tagline = "Lead Data Engineer & NLP Researcher"
   location = "São Paulo, São Paulo, Brazil"
+  math = true
 
   [params.social]
     linkedin = "https://www.linkedin.com/in/datafromlopes"
@@ -66,3 +67,13 @@ pagination.path = "page"
 [outputs]
   home    = ["HTML", "RSS"]
   section = ["HTML", "RSS"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [["\\[", "\\]"], ["$$", "$$"]]
+          inline = [["\\(", "\\)"], ["$", "$"]]
+  

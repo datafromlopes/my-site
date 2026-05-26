@@ -13,14 +13,14 @@
 <meta property="og:url" content="http://localhost:1313/blog/tf-idf/">
 <meta property="og:site_name" content="Diego Lopes | Lead Data Engineer &amp; NLP Researcher">
 <meta property="og:type" content="article">
-<meta property="og:image" content="http://localhost:1313/">
-<meta property="og:image:secure_url" content="http://localhost:1313/">
+<meta property="og:image" content="http://localhost:1313/blog/tf-idf/tfidf-wallpaper_hu_88ad517ba333d36.png">
+<meta property="og:image:secure_url" content="http://localhost:1313/blog/tf-idf/tfidf-wallpaper_hu_88ad517ba333d36.png">
 <meta property="og:locale" content="pt_BR">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TF-IDF - An approach to determine the relevance of word in a corpus. | Diego Lopes | Lead Data Engineer &amp; NLP Researcher">
 <meta name="twitter:description" content="MSc in Computer Science @ IME-USP">
-<meta name="twitter:image" content="http://localhost:1313/">
+<meta name="twitter:image" content="http://localhost:1313/blog/tf-idf/tfidf-wallpaper_hu_26f0683ee4c495ba.png">
 <meta name="twitter:url" content="http://localhost:1313/blog/tf-idf/">
 <meta name="twitter:image:alt" content="TF-IDF - An approach to determine the relevance of word in a corpus. | Diego Lopes | Lead Data Engineer &amp; NLP Researcher">
 
@@ -40,7 +40,7 @@
   "@type": "Person",
   "name": "Diego Lopes",
   "url": "http:\/\/localhost:1313\/",
-  "image": "http:\/\/localhost:1313\/",
+  "image": "http:\/\/localhost:1313\/tfidf-wallpaper.png",
   "jobTitle": "Data Engineer & Researcher",
   "address": {"@type":"PostalAddress","addressLocality":"São Paulo","addressCountry":"BR"},
   "sameAs": [
@@ -58,11 +58,11 @@
   "@type": "Article",
   "headline": "TF-IDF - An approach to determine the relevance of word in a corpus.",
   "description": "MSc in Computer Science @ IME-USP",
-  "image": ["http:\/\/localhost:1313\/"],
+  "image": ["http:\/\/localhost:1313\/tfidf-wallpaper.png"],
   "author": {"@type": "Person","name": "Diego Lopes"},
   "publisher": {"@type": "Organization","name": "Diego Lopes | Lead Data Engineer \u0026 NLP Researcher","logo":{"@type":"ImageObject","url":"http:\/\/localhost:1313\/images\/logo.png"}},
-  "datePublished": "2025-10-04 00:00:00 \u002b0000 UTC",
-  "dateModified": "2025-10-04 00:00:00 \u002b0000 UTC",
+  "datePublished": "2026-05-25 00:00:00 \u002b0000 UTC",
+  "dateModified": "2026-05-25 00:00:00 \u002b0000 UTC",
   "mainEntityOfPage": {"@type":"WebPage","@id":"http:\/\/localhost:1313\/blog\/tf-idf\/"}
 }
 </script>
@@ -75,7 +75,7 @@
   
   
   
-    <link rel="stylesheet" href="/css/main.min.c78120f188ffc97ac0f2ba0441da112625337a8aafd4312f0d0339446dc041fb.css" integrity="sha256-x4Eg8Yj/yXrA8roEQdoRJiUzeoqv1DEvDQM5RG3AQfs=">
+    <link rel="stylesheet" href="/css/main.min.b8917bb1fdd4f1013a1cd64e0cec4d37e70dd168a2939e83eaeaa6119f0b5312.css" integrity="sha256-uJF7sf3U8QE6HNZODOxNN&#43;cN0Wiik56D6uqmEZ8LUxI=">
   
 
   
@@ -85,6 +85,22 @@
   
   
     <script src="/js/main.ff23e2de5353e78dd7a546b5ee631f554753abb17ff49e9edd652f129c888dd2.js" integrity="sha256-/yPi3lNT543XpUa17mMfVUdTq7F/9J6e3WUvEpyIjdI=" defer></script>
+  
+
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    },
+    loader:{
+      load: ['ui/safe']
+    },
+  };
+</script>
   
 
   <script src="https://kit.fontawesome.com/e3c6a2b28e.js" crossorigin="anonymous"></script>
@@ -266,33 +282,134 @@
   <main id="content" class="py-4">
     
 <article class="blog-section container py-3">
+  <header class="article-header mb-4">
 
-  <header class="mb-3">
-    <h1 class="mb-1">TF-IDF - An approach to determine the relevance of word in a corpus.</h1>
-    <div class="text-muted">
-      04 Oct 2025 - by
-       <span>Diego Lopes</span>.
-    </div>
+  
+  <div class="article-meta-top">
+    <span class="publication-type-badge type-conference">
+      <i class="bi bi-journal-text"></i> Blog Post
+    </span>
+    
+    <span class="publication-date">
+      <i class="bi bi-calendar3"></i>
+      25 May 2026
+    </span>
+    
+    
+    <span class="publication-date">
+      <i class="bi bi-person"></i> Diego Lopes
+    </span>
+    
+  </div>
 
-    
-      <div class="mt-2 d-flex flex-wrap gap-1">
-        <span class="badge text-bg-light">Statistics</span><span class="badge text-bg-light">Computational Linguistics</span><span class="badge text-bg-light">NLP</span>
-      </div>
-    
+  
+  <h1 class="article-title">TF-IDF - An approach to determine the relevance of word in a corpus.</h1>
 
+  
+  
+  <div class="publication-tags mt-2">
+    <span class="publication-tag">Computational Linguistics</span><span class="publication-tag">NLP</span>
+  </div>
+  
+
+  
+  
+  
     
     
-  </header>
+    
+      
+      <figure class="mt-4 mb-0 text-center">
+        <img
+          src="/blog/tf-idf/tfidf-wallpaper_hu_d423c9d27e4d9964.png"
+          class="img-fluid rounded"
+          style="max-height: 420px; width: 100%; object-fit: cover;"
+          alt="TF-IDF - An approach to determine the relevance of word in a corpus."
+          loading="lazy" decoding="async">
+        
+      </figure>
+    
+  
+
+</header>
   
   <div class="content mb-4">
-    <hr>
-<p>In the context of text processing, we sometimes need to determine the relevance of a term, a specific word, within a corpus.
+    <p>In the context of text processing, we sometimes need to determine the relevance of a term, a specific word, within a corpus.
 It is helpful in many different scenarios, like text-data augmentation that use this metric to determine how to process the
 data.</p>
 <p>More deeply in text-data augmentation, we have approaches to generate new sentences from another by deleting, swapping,
 or inserting a word. But how to decide which word to consider in these process? How important is a word in a sentence?
 Because of questions like that, nowadays we use the TF-IDF metric, proposed by Sparck Jones (1972), that is used to
 determine the relevance of a word.</p>
+<hr>
+<h2 id="the-intuition-behind-tf-idf">The Intuition Behind TF-IDF</h2>
+<p>TF-IDF stands for <strong>Term Frequency - Inverse Document Frequency</strong>. The core idea is simple but highly effective: a word&rsquo;s importance increases proportionally to the number of times it appears in a specific document (Term Frequency), but is offset by the frequency of the word in the entire corpus (Inverse Document Frequency).</p>
+<p>For instance, the word &ldquo;the&rdquo; might appear dozens of times in a document, giving it a high Term Frequency. However, because it appears in almost <em>every</em> document in the English language, it carries very little semantic weight. The Inverse Document Frequency component penalizes these common words, highlighting the rarer, more domain-specific terms that truly define a document&rsquo;s subject.</p>
+<h2 id="formal-definition-and-formulas">Formal Definition and Formulas</h2>
+<p>The TF-IDF score for a given term \(t\) in a specific document \(d\), given a corpus \(D\), is calculated by multiplying two distinct metrics:</p>
+$$TF\text{-}IDF(t, d, D) = TF(t, d) \times IDF(t, D)$$<h3 id="1-term-frequency-tf">1. Term Frequency (TF)</h3>
+<p>Term frequency measures how frequently a term occurs in a document. Because documents can vary greatly in length, it is standard practice to normalize the raw count by dividing it by the total number of words in that document.</p>
+$$TF(t, d) = \frac{f_{t,d}}{\sum_{t' \in d} f_{t',d}}$$<p>Where:</p>
+<ul>
+<li>\(f_{t,d}\) is the raw count of term \(t\) in document \(d\).</li>
+<li>The denominator represents the total number of terms in document \(d\).</li>
+</ul>
+<h3 id="2-inverse-document-frequency-idf">2. Inverse Document Frequency (IDF)</h3>
+<p>IDF measures the informational value of the word across the entire corpus. It scales down the weight of terms that occur very frequently and scales up the weight of rare terms.</p>
+$$IDF(t, D) = \log \left( \frac{N}{|\{d \in D : t \in d\}|} \right)$$<p>Where:</p>
+<ul>
+<li>\(N\) is the total number of documents in the corpus \(D\).</li>
+<li>\(|\{d \in D : t \in d\}|\) is the number of documents where the term \(t\) appears. If the term is not in the corpus, this can lead to a division-by-zero, which is why a constant \(+1\) is often added to the denominator in practical implementations (like Scikit-Learn&rsquo;s <code>TfidfVectorizer</code>).</li>
+</ul>
+<hr>
+<h2 id="a-practical-example">A Practical Example</h2>
+<p>Let&rsquo;s build a TF-IDF matrix to see this in action. Consider a tiny corpus of two documents:</p>
+<ul>
+<li><strong>Document A:</strong> &ldquo;machine learning is fun&rdquo;</li>
+<li><strong>Document B:</strong> &ldquo;learning is awesome&rdquo;</li>
+</ul>
+<h3 id="step-1-calculate-tf">Step 1: Calculate TF</h3>
+<p>First, we calculate the Term Frequency for each word in Document A (which has 4 words total) and Document B (which has 3 words total).</p>
+$$\begin{array}{|l|l|l|}
+\hline
+\textbf{Term} & \textbf{TF in Doc A} & \textbf{TF in Doc B} \\
+\hline
+\text{machine} & 1/4 = 0.25 & 0 \\
+\text{learning} & 1/4 = 0.25 & 1/3 \approx 0.33 \\
+\text{is} & 1/4 = 0.25 & 1/3 \approx 0.33 \\
+\text{fun} & 1/4 = 0.25 & 0 \\
+\text{awesome} & 0 & 1/3 \approx 0.33 \\
+\hline
+\end{array}$$<h3 id="step-2-calculate-idf">Step 2: Calculate IDF</h3>
+<p>Our total number of documents \(N = 2\). Let&rsquo;s use the base-10 logarithm for this example.</p>
+<ul>
+<li><strong>&ldquo;machine&rdquo;, &ldquo;fun&rdquo;, &ldquo;awesome&rdquo;</strong>: Each appears in only 1 document.
+$$IDF = \log_{10}\left(\frac{2}{1}\right) \approx 0.301$$</li>
+<li><strong>&ldquo;learning&rdquo;, &ldquo;is&rdquo;</strong>: Each appears in 2 documents.
+$$IDF = \log_{10}\left(\frac{2}{2}\right) = \log_{10}(1) = 0$$</li>
+</ul>
+<h3 id="step-3-calculate-the-final-tf-idf-matrix">Step 3: Calculate the Final TF-IDF Matrix</h3>
+<p>Now, we multiply \(TF \times IDF\) for each term per document.</p>
+$$\begin{array}{|l|l|l|}
+\hline
+\textbf{Term} & \textbf{TF-IDF (Doc A)} & \textbf{TF-IDF (Doc B)} \\
+\hline
+\text{machine} & 0.25 \times 0.301 = 0.075 & 0 \times 0.301 = 0 \\
+\text{learning} & 0.25 \times 0 = 0 & 0.33 \times 0 = 0 \\
+\text{is} & 0.25 \times 0 = 0 & 0.33 \times 0 = 0 \\
+\text{fun} & 0.25 \times 0.301 = 0.075 & 0 \times 0.301 = 0 \\
+\text{awesome} & 0 \times 0.301 = 0 & 0.33 \times 0.301 \approx 0.1 \\
+\hline
+\end{array}$$<p><strong>Interpretation:</strong> The words &ldquo;learning&rdquo; and &ldquo;is&rdquo; scored \(0\). Since they appear in every document in our small corpus, they provide no unique identifying value to differentiate Document A from Document B. Meanwhile, &ldquo;machine&rdquo;, &ldquo;fun&rdquo;, and &ldquo;awesome&rdquo; emerge as the most relevant keywords.</p>
+<hr>
+<h2 id="scientific-references--further-reading">Scientific References &amp; Further Reading</h2>
+<p>The theoretical foundation for term weighting and its evolution into the TF-IDF framework we use today is heavily documented in the field of Information Retrieval. For those looking to dive deeper into the mathematics and history, I recommend exploring these seminal papers:</p>
+<ol>
+<li><strong>Sparck Jones, K. (1972).</strong> <em>A statistical interpretation of term specificity and its application in retrieval.</em> Journal of Documentation, 28(1), 11-21.</li>
+<li><strong>Salton, G., &amp; McGill, M. J. (1983).</strong> <em>Introduction to Modern Information Retrieval.</em> McGraw-Hill.</li>
+<li><strong>Ramos, J. (2003).</strong> <em>Using TF-IDF to Determine Word Relevance in Document Queries.</em> Proceedings of the First Instructional Conference on Machine Learning.</li>
+<li><strong>Manning, C. D., Raghavan, P., &amp; Schütze, H. (2008).</strong> <em>Introduction to Information Retrieval.</em> Cambridge University Press.</li>
+</ol>
 
   </div>
   <nav class="mt-4 d-flex justify-content-between">

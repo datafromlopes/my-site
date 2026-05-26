@@ -582,22 +582,16 @@ body {
   margin-top: 2.5rem;
 }
 
-/* On this layout, remove max-width constraint from timeline */
 .journey-education-grid .timeline {
   max-width: 100%;
 }
 
-/* Mobile: stack vertically */
 @media (max-width: 991px) {
   .journey-education-grid {
     grid-template-columns: 1fr;
     gap: 0;
   }
-
-  .section-divider-vertical {
-    display: none;
-  }
-
+  .section-divider-vertical { display: none; }
   .journey-education-grid .experience-timeline {
     border-bottom: 1px solid var(--line);
     padding-bottom: 2rem;
@@ -896,7 +890,6 @@ body {
   box-shadow: var(--shadow-xs);
 }
 
-/* Override .about-section list styles */
 .research-box .research-list {
   display: flex !important;
   grid-template-columns: none !important;
@@ -933,12 +926,8 @@ body {
 }
 .technical-focus .p-4:hover::before { opacity: 1; }
 
-.technical-focus .bg-light {
-  background: var(--surface) !important;
-}
-.technical-focus .border {
-  border-color: var(--line) !important;
-}
+.technical-focus .bg-light { background: var(--surface) !important; }
+.technical-focus .border { border-color: var(--line) !important; }
 
 .technical-focus h5 {
   font-size: .9375rem;
@@ -954,7 +943,6 @@ body {
   letter-spacing: -.01em;
 }
 
-/* Expertise list as inline tags */
 .technical-focus .expertise-list {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -1164,7 +1152,6 @@ body {
 .newsletter-card .ml-embedded .ml-form-embedSubmit { width: 100% !important; }
 .newsletter-card .ml-embedded .ml-form-embedSubmit button { width: 100% !important; background: var(--accent) !important; }
 
-/* Fix MailerLite overriding button to black */
 .ml-embedded .ml-form-embedSubmit button[type="submit"],
 .ml-embedded button[type="submit"],
 .newsletter-card button[type="submit"] {
@@ -1181,7 +1168,6 @@ body {
   background-color: var(--accent-hover) !important;
 }
 
-/* Fix newsletter icon size */
 .newsletter-icon img {
   width: 22px !important;
   height: 22px !important;
@@ -1432,35 +1418,92 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
 }
 .blog-card:hover { border-color: var(--accent-border); transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
-.blog-card-image { position: relative; width: 100%; height: 100px; overflow: hidden; display: block; background: var(--surface-2); }
+.blog-card-image { position: relative; width: 100%; height: 160px; overflow: hidden; display: block; background: var(--surface-2); }
 .blog-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
 .blog-card:hover .blog-card-image img { transform: scale(1.05); }
+
+/* Gradient fade at bottom of cover image */
+.blog-card-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--surface));
+  pointer-events: none;
+}
 
 .blog-card-placeholder { display: flex; align-items: center; justify-content: center; background: var(--surface-2); }
 .placeholder-content { font-size: 4rem; color: var(--accent); opacity: .15; }
 
-.blog-card-body { padding: 1.125rem; display: flex; flex-direction: column; flex-grow: 1; }
+.blog-card-body { padding: 1rem 1.125rem 1.125rem; display: flex; flex-direction: column; flex-grow: 1; }
 
-.blog-card-tags-top { display: flex; gap: .35rem; margin-bottom: .6rem; }
+.blog-card-tags-top { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .55rem; }
+
+/* ── BLOG TAG — compact inline style ── */
 .blog-tag-inline {
-  padding: .1rem .45rem;
+  padding: .1rem .4rem;
   background: var(--accent-06);
   color: var(--accent);
   border: 1px solid var(--accent-border);
   border-radius: 4px;
-  font-size: .6rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .04em;
+  font-size: .6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
   font-family: var(--font-mono);
+  white-space: nowrap;
+}
+.blog-tag-more {
+  background: var(--surface-2);
+  color: var(--muted);
+  border-color: var(--line);
 }
 
-.blog-card-title { text-decoration: none; color: var(--text); display: block; margin-bottom: .45rem; }
+.blog-card-title { text-decoration: none; color: var(--text); display: block; margin-bottom: .4rem; }
 .blog-card-title h3 { font-size: .9375rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.3; margin: 0; transition: color .15s ease; }
 .blog-card:hover .blog-card-title h3 { color: var(--accent); }
 
-.blog-card-description { color: var(--muted); font-size: .8rem; line-height: 1.55; margin-bottom: .5rem; flex-grow: 1; }
+.blog-card-description {
+  color: var(--text-2);
+  font-size: .8rem;
+  line-height: 1.55;
+  margin-bottom: .5rem;
+  flex-grow: 1;
+}
 
-.blog-card-meta { display: flex; flex-wrap: wrap; gap: .75rem; font-size: .75rem; color: var(--muted); padding-top: .75rem; border-top: 1px solid var(--line); margin-top: auto; font-family: var(--font-mono); }
-.blog-tag-more { background: var(--surface-2); color: var(--muted); }
+/* ── BLOG CARD META — single line, no wrap ── */
+.blog-card-meta {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: .4rem;
+  font-size: .8rem;
+  color: var(--muted);
+  padding-top: .75rem;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+  font-family: var(--font-mono);
+  overflow: hidden;
+}
+
+.blog-card-meta .meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.meta-item-author {
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+.blog-card-meta .meta-separator {
+  color: var(--muted-2);
+  flex-shrink: 0;
+  line-height: 1;
+}
 
 /* =========================================
    PAGINATION
@@ -1498,14 +1541,11 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
    ABOUT SECTION — Section headers
    ========================================= */
 .about-section h4.h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: -.01em;
-  color: var(--text);
-  text-transform: uppercase;
   font-size: .7rem;
+  font-weight: 700;
   letter-spacing: .08em;
   color: var(--muted);
+  text-transform: uppercase;
   margin-bottom: 1.25rem;
 }
 
@@ -1573,6 +1613,7 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   .project-meta-footer { flex-direction: column; align-items: flex-start; }
   .project-card-footer { justify-content: center; }
   .project-card-link { width: 100%; justify-content: center; }
+  .blog-card-meta { font-size: .65rem; gap: .3rem; }
 }
 
 @media (max-width: 991.98px) {
@@ -1600,8 +1641,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
 /* =========================================
    ARTICLES / PUBLICATIONS PAGE
    ========================================= */
-
-/* Stats summary cards */
 .publications-stats {
   display: flex;
   flex-wrap: wrap;
@@ -1650,7 +1689,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   line-height: 1;
 }
 
-/* Publications list grouped by year */
 .publications-list {
   display: flex;
   flex-direction: column;
@@ -1696,7 +1734,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   gap: 1rem;
 }
 
-/* Publication card */
 .publication-card {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -1735,7 +1772,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   margin-bottom: .65rem;
 }
 
-/* Type badges */
 .publication-type-badge {
   display: inline-flex;
   align-items: center;
@@ -1783,7 +1819,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   border-color: rgba(99, 102, 241, .24);
 }
 
-/* Date */
 .publication-date {
   display: inline-flex;
   align-items: center;
@@ -1793,7 +1828,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   font-family: var(--font-mono);
 }
 
-/* Title */
 .publication-title {
   font-size: 1.0625rem;
   font-weight: 600;
@@ -1810,7 +1844,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
 
 .publication-title a:hover { color: var(--accent); }
 
-/* Authors */
 .publication-authors {
   font-size: .825rem;
   color: var(--text-2);
@@ -1823,7 +1856,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   font-weight: 600;
 }
 
-/* Venue */
 .publication-venue {
   display: flex;
   align-items: center;
@@ -1848,7 +1880,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   color: var(--muted-2);
 }
 
-/* Abstract preview */
 .publication-abstract {
   font-size: .8125rem;
   color: var(--text-2);
@@ -1857,7 +1888,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   text-align: justify;
 }
 
-/* Tags */
 .publication-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1877,7 +1907,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   letter-spacing: .02em;
 }
 
-/* Action links */
 .publication-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1924,7 +1953,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
 
 .action-link i { font-size: .8rem; }
 
-/* BibTeX inline (collapsed) */
 .bibtex-block {
   display: none;
   margin-top: .75rem;
@@ -1943,7 +1971,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
 
 .bibtex-block.show { display: block; }
 
-/* Empty state */
 .empty-state {
   text-align: center;
   padding: 3rem 1rem;
@@ -1980,7 +2007,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   background: var(--accent-06);
 }
 
-/* Article header */
 .article-header {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
@@ -2058,7 +2084,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   font-weight: 500;
 }
 
-/* Action buttons (header) */
 .article-actions {
   display: flex;
   flex-wrap: wrap;
@@ -2103,7 +2128,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
 
 .action-btn i { font-size: .9rem; }
 
-/* Details grid: abstract + sidebar */
 .article-details-grid {
   display: grid;
   grid-template-columns: 1fr 240px;
@@ -2112,10 +2136,7 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
 }
 
 @media (max-width: 768px) {
-  .article-details-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+  .article-details-grid { grid-template-columns: 1fr; gap: 1.5rem; }
 }
 
 .section-heading {
@@ -2140,7 +2161,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   margin: 0;
 }
 
-/* Sidebar */
 .article-sidebar {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -2168,35 +2188,14 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   font-size: .8rem;
 }
 
-.metadata-list dt {
-  font-weight: 600;
-  color: var(--muted);
-  font-size: .725rem;
-}
-
-.metadata-list dd {
-  margin: 0;
-  color: var(--text-2);
-  word-break: break-word;
-}
-
-.metadata-list a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
+.metadata-list dt { font-weight: 600; color: var(--muted); font-size: .725rem; }
+.metadata-list dd { margin: 0; color: var(--text-2); word-break: break-word; }
+.metadata-list a { color: var(--accent); text-decoration: none; }
 .metadata-list a:hover { text-decoration: underline; }
 
-.sidebar-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .3rem;
-}
+.sidebar-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
 
-/* BibTeX section */
-.article-bibtex {
-  margin-bottom: 2rem;
-}
+.article-bibtex { margin-bottom: 2rem; }
 
 .article-bibtex .section-heading {
   display: flex;
@@ -2246,7 +2245,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   word-break: break-word;
 }
 
-/* Article content (markdown body) */
 .article-content {
   margin-bottom: 2rem;
   line-height: 1.8;
@@ -2264,7 +2262,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
 .article-content a:hover { text-decoration: underline; }
 .article-content blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1.5rem 0; color: var(--muted); font-style: italic; }
 
-/* Citation footer */
 .article-citation {
   background: var(--accent-06);
   border: 1px solid var(--accent-border);
@@ -2272,9 +2269,7 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
   padding: 1.25rem 1.5rem;
 }
 
-.article-citation .section-heading {
-  margin-bottom: .65rem;
-}
+.article-citation .section-heading { margin-bottom: .65rem; }
 
 .citation-text {
   font-size: .85rem;
@@ -2286,7 +2281,6 @@ a.organization-badge { text-decoration: none; cursor: pointer; }
 
 .citation-text em { color: var(--text); font-style: italic; }
 
-/* Responsive tweaks */
 @media (max-width: 768px) {
   .article-title { font-size: 1.5rem; }
   .publications-stats { flex-direction: column; }
