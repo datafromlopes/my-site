@@ -23,7 +23,7 @@ pagination.path = "page"
     orcid  = "https://orcid.org/0000-0002-5130-3728"
     lattes = "http://lattes.cnpq.br/4604428550643092"
     academic_email = "diego.oliveiralopes@ime.usp.br"
-    rss = "http://localhost:1313/blog/index.xml"
+    rss = "http://datafromlopes.com/blog/index.xml"
   
   [params.companies]
     ollie = "https://meuollie.com.br"
