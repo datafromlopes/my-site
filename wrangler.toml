@@ -1,9 +1,29 @@
-name = "my-site"
-compatibility_date = "2025-07-31"
+#:schema node_modules/wrangler/config-schema.json
+name = "datafromlopes"
+main = "worker/index.ts"
+compatibility_date = "2026-08-01"
+compatibility_flags = ["nodejs_compat"]
 
+# Cloudflare Workers Builds: connect the GitHub repo and use
+#   Build command:  npm run build
+#   Deploy command: npx wrangler deploy
 [build]
-command = "chmod a+x build.sh && ./build.sh"
+command = "npm run build"
 
 [assets]
-directory = "./public"
-not_found_handling = "none"
+directory = "./dist/client"
+binding = "ASSETS"
+not_found_handling = "404-page"
+html_handling = "drop-trailing-slash"
+# The worker runs for every request so it can 301 the legacy Hugo URLs and set
+# security headers; it hands anything it does not own straight to ASSETS.
+run_worker_first = true
+
+[observability]
+enabled = true
+
+[vars]
+MAILERLITE_ACCOUNT = "2139800"
+MAILERLITE_FORM = "0ZWAxD"
+# Optional: `npx wrangler secret put MAILERLITE_API_KEY` enables the official
+# MailerLite API path. Without it the worker falls back to the public form endpoint.

@@ -1,0 +1,13 @@
+{
+  "name": "Diego Lopes — Lead Data Engineer & NLP Researcher",
+  "short_name": "Diego Lopes",
+  "description": "Distributed data platforms, text-to-SQL and natural language interfaces for databases.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#16150f",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/media/profile.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
