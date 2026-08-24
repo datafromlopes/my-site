@@ -55,6 +55,10 @@ export function SectionHead({
 }) {
   return (
     <div className={cn('mb-10', className)}>
+      {/* A short accent tick marks the start of a section — enough structure to
+          read as a boundary, without a rule running the width of the page. */}
+      <div className="mb-5 h-[3px] w-8 rounded-full bg-accent" aria-hidden="true" />
+
       <div className="mb-4 flex items-center justify-between gap-4">
         <span className="label text-ink-4">{index}</span>
         {action}

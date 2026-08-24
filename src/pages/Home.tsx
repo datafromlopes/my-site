@@ -164,7 +164,7 @@ export function Home() {
       </Container>
 
       {/* ------------------------------------------------------ currently */}
-      <Container className="pt-24">
+      <Container className="pt-32">
         <Reveal>
           <SectionHead index="01" title="Currently" lede="Three things have my attention right now." />
           <ul className="card divide-y divide-rule overflow-hidden">
@@ -193,7 +193,7 @@ export function Home() {
       </Container>
 
       {/* -------------------------------------------------------- systems */}
-      <Container className="pt-24">
+      <Container className="pt-32">
         <Reveal>
           <SectionHead
             index="02"
@@ -214,7 +214,7 @@ export function Home() {
 
       {/* ------------------------------------------------------- research */}
       {publications.length ? (
-        <Container className="pt-24">
+        <Container className="pt-32">
           <Reveal>
             <SectionHead
               index="03"
@@ -242,7 +242,7 @@ export function Home() {
       ) : null}
 
       {/* -------------------------------------------------- competencies */}
-      <Container className="pt-24">
+      <Container className="pt-32">
         <Reveal>
           <SectionHead
             index="04"
@@ -309,7 +309,7 @@ export function Home() {
 
       {/* -------------------------------------------------------- writing */}
       {posts.length ? (
-        <Container className="pt-24">
+        <Container className="pt-32">
           <Reveal>
             <SectionHead
               index="05"
@@ -327,7 +327,7 @@ export function Home() {
       ) : null}
 
       {/* ------------------------------------------------------- off duty */}
-      <Container className="pt-24">
+      <Container className="pt-32">
         <Reveal>
           <SectionHead index="06" title="Off duty" />
           <div className="grid items-center gap-8 md:grid-cols-[0.9fr_1fr] md:gap-12">
@@ -362,14 +362,14 @@ export function Home() {
       </Container>
 
       {/* ---------------------------------------------------- newsletter */}
-      <Container className="pt-24">
+      <Container className="pt-32">
         <Reveal>
           <Newsletter />
         </Reveal>
       </Container>
 
       {/* ----------------------------------------------------------- CTA */}
-      <Container className="pt-24">
+      <Container className="pt-32">
         <Reveal>
           <div className="relative overflow-hidden rounded-lg border border-rule bg-surface px-6 py-14 text-center sm:px-12">
             <div className="grid-field pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
