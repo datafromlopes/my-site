@@ -67,11 +67,12 @@ export function Header() {
             <span className="flex h-8 w-8 items-center justify-center rounded border border-ink bg-ink font-mono text-[0.8125rem] font-medium leading-none text-paper">
               dl
             </span>
-            <span className="hidden leading-tight sm:block">
+            <span className="leading-tight">
               <span className="block text-[0.9375rem] font-semibold tracking-[-0.01em] text-ink">
                 {site.name}
               </span>
-              <span className="block font-mono text-[0.6875rem] text-ink-3">
+              {/* The tagline is the first thing to go when the bar gets tight. */}
+              <span className="hidden font-mono text-[0.6875rem] text-ink-3 sm:block">
                 data systems &amp; NLP research
               </span>
             </span>

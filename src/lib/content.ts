@@ -48,7 +48,9 @@ export type Publication = Base & {
   doi?: string
   issn?: string
   pdfUrl?: string
+  landingUrl?: string
   codeUrl?: string
+  datasetUrl?: string
   slidesUrl?: string
   abstract: string
   bibtex?: string
@@ -133,7 +135,9 @@ export const publications: Publication[] = Object.values(publicationModules)
       doi: asString(fm.doi) || undefined,
       issn: asString(fm.issn) || undefined,
       pdfUrl: asString(fm.pdfUrl) || undefined,
+      landingUrl: asString(fm.landingUrl) || undefined,
       codeUrl: asString(fm.codeUrl) || undefined,
+      datasetUrl: asString(fm.datasetUrl) || undefined,
       slidesUrl: asString(fm.slidesUrl) || undefined,
       abstract: asString(fm.abstract),
       bibtex: asString(fm.bibtex) || undefined,
@@ -171,7 +175,7 @@ export const posts: Post[] = Object.values(writingModules)
     const b = base(mod)
     return {
       ...b,
-      href: `/writing/${b.slug}`,
+      href: `/posts/${b.slug}`,
       updated: toISODate(fm.updated) || undefined,
       cover: asString(fm.cover) || undefined,
     }
@@ -229,9 +233,9 @@ export const searchIndex: SearchDoc[] = [
     body: 'projects systems engineering distributed',
   },
   {
-    id: 'page-writing',
-    title: 'Writing',
-    href: '/writing',
+    id: 'page-posts',
+    title: 'Posts',
+    href: '/posts',
     kind: 'page',
     meta: 'Notes and essays',
     body: 'blog writing notes essays articles',

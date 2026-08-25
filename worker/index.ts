@@ -23,8 +23,10 @@ export interface Env {
 const EXACT_REDIRECTS: Record<string, string> = {
   '/articles': '/research',
   '/articles/sbbd-2026': '/research/atlassql-br',
-  '/blog': '/writing',
-  '/blog/tf-idf': '/writing/tf-idf',
+  '/blog': '/posts',
+  '/blog/tf-idf': '/posts/tf-idf',
+  '/writing': '/posts',
+  '/writing/tf-idf': '/posts/tf-idf',
   '/projects/geo-nlq-to-sql': '/projects/geo-text-to-sql',
   '/projects/cassandra-cluster': '/projects/cassandra-platform',
   '/projects/matrix_multiply_optimizer': '/projects/matrix-kernel-optimization',
@@ -37,9 +39,10 @@ const EXACT_REDIRECTS: Record<string, string> = {
 /** Prefix → destination, applied when no exact match wins. */
 const PREFIX_REDIRECTS: [string, string][] = [
   ['/articles/', '/research'],
-  ['/blog/', '/writing'],
-  ['/tags/', '/writing'],
-  ['/categories/', '/writing'],
+  ['/blog/', '/posts'],
+  ['/writing/', '/posts'],
+  ['/tags/', '/posts'],
+  ['/categories/', '/posts'],
   ['/page/', '/'],
 ]
 

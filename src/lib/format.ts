@@ -47,14 +47,18 @@ export function authorLine(authors: Author[]): string {
 
 /** APA-ish citation string, good enough to paste into an e-mail. */
 export function citation(pub: Publication): string {
-  const names = pub.authors
-    .map((a) => {
-      const parts = a.name.trim().split(/\s+/)
-      const last = parts.pop() ?? ''
-      const initials = parts.map((p) => `${p[0]}.`).join(' ')
-      return initials ? `${last}, ${initials}` : last
-    })
-    .join(', ')
+  const formatted = pub.authors.map((a) => {
+    const parts = a.name.trim().split(/\s+/)
+    const last = parts.pop() ?? ''
+    const initials = parts.map((p) => `${p[0]}.`).join(' ')
+    return initials ? `${last}, ${initials}` : last
+  })
+
+  // APA joins the final author with an ampersand.
+  const names =
+    formatted.length > 1
+      ? `${formatted.slice(0, -1).join(', ')}, & ${formatted[formatted.length - 1]}`
+      : (formatted[0] ?? '')
 
   const bits = [
     `${names} (${pub.year}).`,

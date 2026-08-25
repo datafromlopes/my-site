@@ -34,7 +34,7 @@ export function PostPage() {
 
       <article>
         <Container className="pt-12">
-          <PathCrumb segments={[{ label: 'writing', href: '/writing' }, { label: post.slug }]} />
+          <PathCrumb segments={[{ label: 'posts', href: '/posts' }, { label: post.slug }]} />
 
           <header className="mt-8 border-b border-rule pb-10">
             <div className="mb-5 flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -58,7 +58,7 @@ export function PostPage() {
             <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap gap-1.5">
                 {post.tags.map((tag) => (
-                  <Tag key={tag} to={`/writing?tag=${encodeURIComponent(tag)}`}>
+                  <Tag key={tag} to={`/posts?tag=${encodeURIComponent(tag)}`}>
                     {tag}
                   </Tag>
                 ))}
@@ -71,9 +71,11 @@ export function PostPage() {
         <Container className="pt-12">
           <div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_14rem]">
             <div className="min-w-0 max-w-[46rem]">
-              <Prose html={post.html} />
+              <div className="card px-6 py-8 sm:px-9 sm:py-10">
+                <Prose html={post.html} />
+              </div>
 
-              <div className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-rule pt-6">
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
                 <p className="font-mono text-[0.6875rem] uppercase tracking-[0.1em] text-ink-4">
                   Written by {site.name}
                 </p>
@@ -83,7 +85,7 @@ export function PostPage() {
               <ArticleNav
                 previous={previous ? { href: previous.href, title: previous.title } : undefined}
                 next={next ? { href: next.href, title: next.title } : undefined}
-                label="More writing"
+                label="More posts"
               />
             </div>
 

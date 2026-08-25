@@ -21,8 +21,8 @@ export function WritingIndex() {
   return (
     <>
       <PageHeader
-        eyebrow="writing"
-        title="Writing"
+        eyebrow="posts"
+        title="Posts"
         lede="Notes on distributed systems, language models and information retrieval — written when a topic turns out to be harder to explain than to implement."
         meta={
           <>

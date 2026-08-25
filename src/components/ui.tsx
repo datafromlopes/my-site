@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { cn } from '@/lib/format'
 import { useCopy, useReveal } from '@/lib/hooks'
 import { ArrowRight, ArrowUpRight, Check, Copy } from './Icons'
+import { SectionRule } from './SectionRule'
 
 /* ------------------------------------------------------------------ layout */
 
@@ -42,29 +43,35 @@ export function Reveal({
 /** The numbered heading used to open every section on the site. */
 export function SectionHead({
   index,
+  slug,
   title,
   lede,
   action,
   className,
 }: {
   index: string
+  /** Path-like label shown in the prompt chip, e.g. "selected-projects". */
+  slug: string
+  /** Read by assistive tech; the chip renders the same thing visually. */
   title: string
   lede?: ReactNode
   action?: ReactNode
   className?: string
 }) {
   return (
-    <div className={cn('mb-10', className)}>
-      {/* A short accent tick marks the start of a section — enough structure to
-          read as a boundary, without a rule running the width of the page. */}
-      <div className="mb-5 h-[3px] w-8 rounded-full bg-accent" aria-hidden="true" />
+    <div className={cn('mb-8', className)}>
+      <SectionRule
+        as="h2"
+        size="lg"
+        label={title}
+        segments={[
+          { text: index, tone: 'ink' },
+          { text: `~/${slug}`, tone: 'accent' },
+        ]}
+        action={action}
+      />
 
-      <div className="mb-4 flex items-center justify-between gap-4">
-        <span className="label text-ink-4">{index}</span>
-        {action}
-      </div>
-      <h2 className="display text-[clamp(1.75rem,3.4vw,2.5rem)] text-ink">{title}</h2>
-      {lede ? <p className="mt-3 max-w-2xl text-[0.9375rem] leading-relaxed text-ink-3">{lede}</p> : null}
+      {lede ? <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-ink-3">{lede}</p> : null}
     </div>
   )
 }

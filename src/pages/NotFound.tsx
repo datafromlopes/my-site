@@ -26,7 +26,7 @@ export function NotFound() {
 
         <div className="mt-9 flex flex-wrap gap-3">
           <Button href="/">Back to the index</Button>
-          <Button href="/writing" variant="outline">
+          <Button href="/posts" variant="outline">
             Read something instead
           </Button>
         </div>

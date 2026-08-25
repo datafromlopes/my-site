@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 
 /**
- * Filesystem-style breadcrumb: `~/writing/tf-idf`. Every segment but the last
+ * Filesystem-style breadcrumb: `~/posts/tf-idf`. Every segment but the last
  * is a link, so it doubles as the back navigation on detail pages.
  */
 export function PathCrumb({ segments }: { segments: { label: string; href?: string }[] }) {

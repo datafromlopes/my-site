@@ -2,6 +2,7 @@ import { Link } from 'react-router'
 import { PostRow, ProjectCard, PublicationEntry, StatusRow } from '@/components/cards'
 import { ArrowUpRight, Brain, Cpu, Database } from '@/components/Icons'
 import { MetricStrip } from '@/components/Metrics'
+import { SectionRule } from '@/components/SectionRule'
 import { SocialLinks } from '@/components/SocialLinks'
 import { TextToSql } from '@/components/TextToSql'
 import { Newsletter } from '@/components/Newsletter'
@@ -32,39 +33,43 @@ export function Home() {
           <div className="grid gap-10 lg:grid-cols-[15rem_1fr] lg:gap-14">
             {/* Portrait and identity block — left, where the eye lands first. */}
             <div
-              className="card flex max-w-[15rem] flex-col gap-4 p-3.5"
+              className="card flex w-full flex-col gap-4 p-3.5 lg:max-w-[15rem]"
               style={{ animation: 'reveal-up .7s cubic-bezier(0.16,1,0.3,1) backwards' }}
             >
-              <img
-                src="/media/profile.png"
-                alt="Diego Lopes"
-                width={480}
-                height={480}
-                loading="eager"
-                className="w-full rounded border border-rule object-cover"
-              />
+              {/* Portrait beside the data on narrow screens so the card does not
+                  eat the whole fold; stacked once there is a column for it. */}
+              <div className="flex items-start gap-4 lg:flex-col lg:gap-4">
+                <img
+                  src="/media/profile.png"
+                  alt="Diego Lopes"
+                  width={480}
+                  height={480}
+                  loading="eager"
+                  className="w-28 shrink-0 rounded border border-rule object-cover sm:w-36 lg:w-full"
+                />
 
-              <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 font-mono text-[0.75rem]">
-                <dt className="text-ink-4">role</dt>
-                <dd className="text-ink-2">{current.title}</dd>
-                <dt className="text-ink-4">at</dt>
-                <dd>
-                  <a
-                    href={current.companyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-accent hover:underline"
-                  >
-                    {current.company}
-                  </a>
-                </dd>
-                <dt className="text-ink-4">msc</dt>
-                <dd className="text-ink-2">{msc.institutionShort}</dd>
-                <dt className="text-ink-4">based</dt>
-                <dd className="text-ink-2">São Paulo, BR</dd>
-                <dt className="text-ink-4">tz</dt>
-                <dd className="text-ink-2">UTC−3</dd>
-              </dl>
+                <dl className="grid min-w-0 flex-1 grid-cols-[auto_1fr] gap-x-3 gap-y-1.5 font-mono text-[0.75rem] lg:w-full lg:flex-none">
+                  <dt className="text-ink-4">role</dt>
+                  <dd className="text-ink-2">{current.title}</dd>
+                  <dt className="text-ink-4">at</dt>
+                  <dd>
+                    <a
+                      href={current.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent hover:underline"
+                    >
+                      {current.company}
+                    </a>
+                  </dd>
+                  <dt className="text-ink-4">msc</dt>
+                  <dd className="text-ink-2">{msc.institutionShort}</dd>
+                  <dt className="text-ink-4">based</dt>
+                  <dd className="text-ink-2">São Paulo, BR</dd>
+                  <dt className="text-ink-4">tz</dt>
+                  <dd className="text-ink-2">UTC−3</dd>
+                </dl>
+              </div>
 
               <SocialLinks
                 items={socials.filter((s) =>
@@ -153,12 +158,19 @@ export function Home() {
       {/* ------------------------------------------------------- metrics */}
       <Container>
         <Reveal>
-          <div className="mb-4 flex items-center justify-between gap-4">
-            <span className="label">Production, measured</span>
-            <Link to="/projects/cassandra-platform" className="label transition-colors hover:text-accent">
-              Source ↗
-            </Link>
-          </div>
+          <SectionRule
+            size="lg"
+            className="mb-5"
+            segments={[
+              { text: '00', tone: 'ink' },
+              { text: '~/production', tone: 'accent' },
+            ]}
+            action={
+              <Link to="/projects/cassandra-platform" className="label transition-colors hover:text-accent">
+                Source ↗
+              </Link>
+            }
+          />
           <MetricStrip metrics={metrics} />
         </Reveal>
       </Container>
@@ -166,7 +178,12 @@ export function Home() {
       {/* ------------------------------------------------------ currently */}
       <Container className="pt-32">
         <Reveal>
-          <SectionHead index="01" title="Currently" lede="Three things have my attention right now." />
+          <SectionHead
+            index="01"
+            slug="currently"
+            title="Currently"
+            lede="Three things have my attention right now."
+          />
           <ul className="card divide-y divide-rule overflow-hidden">
             <StatusRow
               when={formatMonth(current.start)}
@@ -183,7 +200,7 @@ export function Home() {
             {publications[0] ? (
               <StatusRow
                 when={String(publications[0].year)}
-                what={`Paper accepted at ${publications[0].venueShort}`}
+                what={`Paper published at ${publications[0].venueShort}`}
                 where={publications[0].title}
                 href={publications[0].href}
               />
@@ -197,6 +214,7 @@ export function Home() {
         <Reveal>
           <SectionHead
             index="02"
+            slug="selected-projects"
             title="Selected projects"
             lede="Work where the constraint was real — a latency budget, a cost ceiling, an SLA someone was paged for."
             action={<ArrowLink href="/projects">All work</ArrowLink>}
@@ -218,6 +236,7 @@ export function Home() {
           <Reveal>
             <SectionHead
               index="03"
+              slug="research"
               title="Research"
               lede="Peer-reviewed work on text-to-SQL and natural language interfaces for spatial data."
               action={<ArrowLink href="/research">All publications</ArrowLink>}
@@ -246,6 +265,7 @@ export function Home() {
         <Reveal>
           <SectionHead
             index="04"
+            slug="what-i-work-on"
             title="What I work on"
             lede="Three areas, and the places where they turn out to be the same problem."
           />
@@ -313,9 +333,10 @@ export function Home() {
           <Reveal>
             <SectionHead
               index="05"
-              title="Writing"
+              slug="posts"
+              title="Posts"
               lede="Notes on the parts worth writing down."
-              action={<ArrowLink href="/writing">All notes</ArrowLink>}
+              action={<ArrowLink href="/posts">All notes</ArrowLink>}
             />
             <div className="card divide-y divide-rule overflow-hidden">
               {posts.slice(0, 3).map((post) => (
@@ -329,7 +350,7 @@ export function Home() {
       {/* ------------------------------------------------------- off duty */}
       <Container className="pt-32">
         <Reveal>
-          <SectionHead index="06" title="Off duty" />
+          <SectionHead index="06" slug="off-duty" title="Off duty" />
           <div className="grid items-center gap-8 md:grid-cols-[0.9fr_1fr] md:gap-12">
             <figure className="overflow-hidden rounded-lg border border-rule bg-surface p-2.5">
               <img

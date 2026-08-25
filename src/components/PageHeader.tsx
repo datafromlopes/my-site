@@ -16,7 +16,7 @@ export function PageHeader({
   action?: ReactNode
 }) {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden border-b border-rule">
       <div
         className="grid-field pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_70%_at_20%_0%,black,transparent)]"
         aria-hidden="true"

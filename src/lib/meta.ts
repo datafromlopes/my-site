@@ -130,17 +130,17 @@ export function resolveMeta(pathname: string): Meta {
     })
   }
 
-  if (path === '/writing') {
+  if (path === '/posts') {
     return shell({
-      title: `Writing — ${site.name}`,
+      title: `Posts — ${site.name}`,
       description:
         'Notes and essays on data engineering, distributed systems, NLP and the places they overlap.',
-      canonical: `${site.url}/writing`,
+      canonical: `${site.url}/posts`,
       jsonLd: [
         {
           '@type': 'Blog',
-          name: `Writing — ${site.name}`,
-          url: `${site.url}/writing`,
+          name: `Posts — ${site.name}`,
+          url: `${site.url}/posts`,
           author: { '@id': `${site.url}/#person` },
           blogPost: posts.map((p) => ({
             '@type': 'BlogPosting',
@@ -220,8 +220,8 @@ export function resolveMeta(pathname: string): Meta {
     }
   }
 
-  if (path.startsWith('/writing/')) {
-    const post = findPost(path.slice('/writing/'.length))
+  if (path.startsWith('/posts/')) {
+    const post = findPost(path.slice('/posts/'.length))
     if (post) {
       return shell({
         title: `${post.title} — ${site.name}`,
@@ -264,7 +264,7 @@ export function allRoutes(): string[] {
     '/',
     '/research',
     '/projects',
-    '/writing',
+    '/posts',
     '/cv',
     '/404',
     ...publications.map((p) => p.href),

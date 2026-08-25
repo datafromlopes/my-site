@@ -3,18 +3,24 @@ title: 'AtlasSQL-BR: A Brazilian Portuguese Geospatial Text-to-SQL Dataset with 
 date: 2026-10-01
 year: 2026
 type: conference
-status: accepted
+status: published
 featured: true
 authors:
-  - name: Diego Lopes
+  - name: Diego O. Lopes
     me: true
-  - name: Kelly Rosa Braghetto
+  - name: Kelly R. Braghetto
     url: https://www.ime.usp.br/~kellyrb/
-venue: Simpósio Brasileiro de Bancos de Dados
+venue: Anais do XLI Simpósio Brasileiro de Banco de Dados
 venueShort: SBBD 2026
-publisher: SBC — Sociedade Brasileira de Computação
+publisher: Sociedade Brasileira de Computação (SBC)
 location: São Carlos, SP, Brazil
+pages: '85-98'
 issn: '2763-8979'
+doi: 10.5753/sbbd.2026.249149
+pdfUrl: https://sol.sbc.org.br/index.php/sbbd/article/view/43962/43725
+landingUrl: https://sol.sbc.org.br/index.php/sbbd/article/view/43962
+codeUrl: https://github.com/datafromlopes/atlas-sql-br
+datasetUrl: https://huggingface.co/datasets/datafromlopes/atlas-sql-br
 tldr: A real-world geospatial text-to-SQL benchmark in Brazilian Portuguese, built on school census data and official geographic boundary hierarchies.
 abstract: >-
   The Text-to-SQL task, which translates natural language into SQL queries, democratizes database
@@ -33,14 +39,17 @@ tags:
   - NLP
 bibtex: |
   @inproceedings{lopes2026atlassql,
-    author    = {Lopes, Diego and Braghetto, Kelly Rosa},
+    author    = {Lopes, Diego O. and Braghetto, Kelly R.},
     title     = {AtlasSQL-BR: A Brazilian Portuguese Geospatial Text-to-SQL
                  Dataset with Spatial Hierarchies},
-    booktitle = {Anais do Simpósio Brasileiro de Bancos de Dados (SBBD 2026)},
+    booktitle = {Anais do XLI Simp\'osio Brasileiro de Banco de Dados (SBBD 2026)},
     year      = {2026},
-    address   = {São Carlos, SP, Brasil},
-    publisher = {SBC — Sociedade Brasileira de Computação},
-    issn      = {2763-8979}
+    pages     = {85--98},
+    address   = {S\~ao Carlos, SP, Brasil},
+    publisher = {Sociedade Brasileira de Computa\c{c}\~ao},
+    issn      = {2763-8979},
+    doi       = {10.5753/sbbd.2026.249149},
+    url       = {https://doi.org/10.5753/sbbd.2026.249149}
   }
 ---
 

@@ -91,7 +91,9 @@ export function ProjectPage() {
               </p>
             ) : null}
 
-            <Prose html={project.html} />
+            <div className="card px-6 py-8 sm:px-9 sm:py-10">
+              <Prose html={project.html} />
+            </div>
 
             <div className="mt-14 grid gap-8 border-t border-rule pt-8 sm:grid-cols-2">
               <div>

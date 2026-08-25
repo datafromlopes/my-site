@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { PublicationEntry } from '@/components/cards'
 import { PageHeader, PageMeta } from '@/components/PageHeader'
+import { SectionRule } from '@/components/SectionRule'
 import { Container, EmptyState, Reveal, SectionHead } from '@/components/ui'
 import { education } from '@/data/career'
 import { publications } from '@/lib/content'
@@ -56,7 +57,7 @@ export function ResearchIndex() {
       {/* Research statement */}
       <Container className="pt-16">
         <Reveal>
-          <div className="grid gap-8 border-b border-rule pb-14 lg:grid-cols-[7.5rem_1fr] lg:gap-12">
+          <div className="grid gap-8 pb-4 lg:grid-cols-[7.5rem_1fr] lg:gap-12">
             <p className="label pt-1">Statement</p>
             <div className="prose-tight max-w-2xl text-ink-2">
               <p>
@@ -95,6 +96,7 @@ export function ResearchIndex() {
         <Reveal>
           <SectionHead
             index="02"
+            slug="publications"
             title="Publications"
             action={
               available.length > 2 ? (
@@ -125,14 +127,17 @@ export function ResearchIndex() {
         ) : (
           byYear.map(([year, items]) => (
             <Reveal key={year} className="mb-12">
-              <div className="mb-6 flex items-baseline justify-between gap-4">
-                <span className="font-mono text-[2rem] leading-none text-ink-4 tabular-nums">{year}</span>
-                <span className="label">
-                  {items.length} {items.length === 1 ? 'entry' : 'entries'}
-                </span>
-              </div>
+              <SectionRule
+                rule={false}
+                size="lg"
+                className="mb-6"
+                segments={[
+                  { text: String(year), tone: 'ink' },
+                  { text: `${items.length} ${items.length === 1 ? 'entry' : 'entries'}`, tone: 'muted' },
+                ]}
+              />
 
-              <div className="border-t border-rule pt-7">
+              <div className="pt-2">
                 {items.map((publication) => (
                   <PublicationEntry key={publication.slug} publication={publication} />
                 ))}

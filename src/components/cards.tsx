@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import type { Post, Project, Publication } from '@/lib/content'
 import { citation, cn, formatDate, formatMonth } from '@/lib/format'
-import { ArrowUpRight, Check, Clock, Document, GitHub, Quote } from './Icons'
+import { ArrowUpRight, Check, Clock, Database, Document, GitHub, Quote } from './Icons'
 import { ArrowLink, CopyButton, LiveBadge, Pill, Tag } from './ui'
 
 /* --------------------------------------------------------------- projects */
@@ -111,6 +111,7 @@ export function PublicationEntry({
     <article className="group relative border-b border-rule py-7 first:pt-0 last:border-0">
       <div className="mb-3 flex flex-wrap items-center gap-2.5">
         <Pill tone="accent">{TYPE_LABEL[publication.type]}</Pill>
+        {publication.status === 'published' ? <Pill tone="ok">Published</Pill> : null}
         {publication.status === 'accepted' ? <Pill tone="mark">Accepted</Pill> : null}
         {publication.status === 'under-review' ? <Pill>Under review</Pill> : null}
         <span className="font-mono text-[0.6875rem] text-ink-4">{publication.year}</span>
@@ -170,9 +171,19 @@ export function PublicationEntry({
             <ArrowUpRight size={12} /> DOI
           </PubAction>
         ) : null}
+        {publication.landingUrl ? (
+          <PubAction href={publication.landingUrl}>
+            <ArrowUpRight size={12} /> Publisher
+          </PubAction>
+        ) : null}
         {publication.codeUrl ? (
           <PubAction href={publication.codeUrl}>
             <GitHub size={12} /> Code
+          </PubAction>
+        ) : null}
+        {publication.datasetUrl ? (
+          <PubAction href={publication.datasetUrl}>
+            <Database size={12} /> Dataset
           </PubAction>
         ) : null}
         {publication.bibtex ? (
@@ -265,7 +276,7 @@ export function PostRow({ post, level = 3 }: { post: Post; level?: 2 | 3 }) {
               <Clock size={11} /> {post.readingTime} min
             </span>
             {post.tags.slice(0, 3).map((tag) => (
-              <Tag key={tag} to={`/writing?tag=${encodeURIComponent(tag)}`}>
+              <Tag key={tag} to={`/posts?tag=${encodeURIComponent(tag)}`}>
                 {tag}
               </Tag>
             ))}

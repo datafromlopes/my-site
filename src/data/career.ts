@@ -242,9 +242,10 @@ export const stack: StackItem[] = [
 
 export const awards = [
   {
-    title: 'Paper accepted at SBBD 2026',
+    title: 'Paper published at SBBD 2026',
     org: 'Brazilian Symposium on Databases',
     year: '2026',
-    detail: 'AtlasSQL-BR — a Brazilian Portuguese geospatial text-to-SQL dataset.',
+    detail:
+      'AtlasSQL-BR — a Brazilian Portuguese geospatial text-to-SQL dataset. Anais do XLI SBBD, pp. 85-98.',
   },
 ]

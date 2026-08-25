@@ -1,5 +1,7 @@
 export const site = {
-  url: 'https://www.datafromlopes.com',
+  // Apex, not www: Cloudflare 301s www to the apex, so declaring www as
+  // canonical would point every page at a URL that redirects.
+  url: 'https://datafromlopes.com',
   name: 'Diego Lopes',
   initials: 'DL',
   role: 'Lead Data Engineer & NLP Researcher',
@@ -28,7 +30,7 @@ export const nav = [
   { label: 'About', href: '/', short: '01' },
   { label: 'Research', href: '/research', short: '02' },
   { label: 'Projects', href: '/projects', short: '03' },
-  { label: 'Writing', href: '/writing', short: '04' },
+  { label: 'Posts', href: '/posts', short: '04' },
   { label: 'CV', href: '/cv', short: '05' },
 ] as const
 

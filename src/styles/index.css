@@ -415,11 +415,21 @@ html.js .reveal.is-visible {
   color: var(--c-ink-2);
 }
 
+/*
+ * Vertical rhythm comes from the flow rule alone. Resetting `p` directly used
+ * to win on specificity and silently killed the gap between consecutive
+ * paragraphs, so the reset is scoped to direct children instead.
+ */
+.prose-paper > * {
+  margin: 0;
+}
+
 .prose-paper > * + * {
   margin-top: 1.35em;
 }
 
-.prose-paper p {
+.prose-paper blockquote p,
+.prose-paper li p {
   margin: 0;
 }
 
@@ -867,4 +877,132 @@ html.js .reveal.is-visible {
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 16%, transparent);
     translate: 0 -2px;
   }
+}
+
+/* =========================================================================
+   POWERLINE SECTION HEADER
+   Section openers borrow the agnoster prompt: coloured segments joined by
+   chevrons. The arrow is a CSS triangle in the segment's own colour, drawn
+   on top of the next segment's left padding — the same trick the shell
+   theme plays with a glyph, without depending on a Nerd Font.
+   ========================================================================= */
+
+.pl {
+  display: inline-flex;
+  align-items: stretch;
+  height: var(--pl-h, 1.5rem);
+  font-family: var(--font-mono);
+  font-size: var(--pl-fs, 0.6875rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.pl-seg {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 var(--pl-px, 0.5rem) 0 calc(var(--pl-px, 0.5rem) + var(--pl-arrow, 0.45rem));
+  background: var(--seg-bg);
+  color: var(--seg-fg);
+}
+
+.pl-seg:first-child {
+  padding-left: calc(var(--pl-px, 0.5rem) + 0.1rem);
+  border-top-left-radius: 0.1875rem;
+  border-bottom-left-radius: 0.1875rem;
+}
+
+/* Chevron: this segment's colour spilling over the next one. */
+.pl-seg::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 0;
+  z-index: 1;
+  border-style: solid;
+  border-width: calc(var(--pl-h, 1.5rem) / 2) 0 calc(var(--pl-h, 1.5rem) / 2) var(--pl-arrow, 0.45rem);
+  border-color: transparent transparent transparent var(--seg-bg);
+}
+
+/* The trailing chevron has nothing behind it, so it keeps the page colour. */
+.pl-seg:last-child::after {
+  border-left-color: var(--seg-bg);
+}
+
+@media (max-width: 420px) {
+  .pl-seg.pl-optional {
+    display: none;
+  }
+  .pl-seg.pl-optional::after {
+    display: none;
+  }
+}
+
+/* =========================================================================
+   JUSTIFIED PROSE
+   Justification only reads well with hyphenation — otherwise the browser
+   stretches word spacing and opens rivers of white down the column. The
+   document is lang="en", so `hyphens: auto` has a dictionary to work with.
+   Applied to running paragraphs and list items only: on a two-line card
+   blurb there are not enough lines to justify, just enough to look broken.
+   ========================================================================= */
+
+.prose-paper p,
+.prose-paper li,
+.prose-tight p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  /* `pretty` and `justify` fight over the last lines; justification wins here. */
+  text-wrap: auto;
+}
+
+/* Never justify things that are not running text. */
+.prose-paper pre,
+.prose-paper code,
+.prose-paper table,
+.prose-paper figcaption,
+.prose-paper .katex-display {
+  text-align: initial;
+  hyphens: manual;
+}
+
+.prose-paper figcaption {
+  text-align: center;
+}
+
+/* Abstracts are always justified, wherever they appear. */
+@utility text-justified {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-wrap: auto;
+}
+
+/* A narrow column cannot absorb justification; fall back to ragged right. */
+@media (max-width: 640px) {
+  .prose-paper p,
+  .prose-paper li,
+  .prose-tight p {
+    text-align: left;
+  }
+}
+
+/* Section-title scale: the chip is the heading, so it carries heading weight. */
+.pl-lg {
+  --pl-h: 2.25rem;
+  --pl-fs: 0.9375rem;
+  --pl-px: 0.8rem;
+  --pl-arrow: 0.7rem;
+  letter-spacing: 0.01em;
+}
+
+.pl-lg .pl-seg:first-child {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
 }
