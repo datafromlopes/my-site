@@ -19,10 +19,23 @@ client-side navigation, the ⌘K palette and the theme toggle.
 npm run build
   ├── build:client   vite build            → dist/client  (assets + template)
   ├── build:server   vite build --ssr      → dist/server  (render function)
-  └── prerender      node scripts/prerender.mjs
-                     → one index.html per route
-                     → sitemap.xml, rss.xml, robots.txt
+  ├── prerender      node scripts/prerender.mjs
+  │                  → one index.html per route
+  │                  → sitemap.xml, rss.xml, robots.txt
+  └── og             node scripts/og.mjs
+                     → one 1200x630 social card per route, in dist/client/og
 ```
+
+### Social cards
+
+`scripts/og.mjs` renders a card per route with satori (tree → SVG) and
+resvg-wasm (SVG → PNG) — both pure JS/WASM, so the build image needs no native
+toolchain. The card copy comes from `ogCard()` in `src/lib/meta.ts`, the same
+place the `<meta>` tags are built from, so the image and the tags cannot drift
+apart. Fonts live in `assets/fonts/` (OFL, redistributable).
+
+Card generation is deliberately non-fatal: if it throws, the build still ships
+and the affected page just gets a plainer link preview.
 
 A Cloudflare Worker sits in front of the static assets to 301 the URLs the old
 Hugo site used, set security headers, and proxy newsletter sign-ups to MailerLite

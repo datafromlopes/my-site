@@ -176,8 +176,12 @@ function withHeaders(response: Response, pathname: string): Response {
     out.headers.set(key, value)
   }
 
-  // Hashed build assets are immutable; HTML must always revalidate.
-  if (/^\/assets\//.test(pathname) || /\.(woff2?|svg|png|jpe?g|webp|ico)$/.test(pathname)) {
+  // Hashed build assets are immutable; HTML must always revalidate. Social
+  // cards are regenerated from content under stable names, so they get a short
+  // TTL rather than the immutable treatment.
+  if (/^\/og\//.test(pathname)) {
+    out.headers.set('cache-control', 'public, max-age=3600, stale-while-revalidate=86400')
+  } else if (/^\/assets\//.test(pathname) || /\.(woff2?|svg|png|jpe?g|webp|ico)$/.test(pathname)) {
     out.headers.set('cache-control', 'public, max-age=31536000, immutable')
   } else if (/\.(xml|txt|webmanifest)$/.test(pathname)) {
     out.headers.set('cache-control', 'public, max-age=3600')

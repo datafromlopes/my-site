@@ -3,17 +3,18 @@
   "private": true,
   "type": "module",
   "version": "2.0.0",
-  "description": "Personal site of Diego Lopes — Lead Data Engineer & NLP Researcher.",
+  "description": "Personal site of Diego Lopes \u2014 Lead Data Engineer & NLP Researcher.",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:client && npm run build:server && npm run prerender",
+    "build": "npm run build:client && npm run build:server && npm run prerender && npm run og",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "prerender": "node scripts/prerender.mjs",
     "preview": "wrangler dev",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
     "deploy": "npm run build && wrangler deploy",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "og": "node scripts/og.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260823.1",
+    "@resvg/resvg-wasm": "^2.6.2",
     "@shikijs/rehype": "^3.9.1",
     "@tailwindcss/vite": "^4.1.11",
     "@types/node": "^26.2.0",
@@ -39,6 +41,7 @@
     "remark-math": "^6.0.0",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
+    "satori": "^0.33.4",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.9.2",
     "unified": "^11.0.5",

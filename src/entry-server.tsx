@@ -63,6 +63,7 @@ export function render(url: string): RenderResult {
 }
 
 export { allRoutes }
+export { ogCard, ogSlug } from './lib/meta'
 
 /** Data the prerenderer needs for sitemap.xml and rss.xml. */
 export { posts, projects, publications } from './lib/content'
