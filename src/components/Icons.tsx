@@ -238,6 +238,14 @@ export const HuggingFace = (p: IconProps) => (
   </Solid>
 )
 
+export const Instagram = (p: IconProps) => (
+  <Stroke strokeWidth={1.9} {...p}>
+    <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.35" cy="6.65" r="1.05" fill="currentColor" stroke="none" />
+  </Stroke>
+)
+
 export const Sparkle = (p: IconProps) => (
   <Solid {...p}>
     <path d="M12 2.5 13.8 9l6.5 1.8-6.5 1.8L12 19.1l-1.8-6.5L3.7 10.8 10.2 9 12 2.5Z" />
@@ -251,6 +259,7 @@ export const iconFor: Record<string, (p: IconProps) => React.ReactElement> = {
   bluesky: Bluesky,
   x: XLogo,
   orcid: Orcid,
+  instagram: Instagram,
   lattes: Lattes,
   email: Mail,
   rss: Rss,

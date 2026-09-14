@@ -94,6 +94,14 @@ export const socials: SocialLink[] = [
     brand: '#a6ce39',
   },
   {
+    id: 'instagram',
+    label: 'Instagram',
+    href: 'https://www.instagram.com/datafromlopes/',
+    handle: '@datafromlopes',
+    group: 'network',
+    brand: '#e4405f',
+  },
+  {
     id: 'lattes',
     label: 'Lattes',
     href: 'http://lattes.cnpq.br/4604428550643092',

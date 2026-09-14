@@ -30,10 +30,10 @@ export function Home() {
         />
 
         <Container className="relative pb-16 pt-12 sm:pt-16">
-          <div className="grid gap-10 lg:grid-cols-[15rem_1fr] lg:gap-14">
+          <div className="grid gap-10 lg:grid-cols-[16.5rem_1fr] lg:gap-14">
             {/* Portrait and identity block — left, where the eye lands first. */}
             <div
-              className="card flex w-full flex-col gap-4 p-3.5 lg:max-w-[15rem]"
+              className="card flex w-full flex-col gap-4 p-3.5 lg:max-w-[16.5rem]"
               style={{ animation: 'reveal-up .7s cubic-bezier(0.16,1,0.3,1) backwards' }}
             >
               {/* Portrait beside the data on narrow screens so the card does not
@@ -73,7 +73,7 @@ export function Home() {
 
               <SocialLinks
                 items={socials.filter((s) =>
-                  ['github', 'linkedin', 'huggingface', 'x', 'orcid'].includes(s.id),
+                  ['github', 'linkedin', 'huggingface', 'x', 'orcid', 'instagram'].includes(s.id),
                 )}
                 size="sm"
               />
