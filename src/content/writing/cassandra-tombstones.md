@@ -23,7 +23,7 @@ It appends a new record called a *tombstone*: a marker with a timestamp that say
 is dead". The data it shadows stays on disk. Understanding why Cassandra chose this, and what
 it charges for it, is the difference between a cluster that hums and one that pages you at 3 am.
 
-## [#](#why-not-just-delete)Why not just delete?
+## Why not just delete?
 
 Take a keyspace with replication factor 3 and a client writing at `QUORUM`. One replica is
 down when the delete arrives. Two replicas acknowledge, the coordinator returns success, and
@@ -43,7 +43,7 @@ timestamp, it replicates like any other mutation, hinted handoff can deliver it 
 the lagging node finally sees it, last-write-wins resolves the conflict in the tombstone's
 favour. The old copy loses because it is older. There is nothing to reconstruct.
 
-## [#](#the-cost-lands-on-the-read-path)The cost lands on the read path
+## The cost lands on the read path
 
 Because a tombstone is stored, it has to be read. A partition's data is spread across several
 SSTables plus the memtable. To answer a query, the coordinator merges those sources, compares
@@ -66,7 +66,7 @@ Above the first, a warning is logged per read. Above the second, the read is abo
 partition being scanned. One hundred thousand sounds like a lot until you meet the anti-pattern
 in the last section.
 
-## [#](#when-does-it-go-away)When does it go away?
+## When does it go away?
 
 A tombstone becomes eligible for removal only after `gc_grace_seconds`, whose default is
 `864000`, ten days. Until then compaction must keep it, and the reason is the same failure
@@ -86,7 +86,7 @@ You can lower `gc_grace_seconds` per table, and for TTL-only tables with no expl
 people do. Just remember that you are shrinking the window in which repair is allowed to be
 late.
 
-## [#](#what-counts-as-a-tombstone)What counts as a tombstone
+## What counts as a tombstone
 
 Deletes are not the only source. Every one of these produces a marker that goes through the
 same lifecycle:
@@ -101,7 +101,7 @@ The granularity matters for cost. Deleting a partition writes one partition-leve
 that shadows everything below it. Deleting the same rows one by one writes one tombstone per
 row, and the read path has to visit every one of them.
 
-## [#](#the-classic-mistake)The classic mistake
+## The classic mistake
 
 Using a Cassandra partition as a queue. Producers insert rows, consumers read the oldest rows
 and delete them. Each consumed message leaves a tombstone in the same partition, at the
@@ -120,7 +120,7 @@ If the workload needs heavy deletion, the options that work are:
 The one-line summary: in Cassandra, deleting is writing a marker that only disappears ten days
 later, and only if repair ran. Everything else follows from that.
 
-## [#](#references)References
+## References
 
 1. **Apache Cassandra documentation.** *Tombstones.* https://cassandra.apache.org/doc/latest/cassandra/managing/operating/compaction/tombstones.html
 2. **Apache Cassandra documentation.** *cassandra.yaml configuration file* (`tombstone_warn_threshold`, `tombstone_failure_threshold`, `max_hint_window`). https://cassandra.apache.org/doc/latest/cassandra/managing/configuration/cass_yaml_file.html
