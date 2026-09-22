@@ -55,8 +55,8 @@ export function ResearchIndex() {
             <PageMeta label="Publications" value={publications.length} />
             <PageMeta label="Latest" value={latest ? latest.venueShort : '—'} />
             <PageMeta label="Programme" value={`${msc.degree} · ${msc.institutionShort}`} />
-            <div className="flex w-full flex-wrap items-center gap-2 pt-2">
-              <span className="label mr-1">Profiles</span>
+            <div className="flex w-full flex-wrap items-center gap-2 pt-3">
+              <span className="label mr-1 text-[0.625rem]">Profiles</span>
               {PROFILES.map((profile) => {
                 const Icon = iconFor[profile.id]
                 return (

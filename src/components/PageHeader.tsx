@@ -48,7 +48,7 @@ export function PageHeader({
 
         {meta ? (
           <div
-            className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2"
+            className="mt-8 flex flex-wrap items-end gap-x-8 gap-y-4"
             style={{ animation: 'reveal-up .75s cubic-bezier(0.16,1,0.3,1) 160ms backwards' }}
           >
             {meta}
@@ -60,10 +60,12 @@ export function PageHeader({
 }
 
 export function PageMeta({ label, value }: { label: string; value: ReactNode }) {
+  // Stacked key/value: the key is small and muted, the value carries the
+  // weight — so the two never read as the same kind of text.
   return (
-    <span className="flex items-baseline gap-2">
-      <span className="label">{label}</span>
-      <span className="font-mono text-[0.8125rem] text-ink-2 tabular-nums">{value}</span>
+    <span className="flex flex-col gap-1">
+      <span className="label text-[0.625rem]">{label}</span>
+      <span className="text-[1rem] font-semibold tracking-[-0.01em] text-ink">{value}</span>
     </span>
   )
 }
