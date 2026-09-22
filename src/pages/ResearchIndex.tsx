@@ -5,7 +5,7 @@ import { SectionRule } from '@/components/SectionRule'
 import { Container, EmptyState, Reveal, SectionHead, Tag } from '@/components/ui'
 import { education } from '@/data/career'
 import { byId, researchKeywords } from '@/data/site'
-import { AcademicLinks } from '@/components/AcademicLinks'
+import { ArrowUpRight, iconFor } from '@/components/Icons'
 import { publications } from '@/lib/content'
 import { cn } from '@/lib/format'
 
@@ -42,7 +42,7 @@ export function ResearchIndex() {
   }, [visible])
 
   const msc = education[0]
-  const years = new Set(publications.map((p) => p.year)).size
+  const latest = publications[0]
 
   return (
     <>
@@ -53,12 +53,28 @@ export function ResearchIndex() {
         meta={
           <>
             <PageMeta label="Publications" value={publications.length} />
-            <PageMeta label="Active years" value={years} />
+            <PageMeta label="Latest" value={latest ? latest.venueShort : '—'} />
             <PageMeta label="Programme" value={`${msc.degree} · ${msc.institutionShort}`} />
-            <span className="flex items-baseline gap-2">
-              <span className="label">Profiles</span>
-              <AcademicLinks items={PROFILES} className="flex flex-wrap gap-x-4 gap-y-1 space-y-0" />
-            </span>
+            <div className="flex w-full flex-wrap items-center gap-2 pt-2">
+              <span className="label mr-1">Profiles</span>
+              {PROFILES.map((profile) => {
+                const Icon = iconFor[profile.id]
+                return (
+                  <a
+                    key={profile.id}
+                    href={profile.href}
+                    target="_blank"
+                    rel="me noopener noreferrer"
+                    style={{ '--brand': profile.brand } as React.CSSProperties}
+                    className="brand-hover inline-flex items-center gap-2 rounded-md border border-rule bg-surface px-3 py-1.5 text-[0.8125rem] font-medium text-ink-2 shadow-[var(--shadow-card)]"
+                  >
+                    {Icon ? <Icon size={14} /> : null}
+                    {profile.label}
+                    <ArrowUpRight size={12} className="text-ink-4" />
+                  </a>
+                )
+              })}
+            </div>
           </>
         }
       />
