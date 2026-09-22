@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { PublicationEntry } from '@/components/cards'
 import { PageHeader, PageMeta } from '@/components/PageHeader'
+import { TextToSql } from '@/components/TextToSql'
 import { SectionRule } from '@/components/SectionRule'
 import { Container, EmptyState, Reveal, SectionHead, Tag } from '@/components/ui'
 import { education } from '@/data/career'
@@ -49,6 +50,7 @@ export function ResearchIndex() {
       <PageHeader
         eyebrow="research"
         title="Research"
+        aside={<TextToSql />}
         lede="I work on natural language interfaces for databases — specifically, getting language models to produce spatial SQL that runs correctly against real public data, in a language the field has largely ignored."
         meta={
           <>

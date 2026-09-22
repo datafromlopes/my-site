@@ -8,12 +8,15 @@ export function PageHeader({
   lede,
   meta,
   action,
+  aside,
 }: {
   eyebrow: string
   title: string
   lede?: ReactNode
   meta?: ReactNode
   action?: ReactNode
+  /** Optional right-hand column on wide screens, e.g. an illustration. */
+  aside?: ReactNode
 }) {
   return (
     <section className="relative overflow-hidden border-b border-rule">
@@ -23,37 +26,54 @@ export function PageHeader({
       />
 
       <Container className="relative pb-12 pt-14 sm:pt-16">
-        <p className="label mb-5" style={{ animation: 'fade-in .6s ease-out backwards' }}>
-          {eyebrow}
-        </p>
+        <div
+          className={
+            aside ? 'grid items-start gap-10 lg:grid-cols-[1fr_minmax(0,26rem)] lg:gap-14' : undefined
+          }
+        >
+          <div>
+            <p className="label mb-5" style={{ animation: 'fade-in .6s ease-out backwards' }}>
+              {eyebrow}
+            </p>
 
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <h1
-            className="display max-w-2xl text-[clamp(2.25rem,5.5vw,3.5rem)] text-ink"
-            style={{ animation: 'reveal-up .75s cubic-bezier(0.16,1,0.3,1) backwards' }}
-          >
-            {title}
-          </h1>
-          {action}
-        </div>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <h1
+                className="display max-w-2xl text-[clamp(2.25rem,5.5vw,3.5rem)] text-ink"
+                style={{ animation: 'reveal-up .75s cubic-bezier(0.16,1,0.3,1) backwards' }}
+              >
+                {title}
+              </h1>
+              {action}
+            </div>
 
-        {lede ? (
-          <p
-            className="mt-5 max-w-2xl text-[1.0625rem] leading-relaxed text-ink-2"
-            style={{ animation: 'reveal-up .75s cubic-bezier(0.16,1,0.3,1) 100ms backwards' }}
-          >
-            {lede}
-          </p>
-        ) : null}
+            {lede ? (
+              <p
+                className="mt-5 max-w-2xl text-[1.0625rem] leading-relaxed text-ink-2"
+                style={{ animation: 'reveal-up .75s cubic-bezier(0.16,1,0.3,1) 100ms backwards' }}
+              >
+                {lede}
+              </p>
+            ) : null}
 
-        {meta ? (
-          <div
-            className="mt-8 flex flex-wrap items-end gap-x-8 gap-y-4"
-            style={{ animation: 'reveal-up .75s cubic-bezier(0.16,1,0.3,1) 160ms backwards' }}
-          >
-            {meta}
+            {meta ? (
+              <div
+                className="mt-8 flex flex-wrap items-end gap-x-8 gap-y-4"
+                style={{ animation: 'reveal-up .75s cubic-bezier(0.16,1,0.3,1) 160ms backwards' }}
+              >
+                {meta}
+              </div>
+            ) : null}
           </div>
-        ) : null}
+
+          {aside ? (
+            <div
+              className="min-w-0 lg:pt-2"
+              style={{ animation: 'reveal-up .75s cubic-bezier(0.16,1,0.3,1) 220ms backwards' }}
+            >
+              {aside}
+            </div>
+          ) : null}
+        </div>
       </Container>
     </section>
   )
