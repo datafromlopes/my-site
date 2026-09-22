@@ -213,12 +213,6 @@ export const XLogo = (p: IconProps) => (
   </Solid>
 )
 
-export const Bluesky = (p: IconProps) => (
-  <Solid {...p}>
-    <path d="M5.8 3.9C8.4 5.9 11.2 9.8 12 12c.8-2.2 3.6-6.1 6.2-8.1 1.9-1.4 4.8-2.5 4.8.9 0 .7-.4 5.6-.6 6.4-.8 2.8-3.6 3.5-6.1 3 4.4.8 5.5 3.2 3.1 5.7-4.6 4.7-6.6-1.2-7.1-2.7-.1-.3-.2-.4-.2-.3 0-.1-.1 0-.2.3-.5 1.5-2.5 7.4-7.1 2.7-2.4-2.5-1.3-4.9 3.1-5.7-2.5.5-5.3-.2-6.1-3-.2-.8-.6-5.7-.6-6.4 0-3.4 2.9-2.3 4.8-.9Z" />
-  </Solid>
-)
-
 export const Orcid = (p: IconProps) => (
   <Solid {...p}>
     <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20ZM8.2 16.7H6.8V9.4h1.4v7.3Zm-.7-8.3a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8Zm4.7 8.3h-2.5V9.4h2.7c2.5 0 3.9 1.6 3.9 3.6 0 2.2-1.6 3.7-4.1 3.7Zm.1-6.1h-1.2v4.9h1.1c1.7 0 2.6-1 2.6-2.5 0-1.4-.8-2.4-2.5-2.4Z" />
@@ -238,12 +232,12 @@ export const HuggingFace = (p: IconProps) => (
   </Solid>
 )
 
-export const Instagram = (p: IconProps) => (
-  <Stroke strokeWidth={1.9} {...p}>
-    <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" />
-    <circle cx="12" cy="12" r="4" />
-    <circle cx="17.35" cy="6.65" r="1.05" fill="currentColor" stroke="none" />
-  </Stroke>
+export const Scholar = (p: IconProps) => (
+  <Solid {...p}>
+    <path d="M12 2.4 22.8 8.1 12 13.8 1.2 8.1 12 2.4Z" />
+    <path d="M6 10.7v4.4c0 1.8 2.7 3.2 6 3.2s6-1.4 6-3.2v-4.4l-6 3.2-6-3.2Z" />
+    <path d="M20.4 9.6v5.7h1.4V8.9l-1.4.7Z" />
+  </Solid>
 )
 
 export const Sparkle = (p: IconProps) => (
@@ -256,10 +250,9 @@ export const iconFor: Record<string, (p: IconProps) => React.ReactElement> = {
   linkedin: LinkedIn,
   github: GitHub,
   huggingface: HuggingFace,
-  bluesky: Bluesky,
   x: XLogo,
   orcid: Orcid,
-  instagram: Instagram,
+  scholar: Scholar,
   lattes: Lattes,
   email: Mail,
   rss: Rss,

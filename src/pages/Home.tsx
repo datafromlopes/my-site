@@ -8,7 +8,7 @@ import { TextToSql } from '@/components/TextToSql'
 import { Newsletter } from '@/components/Newsletter'
 import { ArrowLink, Button, Container, Reveal, SectionHead, Tag } from '@/components/ui'
 import { competencies, education, metrics, roles, stack } from '@/data/career'
-import { site, socials } from '@/data/site'
+import { NETWORK_ORDER, byId, site } from '@/data/site'
 import { posts, projects, publications } from '@/lib/content'
 import { duration, formatMonth, yearsSince } from '@/lib/format'
 
@@ -30,10 +30,10 @@ export function Home() {
         />
 
         <Container className="relative pb-16 pt-12 sm:pt-16">
-          <div className="grid gap-10 lg:grid-cols-[16.5rem_1fr] lg:gap-14">
+          <div className="grid gap-10 lg:grid-cols-[15rem_1fr] lg:gap-14">
             {/* Portrait and identity block — left, where the eye lands first. */}
             <div
-              className="card flex w-full flex-col gap-4 p-3.5 lg:max-w-[16.5rem]"
+              className="card flex w-full flex-col gap-4 p-3.5 lg:max-w-[15rem]"
               style={{ animation: 'reveal-up .7s cubic-bezier(0.16,1,0.3,1) backwards' }}
             >
               {/* Portrait beside the data on narrow screens so the card does not
@@ -71,12 +71,7 @@ export function Home() {
                 </dl>
               </div>
 
-              <SocialLinks
-                items={socials.filter((s) =>
-                  ['github', 'linkedin', 'huggingface', 'x', 'orcid', 'instagram'].includes(s.id),
-                )}
-                size="sm"
-              />
+              <SocialLinks items={byId([...NETWORK_ORDER, 'orcid'])} size="sm" />
 
               <div className="border-t border-rule pt-4">
                 <p className="label mb-3">Focus</p>

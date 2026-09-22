@@ -2,8 +2,10 @@ import { useMemo, useState } from 'react'
 import { PublicationEntry } from '@/components/cards'
 import { PageHeader, PageMeta } from '@/components/PageHeader'
 import { SectionRule } from '@/components/SectionRule'
-import { Container, EmptyState, Reveal, SectionHead } from '@/components/ui'
+import { Container, EmptyState, Reveal, SectionHead, Tag } from '@/components/ui'
 import { education } from '@/data/career'
+import { byId, researchKeywords } from '@/data/site'
+import { AcademicLinks } from '@/components/AcademicLinks'
 import { publications } from '@/lib/content'
 import { cn } from '@/lib/format'
 
@@ -14,6 +16,9 @@ const FILTERS = [
   { id: 'workshop', label: 'Workshop' },
   { id: 'preprint', label: 'Preprint' },
 ] as const
+
+/** Scholarly identifiers, in the order a reviewer tends to look for them. */
+const PROFILES = byId(['scholar', 'orcid', 'lattes'])
 
 export function ResearchIndex() {
   const [filter, setFilter] = useState<string>('all')
@@ -50,6 +55,10 @@ export function ResearchIndex() {
             <PageMeta label="Publications" value={publications.length} />
             <PageMeta label="Active years" value={years} />
             <PageMeta label="Programme" value={`${msc.degree} · ${msc.institutionShort}`} />
+            <span className="flex items-baseline gap-2">
+              <span className="label">Profiles</span>
+              <AcademicLinks items={PROFILES} className="flex flex-wrap gap-x-4 gap-y-1 space-y-0" />
+            </span>
           </>
         }
       />
@@ -57,6 +66,15 @@ export function ResearchIndex() {
       {/* Research statement */}
       <Container className="pt-16">
         <Reveal>
+          <div className="grid gap-8 pb-4 lg:grid-cols-[7.5rem_1fr] lg:gap-12">
+            <p className="label pt-1">Keywords</p>
+            <div className="flex flex-wrap gap-1.5">
+              {researchKeywords.map((keyword) => (
+                <Tag key={keyword}>{keyword}</Tag>
+              ))}
+            </div>
+          </div>
+
           <div className="grid gap-8 pb-4 lg:grid-cols-[7.5rem_1fr] lg:gap-12">
             <p className="label pt-1">Statement</p>
             <div className="prose-tight max-w-2xl text-ink-2">

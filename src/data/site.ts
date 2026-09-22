@@ -26,6 +26,15 @@ export const site = {
   ],
 } as const
 
+/** Research interests, kept identical to the Google Scholar profile. */
+export const researchKeywords = [
+  'Semantic Parsing',
+  'Computational Linguistics',
+  'Formal Semantics',
+  'Program Synthesis',
+  'Database Theory',
+] as const
+
 export const nav = [
   { label: 'About', href: '/', short: '01' },
   { label: 'Research', href: '/research', short: '02' },
@@ -70,14 +79,6 @@ export const socials: SocialLink[] = [
     brand: '#ff9d00',
   },
   {
-    id: 'bluesky',
-    label: 'Bluesky',
-    href: 'https://bsky.app/profile/datafromlopes.com',
-    handle: '@datafromlopes.com',
-    group: 'network',
-    brand: '#0285ff',
-  },
-  {
     id: 'x',
     label: 'X',
     href: 'https://x.com/datafromlopes',
@@ -94,12 +95,14 @@ export const socials: SocialLink[] = [
     brand: '#a6ce39',
   },
   {
-    id: 'instagram',
-    label: 'Instagram',
-    href: 'https://www.instagram.com/datafromlopes/',
-    handle: '@datafromlopes',
-    group: 'network',
-    brand: '#e4405f',
+    id: 'scholar',
+    label: 'Google Scholar',
+    // Canonical form — the link as given carried a session token and a pinned
+    // locale, neither of which should be baked into a public profile link.
+    href: 'https://scholar.google.com/citations?user=ZxOBRC0AAAAJ',
+    handle: 'ZxOBRC0AAAAJ',
+    group: 'academic',
+    brand: '#4285f4',
   },
   {
     id: 'lattes',
@@ -124,3 +127,11 @@ export const newsletter = {
   form: '0ZWAxD',
   endpoint: '/api/subscribe',
 } as const
+
+/** Network profiles shown as icon rows (hero card and footer), in this order. */
+export const NETWORK_ORDER = ['linkedin', 'github', 'huggingface', 'x'] as const
+/** Academic identifiers, in the order the footer lists them. */
+export const ACADEMIC_ORDER = ['orcid', 'scholar', 'lattes', 'email'] as const
+
+export const byId = (ids: readonly string[]) =>
+  ids.map((id) => socials.find((s) => s.id === id)).filter((s): s is SocialLink => Boolean(s))

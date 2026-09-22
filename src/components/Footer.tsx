@@ -1,12 +1,13 @@
 import { Link } from 'react-router'
-import { nav, site, socials } from '@/data/site'
+import { ACADEMIC_ORDER, NETWORK_ORDER, byId, nav, site } from '@/data/site'
 import { BUILD_DATE, formatDate } from '@/lib/format'
-import { iconFor, Rss } from './Icons'
+import { AcademicLinks } from './AcademicLinks'
+import { Rss } from './Icons'
 import { SocialLinks } from './SocialLinks'
 import { Container } from './ui'
 
-const network = socials.filter((s) => s.group === 'network')
-const academic = socials.filter((s) => s.group === 'academic')
+const network = byId(NETWORK_ORDER)
+const academic = byId(ACADEMIC_ORDER)
 
 export function Footer() {
   return (
@@ -59,24 +60,7 @@ export function Footer() {
             <p className="label mb-4">Elsewhere</p>
             <SocialLinks items={network} className="mb-5" />
 
-            <ul className="space-y-2">
-              {academic.map((item) => {
-                const Icon = iconFor[item.id]
-                return (
-                  <li key={item.id}>
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 text-[0.8125rem] text-ink-3 transition-colors hover:text-ink"
-                    >
-                      {Icon ? <Icon size={13} className="shrink-0" /> : null}
-                      <span className="font-mono text-[0.6875rem]">{item.handle}</span>
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
+            <AcademicLinks items={academic} />
           </div>
         </div>
 

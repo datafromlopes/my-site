@@ -5,7 +5,7 @@ import { site, socials } from '@/data/site'
 import { publications } from '@/lib/content'
 import { citation, duration, formatMonth, yearsSince } from '@/lib/format'
 
-const CONTACT = socials.filter((s) => ['linkedin', 'github', 'orcid', 'lattes'].includes(s.id))
+const CONTACT = socials.filter((s) => ['linkedin', 'github', 'scholar', 'orcid', 'lattes'].includes(s.id))
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

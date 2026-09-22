@@ -5,7 +5,7 @@
  * and by the client (which updates them on soft navigation), so a crawler and a
  * user who clicked through from the home page see exactly the same description.
  */
-import { site } from '@/data/site'
+import { researchKeywords, site } from '@/data/site'
 import { findPost, findProject, findPublication, posts, projects, publications } from './content'
 import { authorLine } from './format'
 
@@ -169,11 +169,12 @@ const person = {
       url: 'https://bra.ifsp.edu.br',
     },
   ],
-  knowsAbout: [...site.keywords],
+  knowsAbout: [...researchKeywords, ...site.keywords],
   sameAs: [
     'https://www.linkedin.com/in/datafromlopes',
     'https://github.com/datafromlopes',
     'https://orcid.org/0000-0002-5130-3728',
+    'https://scholar.google.com/citations?user=ZxOBRC0AAAAJ',
     'http://lattes.cnpq.br/4604428550643092',
     'https://huggingface.co/datafromlopes',
   ],
